@@ -66,7 +66,7 @@ Kohana::init
 (
 	array
 	(
-		'base_url' => IN_PRODUCTION ? '/' : '/projekt/', 
+		'base_url' => '/projekt/', 
 		'index_file' => FALSE,
 		'profile' => !IN_PRODUCTION, // Disabling profiling if we are in production
 		'caching' => IN_PRODUCTION, // Enable caching if we are in production
