@@ -73,7 +73,7 @@ define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 // Clean up the configuration vars
 unset($application, $modules, $system);
 
-if (false and file_exists('install'.EXT))
+if (file_exists('install'.EXT))
 {
 	// Load the installation check
 	return include 'install'.EXT;
