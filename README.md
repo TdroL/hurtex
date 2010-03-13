@@ -1,2 +1,2 @@
-Projekt zespo≥owy Hurtex!
-(taa, wiemy, øe to g≥upia nazwa :P)
+Projekt zespo≈Çowy Hurtex!
+(taa, wiemy, ≈ºe to g≈Çupia nazwa :P)
