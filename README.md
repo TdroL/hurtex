@@ -11,4 +11,4 @@ Członkowie:
 - mks911
 
 
-macha Ci robot _[-.-]_/
+macha Ci robot ..[-.-]../
