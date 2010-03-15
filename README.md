@@ -4,4 +4,7 @@ Projekt zespołowy Hurtex!
 Członkowie:
 
 - _TdroL
-- Amos001 (the Great)
+- amos001
+- kamilklw
+- arczi 
+- mks911
