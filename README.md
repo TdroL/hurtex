@@ -9,3 +9,6 @@ Członkowie:
 - kamilklw
 - arczi 
 - mks911
+
+
+macha Ci robot _[-.-]_/
