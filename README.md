@@ -10,5 +10,6 @@ Członkowie:
 - arczi 
 - mks911
 
+2010.03.18 14:16 - [TdroL] przeniosłem pliki dokumentacji, pomocnicze, itp. do katalogu schema/
 
 macha Ci robot \..[-.-]../
