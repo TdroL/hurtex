@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Formatki - szkielet</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		@import url('style.css');
+	</style>
+</head>
+<body>
+	<div id="root">
+		<header>
+			Panel zarządzania
+		</header>
+		
+		<div id="subroot">
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li class="active"><a href="#">Produkty</a></li>
+					<li><a href="#">Kategorie</a></li>
+					<li><a href="#">Klienci</a></li>
+					<li><a href="#">Zamówienia</a></li>
+					<li><a href="#">Dostawcy</a></li>
+				</ul>
+			</nav>
+
+			<section id="contents">
+				<form method="post" action="#">
+					<table>
+						<caption>Użytkownicy</caption>
+						<tr>
+							<td><label for="ftext">Login</label></td>
+							<td>
+								<input type="text" name="test" value="value" id="ftext" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td><label for="fpassword">Hasło</label></td>
+							<td>
+								<input type="password" name="test" value="value" id="fpassword" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td><label for="frepassword">Powtórz hasło</label></td>
+							<td>
+								<input type="password" name="test" value="value" id="frepassword" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td>Dostęp</td>
+							<td>
+								<label><input type="checkbox" name="test_0" value="1" /> Logowanie</label><br />
+								<label><input type="checkbox" name="test_1" value="1" /> Admin</label><br />
+								<label><input type="checkbox" name="test_2" value="1" /> Produkty</label><br />
+								<label><input type="checkbox" name="test_3" value="1" /> Kategorie</label><br />
+								<label><input type="checkbox" name="test_4" value="1" /> Klienci</label><br />
+								<label><input type="checkbox" name="test_5" value="1" /> Zamówienia</label><br />
+								<label><input type="checkbox" name="test_5" value="1" /> Dostawcy</label><br />
+							</td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td>
+								<input type="submit" name="send" value="Wyślij" />
+							</td>
+						</tr>
+					</table>
+				</form>
+			</section>
+		</div>
+		
+		<footer>
+			<small>Jakieś &copy;copywrite...</small>
+		</footer>
+	</div>
+</body>
+</html>
