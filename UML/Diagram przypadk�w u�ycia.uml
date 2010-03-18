@@ -97,7 +97,7 @@
 <XPD:REF name="Model">buQO2piAqEy1A2EsJokS8gAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="7wtErnxFc0iLYlylAkmTPwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="oOovJTykmE6e8ndnm3Tq0wAA">
-<XPD:ATTR name="Text" type="string">Dział zamówień</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Dział zaopatrzenia</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="b68M3KVa90OTKUhDpeg3SAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -276,7 +276,7 @@
 <XPD:REF name="ClientDependencies[0]">iFVGaMOLAUuuuq4jgyZjUQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[2]" type="UMLPackage" guid="buQO2piAqEy1A2EsJokS8gAA">
-<XPD:ATTR name="Name" type="string">Dział zamówień</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Dział zaopatrzenia</XPD:ATTR>
 <XPD:REF name="Namespace">NC3YRHGdNkmDbl4oy+DolAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">1</XPD:ATTR>
 <XPD:REF name="Views[0]">drWr6XwflEWIEmEn77tiCwAA</XPD:REF>
