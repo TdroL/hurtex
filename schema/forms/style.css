@@ -1,0 +1,178 @@
+/* Meyer's css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/* ----------- Reset end -------------------- */
+
+/**
+  Color schema: http://colorschemedesigner.com/#0I51Tw0w0w0w0
+ */
+body {
+	font: 14px/30px "Lucida Sans", Lucida, Tahoma, Arial, sans-serif;
+	background: #E0E0E0 url('images/background.gif') repeat-x;
+}
+
+a {
+	color: #FF9200;
+}
+
+#root {
+	width: 90%;
+	margin: 0 5%;
+	background-color: #FFF;
+}
+
+header {
+	font-size: 2em;
+	padding: 1em;
+	height: 2em;
+	display: block;
+	background: #FFAD40;
+	color: #77511E;
+}
+
+footer {
+	display: block;
+	clear: both;
+	padding: 10px 3px;
+}
+
+footer small {
+	display: block;
+	border: 1px solid #FFBF00;
+	border-width: 1px 0;
+	background: #FFDC73;
+	color: #A67C00;
+	text-align: center;
+}
+
+#subroot {
+	border-top: 2px solid #E0E0E0;
+}
+nav {
+	width: 24%;
+	float: left;
+	clear: both;
+	padding: 1px;
+}
+
+nav li>a {
+	margin: 2px;
+	color: #A68E46;
+	display: block;
+	padding-left: 25px;
+	background: #FFDC73 url('images/square.gif') 8px 5px no-repeat;
+	text-decoration: none;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+nav li:hover>a, nav li.active>a {
+	color: #FFDC73;
+	background-color: #A67C00;
+}
+
+#contents {
+	width: 65%;
+	padding: 2% 5%;
+	float: right;
+}
+
+form table {
+	width: 100%;
+}
+
+form caption {
+	font-size: 1.4em;
+	padding-left: 30.5%;
+	text-align: right;
+	color: #FF4900;
+	border-bottom: 1px solid #FF4900;
+}
+
+form td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+form tr:last-child td
+{
+	border: none;
+}
+
+form td:nth-child(2n - 1) {
+	width: 30%;
+	font-weight: bold;
+	text-align: right;
+}
+
+form td:nth-child(2n - 1) label {
+	display: block;
+}
+
+form tr:last-child td {
+	border-top: 1px solid #FF4900;
+}
+
+form td input[type="text"],
+form td input[type="password"],
+form td select,
+form td textarea {
+	width: 99%;
+}
+
+form td textarea {
+	font-family: inherit;
+}
+
+form td input.small {
+	width: 20%;
+}
+
+form td input.align-right {
+	text-align: right;
+}

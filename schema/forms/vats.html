@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Formatki - szkielet</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		@import url('style.css');
+	</style>
+</head>
+<body>
+	<div id="root">
+		<header>
+			Panel zarządzania
+		</header>
+		
+		<div id="subroot">
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li class="active"><a href="#">Produkty</a></li>
+					<li><a href="#">Kategorie</a></li>
+					<li><a href="#">Klienci</a></li>
+					<li><a href="#">Zamówienia</a></li>
+					<li><a href="#">Dostawcy</a></li>
+				</ul>
+			</nav>
+
+			<section id="contents">
+				<form method="post" action="#">
+					<table>
+						<caption>VAT</caption>
+						<tr>
+							<td><label for="ftext">Stawka</label></td>
+							<td>
+								<input type="text" name="test" value="0,00" id="ftext" class="small align-right" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td>
+								<input type="submit" name="send" value="Wyślij" />
+							</td>
+						</tr>
+					</table>
+				</form>
+			</section>
+		</div>
+		
+		<footer>
+			<small>Jakieś &copy;copywrite...</small>
+		</footer>
+	</div>
+</body>
+</html>
