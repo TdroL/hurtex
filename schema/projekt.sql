@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 23 Mar 2010, 19:30
+-- Czas wygenerowania: 23 Mar 2010, 23:05
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -229,8 +229,10 @@ CREATE TABLE IF NOT EXISTS `products_supplies` (
 CREATE TABLE IF NOT EXISTS `product_search` (
   `product_id` int(11) unsigned NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `full_data` int(11) NOT NULL,
-  KEY `product_id` (`product_id`)
+  `full_data` text COLLATE utf8_unicode_ci NOT NULL,
+  KEY `product_id` (`product_id`),
+  FULLTEXT KEY `name` (`name`),
+  FULLTEXT KEY `full_data` (`full_data`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
