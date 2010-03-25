@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 23 Mar 2010, 23:05
+-- Czas wygenerowania: 25 Mar 2010, 07:09
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
 CREATE TABLE IF NOT EXISTS `supplies` (
   `id` int(11) unsigned NOT NULL,
   `date` int(11) unsigned NOT NULL,
-  `status` enum('added','in-progress','done') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'added',
+  `status` enum('added','in-progress','done','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'added',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -326,8 +326,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`) ON DELETE SET NULL;
 
 --
 -- Ograniczenia dla tabeli `prices`
@@ -340,9 +340,9 @@ ALTER TABLE `prices`
 -- Ograniczenia dla tabeli `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`),
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`);
 
 --
 -- Ograniczenia dla tabeli `products_orders`
@@ -363,6 +363,6 @@ ALTER TABLE `products_suppliers`
 -- Ograniczenia dla tabeli `products_supplies`
 --
 ALTER TABLE `products_supplies`
-  ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
