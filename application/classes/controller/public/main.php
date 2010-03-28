@@ -8,6 +8,6 @@ class Controller_Public_Main extends Controller_Template
 									->limit(2)
 									->offset(3)
 									->find_all();
-		// hello!
+		// hello! dopis!
 	}
 }
