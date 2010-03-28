@@ -15,7 +15,7 @@ Przy wyskakiwaniu błędu typu "cannot merge <plik>" należy:
 	git add sciezka/do/pliku
 	git commit sciezka/do/pliku -m "wiadomosc"
 
-I powinno działać
+I powinno działać. UWAGA! "git add *" nie zadziała!
 
                      MMMMMMMMM  MMMMMMMM7    MMM?   +MMM  OMMM
                         MMI     MM+         MMMM$   MMMM  MMMZ
