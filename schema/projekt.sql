@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 25 Mar 2010, 07:09
+-- Czas wygenerowania: 28 Mar 2010, 21:24
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -95,10 +95,13 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `paragon_number` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `invoice` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `address_id` int(11) unsigned DEFAULT NULL,
+  `payment` enum('cach','transfer') COLLATE utf8_unicode_ci NOT NULL,
+  `send_form_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `paragon_number` (`paragon_number`,`invoice`),
   KEY `client_id` (`client_id`),
-  KEY `address_id` (`address_id`)
+  KEY `address_id` (`address_id`),
+  KEY `send_form_id` (`send_form_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
@@ -243,6 +246,25 @@ CREATE TABLE IF NOT EXISTS `product_search` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla  `send_form`
+--
+
+CREATE TABLE IF NOT EXISTS `send_form` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `price_id` int(11) unsigned NOT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prive_id` (`price_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `send_form`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla  `suppliers`
 --
 
@@ -326,8 +348,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`),
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `prices`
@@ -366,3 +388,9 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
+
+--
+-- Ograniczenia dla tabeli `send_form`
+--
+ALTER TABLE `send_form`
+  ADD CONSTRAINT `send_form_ibfk_1` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`);

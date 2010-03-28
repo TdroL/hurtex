@@ -10,7 +10,7 @@ $_database =  array
 			'username'   => 'root',
 			'password'   => FALSE,
 			'persistent' => FALSE,
-			'database'   => 'hurtex',
+			'database'   => 'projekt',
 		),
 		'table_prefix' => '',
 		'charset'      => 'utf8',

@@ -10,9 +10,12 @@ Członkowie
 - arczi 
 - mks911
 
-2010.03.18 14:16 - [TdroL] przeniosłem pliki dokumentacji, pomocnicze, itp.  do katalogu schema/
+Przy wyskakiwaniu błędu typu "cannot merge <plik>" należy:
 
-macha Ci robot \..[-.-]../
+  git add sciezka/do/pliku
+  git commit sciezka/do/pliku -m "wiadomosc"
+
+I powinno działać
 
                      MMMMMMMMM  MMMMMMMM7    MMM?   +MMM  OMMM
                         MMI     MM+         MMMM$   MMMM  MMMZ
