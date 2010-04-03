@@ -3,12 +3,19 @@
 class Controller_Auth extends Controller_Template
 {
 	public $access = array();
+	public $redirect_url = '/';
+	public $login_url = 'users/login';
 	public $auth = NULL;
 	
 	public function before()
 	{
 		parent::before();
 		$this->auth = Auth::instance();
+		
+		if(is_object($this->view))
+		{
+			$this->view->bind_global('auth', $this->auth);
+		}
 		
 		$role = $this->request->controller; // default role
 		$action = $this->request->action;
@@ -17,7 +24,7 @@ class Controller_Auth extends Controller_Template
 		{
 			$role = $this->access[$action];
 		}
-		else if(in_array(TRUE, array_keys($this->access))) // for all actions
+		else if(isset($this->access[TRUE])) // for all actions
 		{
 			$role = $this->access[TRUE];
 		}
@@ -29,23 +36,20 @@ class Controller_Auth extends Controller_Template
 		
 		if($this->auth->logged_in())
 		{
-			if(!defined('ADMIN_LOGGED') and $this->auth->has_role('admin'))
-			{
-				define('ADMIN_LOGGED', TRUE);
-			}
-			
-			if(!$this->auth->has_role($role))
+			$user = $this->auth->get_user();
+			//					admin	 					posts	or					posts.create
+			if(!($user->has_role('admin') or $user->has_role($role) or $user->has_role($role.'.'.$action)))
 			{
 				// role required: $role
-				$this->request->redirect('admin/main');
+				$this->request->redirect($this->redirect_url);
 			}
-
-			is_object($this->view) and $this->view->bind_global('auth', $this->auth);
+			// else: passed - allowed to action
 		}
 		else
 		{
 			// not logged in
-			$this->request->redirect('admin/login');
+			$this->session->set('referrer', Request::instance()->uri());
+			$this->request->redirect($this->login_url);
 		}
 	}
 }

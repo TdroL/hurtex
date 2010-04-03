@@ -89,13 +89,13 @@ Kohana::$config->attach(new Kohana_Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	 'firephp'		=> MODPATH.'firephp',    // FirePHP library
-	 'auth'			=> MODPATH.'auth',       // Basic authentication
-	 'database'		=> MODPATH.'database',   // Database access
-	 'orm'			=> MODPATH.'orm',        // Object Relationship Mapping
-	 'pagination'	=> MODPATH.'pagination', // Paging of results
-	 'formfields'	=> MODPATH.'formfields',
 	 'patches'		=> MODPATH.'patches',
+	 'firephp'		=> MODPATH.'firephp',    // FirePHP library
+	 'database'		=> MODPATH.'database',   // Database access
+	 'jelly'		=> MODPATH.'jelly',      // Object Relationship Mapping
+	 'jelly-auth'	=> MODPATH.'jelly-auth',	// Jelly Auth driver
+	 'auth'			=> MODPATH.'auth',			// Basic authentication
+	 'pagination'	=> MODPATH.'pagination', // Paging of results
 	));
 
 if(is_file(APPPATH.'base.php'))

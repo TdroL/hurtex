@@ -15,8 +15,9 @@ class Kohana extends Kohana_Core
 				!IN_PRODUCTION and Kohana::$log->add('cache', $e.PHP_EOL.'URI: '.$request->uri);
 				return NULL;
 			}
-			
+
 			throw $e; // rethrow
 		}
 	}
 }
+

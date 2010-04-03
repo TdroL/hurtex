@@ -16,3 +16,6 @@
 [submodule "modules/pagination"]
 	path = modules/pagination
 	url = git://github.com/kohana/pagination.git
+[submodule "modules/jelly"]
+	path = modules/jelly
+	url = git://github.com/jonathangeiger/kohana-jelly.git
