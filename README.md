@@ -10,6 +10,12 @@ Członkowie
 - arczi 
 - mks911
 
+
+Pomocne strony:
+
+- [http://kerkness.ca/wiki/doku.php](http://kerkness.ca/wiki/doku.php)
+- [http://www.dealtaker.com/blog/tag/kohana/](http://www.dealtaker.com/blog/tag/kohana/)
+
 Przy wyskakiwaniu błędu typu "cannot merge <plik>" należy:
 
 	git add sciezka/do/pliku
@@ -17,7 +23,6 @@ Przy wyskakiwaniu błędu typu "cannot merge <plik>" należy:
 
 I powinno działać. UWAGA! "git add *" nie zadziała!
 
-Pomocna strona: [http://kerkness.ca/wiki/doku.php](http://kerkness.ca/wiki/doku.php)
 
                      MMMMMMMMM  MMMMMMMM7    MMM?   +MMM  OMMM
                         MMI     MM+         MMMM$   MMMM  MMMZ
