@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Auth extends Controller_Template
+abstract class Controller_Auth extends Controller_Template
 {
 	public $access = array();
-	public $redirect_url = '/';
+	public $redirect_url = 'users/restricted';
 	public $login_url = 'users/login';
 	public $auth = NULL;
 	
@@ -36,9 +36,7 @@ class Controller_Auth extends Controller_Template
 		
 		if($this->auth->logged_in())
 		{
-			$user = $this->auth->get_user();
-			//					admin	 					posts	or					posts.create
-			if(!($user->has_role('admin') or $user->has_role($role) or $user->has_role($role.'.'.$action)))
+			if(!$this->auth->has_role($role.'.'.$action)) // custom method
 			{
 				// role required: $role
 				$this->request->redirect($this->redirect_url);

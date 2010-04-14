@@ -12,46 +12,6 @@ class HTML extends Kohana_HTML
 		return View::factory('common/errors')->set('errors', $errors).PHP_EOL;
 	}
 	
-	public static function has($url, $params, $return = NULL)
-	{
-		$bool = TRUE;
-		foreach($params as $k => $v)
-		{
-			if(!array_key_exists($k, $url) or $url[$k] != $v)
-			{
-				$bool = FALSE;
-				break;
-			}
-		}
-		
-		if($return !== NULL)
-		{
-			return ($bool === TRUE) ? $return : NULL;
-		}
-		
-		return $bool;
-	}
-	
-	public static function image($file, array $attributes = NULL, $index = FALSE)
-	{
-		if(!is_array($attributes))
-		{
-			$attributes = array();
-		}
-		
-		if(!array_key_exists('alt', $attributes))
-		{
-			$attributes['alt'] = $file;
-			
-			if(array_key_exists('title', $attributes))
-			{
-				$attributes['alt'] = $attributes['title'];
-			}
-		}
-		
-		return parent::image($file, $attributes, $index);
-	}
-	
 	public static function attributes(array $attributes = NULL)
 	{
 		if (empty($attributes))

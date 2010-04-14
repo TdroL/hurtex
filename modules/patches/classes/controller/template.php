@@ -8,7 +8,7 @@
  * @license    http://kohanaphp.com/license.html
  */
  
-class Controller_Template extends Controller {
+abstract class Controller_Template extends Controller {
 
 	/**
 	 * @var  string  page template
@@ -62,8 +62,6 @@ class Controller_Template extends Controller {
 					
 					$this->view =& $this->content;
 				}
-				
-				$this->view->title = 'Piotr Szkałuba';
 			}
 		}
 	}

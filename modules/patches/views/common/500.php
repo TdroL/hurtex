@@ -1,0 +1,1 @@
+<h2>500</h2><p><?php echo $message ?></p>

@@ -103,8 +103,10 @@ if(is_file(APPPATH.'base.php'))
 	require APPPATH.'base.php';
 }
 
-Kohana::$log->attach(new FirePHP_Log_Console());
-
+if(class_exists('FirePHP_Log_Console'))
+{
+	Kohana::$log->attach(new FirePHP_Log_Console());
+}
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
@@ -187,7 +189,7 @@ else
 
 echo $request->response;
 
-if(!IN_PRODUCTION and class_exists('FirePHP_Profiler'))
+if(!Request::$is_ajax and !IN_PRODUCTION and class_exists('FirePHP_Profiler'))
 {
 	FirePHP_Profiler::instance()
 		->superglobals()
