@@ -15,10 +15,12 @@ return array(
 	'November'	=> 'Listopad',
 	'December'	=> 'Grudzień',
 
+	'name' => 'Nazwa',
+
 	// errors
 	'Internal error: :param1'			=> 'Wystąpił błąd serwera: :param1',
 	'page ":link" does not exists'		=> 'Strona ":link" nie istnieje',
-	':field must not be empty'			=> 'Pole :field nie może być puste',
+	':field must not be empty'			=> 'Pole ":field" nie może być puste',
 	':field must be the same as :param1'					=> 'Pole :field musi być takie samo jak pole :param1',
 	':field does not match the required format'				=> 'Pole :field nie pasuje so formatu',
 	':field must be exactly :param1 characters long'		=> 'Pole :field musi mieć :param1 znaków',

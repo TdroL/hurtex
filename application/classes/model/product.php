@@ -8,8 +8,15 @@ class Model_Product extends Jelly_Model
 		$meta->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
+					'label' => 'Nazwa',
+					'rules' => array(
+						'not_empty' => NULL,
+					),
 				)),
 				'description' => new Field_Text(array(
+					'rules' => array(
+						'not_empty' => NULL,
+					),
 				)),
 				'category' => new Field_BelongsTo(array(
 				)),

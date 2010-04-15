@@ -55,12 +55,127 @@ blockquote, q {
 /* Meyer's reset end */
 
 body {
-	font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.5em;
-	padding: 5%;
+	font: 14px/30px "Lucida Sans", Lucida, Tahoma, Arial, sans-serif;
+	background: #E0E0E0 url('images/background.gif') repeat-x;
 }
 
-pre, code, tt {
-	font-family: Monaco, "Courier New", Courier, monospace;
+a {
+	color: #FF9200;
+}
+
+#root {
+	width: 90%;
+	margin: 0 5%;
+	background-color: #FFF;
+}
+
+header {
+	font-size: 2em;
+	padding: 1em;
+	height: 2em;
+	display: block;
+	background: #FFAD40;
+	color: #77511E;
+}
+
+footer {
+	display: block;
+	clear: both;
+	padding: 10px 3px;
+}
+
+footer small {
+	display: block;
+	border: 1px solid #FFBF00;
+	border-width: 1px 0;
+	background: #FFDC73;
+	color: #A67C00;
+	text-align: center;
+}
+
+#subroot {
+	border-top: 2px solid #E0E0E0;
+}
+nav {
+	width: 24%;
+	float: left;
+	clear: both;
+	padding: 1px;
+}
+
+nav li>a {
+	margin: 2px;
+	color: #A68E46;
+	display: block;
+	padding-left: 25px;
+	background: #FFDC73 url('images/square.gif') 8px 5px no-repeat;
+	text-decoration: none;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+nav li:hover>a, nav li.active>a {
+	color: #FFDC73;
+	background-color: #A67C00;
+}
+
+#contents {
+	width: 65%;
+	padding: 2% 5%;
+	float: right;
+}
+
+form table {
+	width: 100%;
+}
+
+form caption {
+	font-size: 1.4em;
+	padding-left: 30.5%;
+	text-align: right;
+	color: #FF4900;
+	border-bottom: 1px solid #FF4900;
+}
+
+form {
+	padding: 5px;
+	vertical-align: top;
+}
+
+form tr:last-child td
+{
+	border: none;
+}
+
+form:nth-child(2n - 1) {
+	width: 30%;
+	font-weight: bold;
+	text-align: right;
+}
+
+form:nth-child(2n - 1) label {
+	display: block;
+}
+
+form tr:last-child td {
+	border-top: 1px solid #FF4900;
+}
+
+form input[type="text"],
+form input[type="password"],
+form select,
+form textarea {
+	width: 99%;
+}
+
+form textarea {
+	font-family: inherit;
+}
+
+form input.small {
+	width: 20%;
+}
+
+form input.align-right {
+	text-align: right;
 }

@@ -5,9 +5,10 @@ class Model_Category extends Jelly_Model
 
 	public static function initialize(Jelly_Meta $meta)
 	{
-		$meta->fields(array(
+		$meta->name_key('title')
+			->fields(array(
 				'id' => new Field_Primary,
-				'title' => new Field_Text(array(
+				'title' => new Field_String(array(
 				)),
 				'category' => new Field_BelongsTo(array(
 				)),

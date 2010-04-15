@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Main extends Controller_Auth
+class Controller_Protected_Main extends Controller_Template
 {
 	public function action_index()
 	{
-	
+		
 	}
 }
