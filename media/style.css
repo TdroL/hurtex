@@ -125,8 +125,25 @@ nav li:hover>a, nav li.active>a {
 	float: right;
 }
 
+table {
+	width: 96%;
+	border-collapse: collapse;
+	border: 1px solid #FF4900;
+}
+
+table thead td {
+	border: 3px solid #FF4900;
+	font-weight: bold; 
+}
+
+table td {
+	padding: 4px;
+	border: 1px solid #FF4900;
+}
+
 form table {
 	width: 100%;
+	border: none;
 }
 
 form caption {
@@ -137,9 +154,10 @@ form caption {
 	border-bottom: 1px solid #FF4900;
 }
 
-form {
+form td {
 	padding: 5px;
 	vertical-align: top;
+	border: none;
 }
 
 form tr:last-child td
@@ -147,13 +165,24 @@ form tr:last-child td
 	border: none;
 }
 
-form:nth-child(2n - 1) {
+form td:nth-child(2n - 1) {
 	width: 30%;
 	font-weight: bold;
 	text-align: right;
 }
 
-form:nth-child(2n - 1) label {
+form tr.errors td div {
+	border: 1px solid #f00;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin: 4px 0;
+	text-align: left;
+	padding: 4px;
+	background: #ffb3b3 url('pic/bg_error.png') right top no-repeat;
+}
+
+form td:nth-child(2n - 1) label {
 	display: block;
 }
 
@@ -161,21 +190,21 @@ form tr:last-child td {
 	border-top: 1px solid #FF4900;
 }
 
-form input[type="text"],
-form input[type="password"],
-form select,
-form textarea {
+form td input[type="text"],
+form td input[type="password"],
+form td select,
+form td textarea {
 	width: 99%;
 }
 
-form textarea {
+form td textarea {
 	font-family: inherit;
 }
 
-form input.small {
+form td input.small {
 	width: 20%;
 }
 
-form input.align-right {
+form td input.align-right {
 	text-align: right;
 }

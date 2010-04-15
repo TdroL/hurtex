@@ -3,7 +3,7 @@
 <head>
 	<title>Formatki - szkielet</title>
 	<meta charset="utf-8" />
-	<?php echo html::style('media/style.css') ?>
+	<?php echo html::style('media/admin/style.css') ?>
 </head>
 <body>
 	<div id="root">
@@ -14,12 +14,13 @@
 		<div id="subroot">
 			<nav>
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li class="active"><a href="#">Produkty</a></li>
-					<li><a href="#">Kategorie</a></li>
-					<li><a href="#">Klienci</a></li>
-					<li><a href="#">Zamówienia</a></li>
-					<li><a href="#">Dostawcy</a></li>
+					<!-- class="active" -->
+					<li><a href="<?php echo url::site('admin/main') ?>">Home</a></li>
+					<li><a href="<?php echo url::site('admin/products') ?>">Produkty</a></li>
+					<li><a href="<?php echo url::site('admin/categories') ?>">Kategorie</a></li>
+					<li><a href="<?php echo url::site('admin/clients') ?>">Klienci</a></li>
+					<li><a href="<?php echo url::site('admin/orders') ?>">Zamówienia</a></li>
+					<li><a href="<?php echo url::site('admin/suppliers') ?>">Dostawcy</a></li>
 				</ul>
 			</nav>
 

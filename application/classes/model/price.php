@@ -17,7 +17,8 @@ class Model_Price extends Jelly_Model
 				)),
 				'vat' => new Field_BelongsTo(array(
 				)),
-			));
+			))
+			->load_with(array('vat'));
 	}
 
 }

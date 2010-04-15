@@ -14,19 +14,25 @@ class Model_Product extends Jelly_Model
 					),
 				)),
 				'description' => new Field_Text(array(
+					'label' => 'Opis',
 					'rules' => array(
 						'not_empty' => NULL,
 					),
 				)),
 				'category' => new Field_BelongsTo(array(
+					'label' => 'Kategoria',
 				)),
 				'unit' => new Field_BelongsTo(array(
+					'label' => 'Jednostka miary',
 				)),
 				'quantity' => new Field_Float(array(
+					'label' => 'Ilość',
 				)),
 				'minimal_quantity' => new Field_Float(array(
+					'label' => 'Minimalna ilość',
 				)),
 				'price' => new Field_BelongsTo(array(
+					'label' => 'Cena',
 				)),
 				'orders' => new Field_ManyToMany(array(
 				)),
@@ -34,7 +40,8 @@ class Model_Product extends Jelly_Model
 				)),
 				'supplies' => new Field_ManyToMany(array(
 				)),
-			));
+			))
+			->load_with(array('price'));
 	}
 
 }

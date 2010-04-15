@@ -1,9 +1,10 @@
-        <div class="error">
-            Errors:
-			<ul>
+		<tr class="errors">
+			<td colspan="2">
+				<ul>
 <?php foreach($errors as $v): ?>
-				<li><?php echo rtrim($v, '.') ?>.</li>
+					<li><?php echo rtrim($v, '.') ?>.</li>
 <?php endforeach ?>
-			</ul>
-        </div>
+				</ul>
+			</td>
+		</tr>
 
