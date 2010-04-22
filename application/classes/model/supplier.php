@@ -13,7 +13,7 @@ class Model_Supplier extends Jelly_Model
 						'not_empty' => NULL,
 					),
 				)),
-				'address' => new Field_String(array(
+				'address' => new Field_Text(array(
 					'label' => 'Adres',
 					'rules' => array(
 						'not_empty' => NULL,
