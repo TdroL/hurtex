@@ -22,7 +22,9 @@ class Controller_Protected_units extends Controller_Template
 			try
 			{
 				$unit->set($_POST);
-				$unit->value = $unit->value >= 1 ? $unit->value/100 : $unit->value;
+				
+				//echo Kohana::debug($unit);die;
+				
 				$unit->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz

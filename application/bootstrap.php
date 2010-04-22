@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+// define('_GRAY', TRUE);
+
 //-- Environment setup --------------------------------------------------------
 
 /**

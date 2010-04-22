@@ -16,7 +16,8 @@ class Model_Unit extends Jelly_Model
 				)),
 				'type' => new Field_Enum(array(
 					'label' => 'Typ',
-					'choices' => array('integer'=>'całkowity','float'=> 'rzeczywisty'),
+					'null' => FALSE,
+					'choices' => array('integer'=>'Liczba całkowita','float'=> 'Liczba rzeczywista'),
 				)),
 			));
 	}

@@ -16,6 +16,14 @@ Pomocne strony:
 - [http://kerkness.ca/wiki/doku.php](http://kerkness.ca/wiki/doku.php)
 - [http://www.dealtaker.com/blog/tag/kohana/](http://www.dealtaker.com/blog/tag/kohana/)
 
+Przy jakiś błędach w module "Jednostki" należy:
+
+	git submodule update
+
+a jak nie pomoże, to hardkorowo go:
+
+	git submodule foreach git pull origin master
+
 Przy wyskakiwaniu błędu typu "cannot merge <plik>" należy:
 
 	git add sciezka/do/pliku
