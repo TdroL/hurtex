@@ -21,6 +21,8 @@ return array(
 	'is_dir'			=> ':field - folder ":param1" does not exist',
 	'url'				=> ':field must be valid url',
 	'unique'			=> ':field must be unique',
+	'alpha'				=> ':field must contain only letters without spaces',
+	'phone'				=> ':field must be a phone number',
 	'alpha_dash'		=> ':field must contain only letters, digits, dashes and underscores characters',
 	'username_available'	=> ':field must be unique',
 	'email_available'		=> ':field must be unique',

@@ -42,7 +42,8 @@ return array(
 	':field must be unique'								=> 'Pole ":field" musi być unikalne - taka wartość już istnieje',
 	':field must contain only letters, digits, dashes and underscores characters'	=> 'Pole ":field" może zawierać jedynie litery (bez polskich znaków), cyfry, myślniki i pokreślenia',
 	':field must be a valid email'						=> 'Pole ":field" musi być poprawnym adresem email',
-
+	':field must contain only letters without spaces'	=> 'Pole ":field" musi zawierać tylko litery bez spacji',
+	':field must be a phone number'						=> 'Pole ":field" musi być poprawnym numerem telefonu', 
 	// pagination
 	'First'		=> 'Pierwsza',
 	'Previous'	=> 'Poprzednie',
