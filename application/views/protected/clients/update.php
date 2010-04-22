@@ -58,16 +58,18 @@
 							</tr>
 
 							<tr>
+							<td></td>
+							<td><smal>Jeśli nie chcesz zmieniać e-maila, pozostaw poniższe pole puste.</smal></td>
+							</tr>
+
+							<tr>
 								<td><?php echo $form->label('email_confirm') ?></td>
 								<td>
 									<?php echo $form->input('email_confirm') ?>
 								</td>
 							</tr>
 
-							<tr>
-							<td></td>
-							<td><smal>Jeśli nie chcesz zmienić, pozostaw puste</smal></td>
-							</tr>
+
 
 							<tr>
 								<td>
@@ -76,6 +78,11 @@
 								<td>
 									<?php echo $form->input('password') ?>
 								</td>
+							</tr>
+
+							<tr>
+							<td></td>
+							<td><smal>Jeśli nie chcesz zmieniać hasła, pozostaw poniższe pole puste.</smal></td>
 							</tr>
 
 							<tr>
