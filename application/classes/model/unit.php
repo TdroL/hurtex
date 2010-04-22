@@ -9,9 +9,14 @@ class Model_Unit extends Jelly_Model
 			->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
+					'label' => 'Nazwa',
+					'rules' => array(
+						'not_empty' => NULL,
+					),
 				)),
 				'type' => new Field_Enum(array(
-					'choices' => array('integer', 'float'),
+					'label' => 'Typ',
+					'choices' => array('integer'=>'całkowity','float'=> 'rzeczywisty'),
 				)),
 			));
 	}

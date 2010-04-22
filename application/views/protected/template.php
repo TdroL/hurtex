@@ -22,6 +22,7 @@
 					<li><a href="<?php echo url::site('admin/orders') ?>">Zamówienia</a></li>
 					<li><a href="<?php echo url::site('admin/suppliers') ?>">Dostawcy</a></li>
 					<li><a href="<?php echo url::site('admin/vats') ?>">Stawki VAT</a></li>
+					<li><a href="<?php echo url::site('admin/units') ?>">Jednostki miary</a></li>
 				</ul>
 			</nav>
 
