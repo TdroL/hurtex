@@ -1,29 +1,29 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Products extends Controller_Template
+class Controller_Protected_Vats extends Controller_Template
 {
-	protected $_base = 'admin/products';
+	protected $_base = 'admin/vats';
 
 	public function action_index()
 	{
-		$this->content->products = Jelly::select('product')->execute();
+		$this->content->vats = Jelly::select('vat')->execute();
 	}
-	
+
 	public function action_create()
 	{
-		$this->content->bind('form', $product); // uzywajac bind() widok zapamieta referencje a nie wartosc
-		$this->content->bind('errors', $errors); // czyli: jesli zmienimy tutaj wartosc zmiennych $product 
+		$this->content->bind('form', $vat); // uzywajac bind() widok zapamieta referencje a nie wartosc
+		$this->content->bind('errors', $errors); // czyli: jesli zmienimy tutaj wartosc zmiennych $vat 
 													// lub $error to bedzie to w widoku te zmienne tez beda zmienione
 
-		$product = Jelly::factory('product');
-		$price = Jelly::factory('price');
-		
+		$vat = Jelly::factory('vat');
+
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
 			try
 			{
-				$product->set($_POST);
-				$product->save();
+				$vat->set($_POST);
+				$vat->value = $vat->value >= 1 ? $vat->value/100 : $vat->value;
+				$vat->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
@@ -34,16 +34,16 @@ class Controller_Protected_Products extends Controller_Template
 			}
 		}
 	}
-	
+
 	public function action_update()
 	{
-		$this->content->bind('form', $product);
+		$this->content->bind('form', $vat);
 		$this->content->bind('errors', $errors);
 
 		$id = $this->request->param('id');
-		$product = Jelly::select('product', $id);
+		$vat = Jelly::select('vat', $id);
 
-		if(!$product->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		if(!$vat->loaded()) // jesli ine istnieje to przekieruj do listy produktow
 		{
 			$this->request->redirect($this->_base);
 		}
@@ -52,8 +52,9 @@ class Controller_Protected_Products extends Controller_Template
 		{
 			try
 			{
-				$product->set($_POST);
-				$product->save();
+				$vat->set($_POST);
+				$vat->value = $vat->value >= 1 ? $vat->value/100 : $vat->value;
+				$vat->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
@@ -64,16 +65,16 @@ class Controller_Protected_Products extends Controller_Template
 			}
 		}
 	}
-	
+
 	public function action_delete()
 	{
-		$this->content->bind('form', $product);
+		$this->content->bind('form', $vat);
 		$this->content->bind('errors', $errors);
 
 		$id = $this->request->param('id');
-		$product = Jelly::select('product', $id);
+		$vat = Jelly::select('vat', $id);
 
-		if(!$product->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		if(!$vat->loaded()) // jesli ine istnieje to przekieruj do listy produktow
 		{
 			$this->request->redirect($this->_base);
 		}
@@ -82,7 +83,7 @@ class Controller_Protected_Products extends Controller_Template
 		{
 			try
 			{
-				$product->delete();
+				$vat->delete();
 
 				$this->session->set($_POST['seed'], TRUE);
 				$this->request->redirect($this->_base);
