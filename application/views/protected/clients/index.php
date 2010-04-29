@@ -19,7 +19,7 @@
 		<td><?php echo $client->email ?></td>
 		<td>
 			<?php echo html::anchor('admin/clients/update.'.$client->id, 'Edytuj') ?>
-			<?php echo html::anchor('admin/clients/delete.'.$client->id, 'Usuń') ?>
+			<?php echo html::anchor('admin/clients/delete.'.$client->id, 'Usuń', array('class' => 'unsafe')) ?>
 		</td>
 	</tr>
 <?php endforeach ?>

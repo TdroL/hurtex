@@ -9,12 +9,18 @@ class Model_Supplier extends Jelly_Model
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
 					'label' => 'Nazwa',
+					'filters' => array(
+						'trim' => NULL,
+					),
 					'rules' => array(
 						'not_empty' => NULL,
 					),
 				)),
 				'address' => new Field_Text(array(
 					'label' => 'Adres',
+					'filters' => array(
+						'trim' => NULL,
+					),
 					'rules' => array(
 						'not_empty' => NULL,
 					),

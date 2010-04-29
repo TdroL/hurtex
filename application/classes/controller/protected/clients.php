@@ -54,6 +54,11 @@ class Controller_Protected_Clients extends Controller_Template
 				unset($_POST['password'], $_POST['password_confirm']);
 			}
 			
+			if(empty($_POST['email_confirm']))
+			{
+				unset($_POST['email'], $_POST['email_confirm']);
+			}
+			
 			try
 			{
 				$client->set($_POST);

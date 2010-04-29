@@ -69,8 +69,6 @@
 								</td>
 							</tr>
 
-
-
 							<tr>
 								<td>
 									<?php echo $form->label('password') ?>

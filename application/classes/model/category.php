@@ -9,8 +9,10 @@ class Model_Category extends Jelly_Model
 			->fields(array(
 				'id' => new Field_Primary,
 				'title' => new Field_String(array(
+					'label' => 'Tytuł',
 				)),
 				'category' => new Field_BelongsTo(array(
+					'label' => 'Kategoria nadrzędna',
 				)),
 			));
 	}

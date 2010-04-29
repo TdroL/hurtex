@@ -17,7 +17,7 @@
 		<td><?php echo $vat->value*100 ?>%</td>
 		<td>
 			<?php echo html::anchor('admin/vats/update.'.$vat->id, 'Edytuj') ?>
-			<?php echo html::anchor('admin/vats/delete.'.$vat->id, 'Usuń') ?>
+			<?php echo html::anchor('admin/vats/delete.'.$vat->id, 'Usuń', array('class' => 'unsafe')) ?>
 		</td>
 	</tr>
 <?php endforeach ?>
