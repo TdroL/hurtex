@@ -10,9 +10,6 @@
 [submodule "modules/database"]
 	path = modules/database
 	url = git://github.com/kohana/database.git
-[submodule "modules/orm"]
-	path = modules/orm
-	url = git://github.com/kohana/orm.git
 [submodule "modules/pagination"]
 	path = modules/pagination
 	url = git://github.com/kohana/pagination.git

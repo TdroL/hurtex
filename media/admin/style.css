@@ -220,3 +220,7 @@ a.unsafe {
 	color: #f00;
 	font-size: small;
 }
+
+small {
+	font-size: 0.8em; 
+}

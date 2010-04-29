@@ -59,7 +59,7 @@
 
 							<tr>
 							<td></td>
-							<td><smal>Jeśli nie chcesz zmieniać e-maila, pozostaw poniższe pole puste.</smal></td>
+							<td><small>Jeśli nie chcesz zmieniać e-maila, pozostaw poniższe pole puste.</small></td>
 							</tr>
 
 							<tr>
@@ -82,7 +82,7 @@
 
 							<tr>
 							<td></td>
-							<td><smal>Jeśli nie chcesz zmieniać hasła, pozostaw poniższe pole puste.</smal></td>
+							<td><small>Jeśli nie chcesz zmieniać hasła, pozostaw poniższe pole puste.</small></td>
 							</tr>
 
 							<tr>
