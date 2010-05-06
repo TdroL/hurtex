@@ -11,7 +11,7 @@ class Model_Category extends Jelly_Model
 				'title' => new Field_String(array(
 					'label' => 'Tytuł',
 				)),
-				'category' => new Field_BelongsTo(array(
+				'category' => new Field_Category(array(
 					'label' => 'Kategoria nadrzędna',
 				)),
 			));
