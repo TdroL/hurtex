@@ -93,7 +93,7 @@
                                             </div>
                                         </div><div class="art-BlockContent">
                                             <div class="art-BlockContent-body">
-                                                
+                                                <input class="art-button" type="submit" name="Zamów" value="Zamów">
                                         		<div class="cleared"></div>
                                             </div>
                                         </div>
@@ -134,9 +134,11 @@
 							<div class="art-Post-inner">
                                 <h2 class="art-PostHeader">
                                     Welcome
+								url::site('{#add-to-cart#}')	
+								
                                 </h2>
 								<div class="art-PostContent">
-										
+									<?php	echo $content ?>
 								</div>
                         
 							</div>
