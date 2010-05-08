@@ -44,4 +44,17 @@ class Model_Product extends Jelly_Model
 			->load_with(array('price'));
 	}
 
+	public function find_by_category($id)
+	{
+		return $this->where('category_id', '=', (int) $id)
+					->execute();
+	}
+
+	public function find_by_id($id)
+	{
+		return $this->where('id', '=', (int) $id)
+					->limit(1)
+					->execute()
+					->current();
+	}
 }
