@@ -31,11 +31,16 @@
                     <div class="art-Header-jpeg"></div>
                     <div class="art-Logo">
                         <h1 id="name-text" class="art-Logo-name"><a href="#"></a></h1>
-                        <div id="slogan-text" class="art-Logo-text"></div>
                     </div>
-                </div>
-                <div class="art-contentLayout">
-                    <div class="art-sidebar1">
+				 <form method="get" id="login" action="javascript:void(0)">
+				Login: <input type="text" name="Login" size="15" />
+				Hasło: <input type="password" name="Password" size="15" />
+				<input class="art-button" type="submit" name="Zaloguj" value="Zaloguj">
+				<input class="art-button" type="submit" name="Zarejestruj" value="Zarejestruj">
+				</div>
+				<div class="art-contentLayout">
+                    
+					<div class="art-sidebar1">
                         <div class="art-Block">
                             <div class="art-Block-tl"></div>
                             <div class="art-Block-tr"></div>
@@ -110,20 +115,12 @@
                                             <div class="l"></div>
                                             <div class="r"></div>
                                             <div class="art-header-tag-icon">
-                                                <div class="t">Contact Info</div>
+                                                <div class="t">Kontakt</div>
                                             </div>
-                                        </div><div class="art-BlockContent">
+                                        </div>
+										<div class="art-BlockContent">
                                             <div class="art-BlockContent-body">
-                                                <div>
-                                                      <img src="<?php echo url::site('/media/images/contact.jpg')?>" alt="an image" style="margin: 0 auto;display:block;width:95%" />
-                                                <br />
-                                                <b>Company Co.</b><br />
-                                                Las Vegas, NV 12345<br />
-                                                Email: <a href="mailto:info@company.com">info@company.com</a><br />
-                                                <br />
-                                                Phone: (123) 456-7890 <br />
-                                                Fax: (123) 456-7890
-                                                </div>
+                                               
                                         		<div class="cleared"></div>
                                             </div>
                                         </div>
@@ -150,11 +147,9 @@
                 <div class="cleared"></div>
 				<div class="art-Footer">
                     <div class="art-Footer-inner">
-                        <a href="#" class="art-rss-tag-icon" title="RSS"></a>
                         <div class="art-Footer-text">
-                            <p><a href="#">Contact Us</a> | <a href="#">Terms of Use</a> | <a href="#">Trademarks</a>
-                                | <a href="#">Privacy Statement</a><br />
-                                Copyright &copy; 2009 ---. All Rights Reserved.</p>
+                            <p><br />
+                                Copyright &copy; 2010. All Rights Reserved.</p>
                         </div>
                     </div>
                     <div class="art-Footer-background"></div>
