@@ -18,6 +18,7 @@
 		<td><?php echo $client->second_name ?></td>
 		<td><?php echo $client->email ?></td>
 		<td>
+			<?php echo html::anchor('admin/clients/details.'.$client->id, 'Szczegóły') ?>
 			<?php echo html::anchor('admin/clients/update.'.$client->id, 'Edytuj') ?>
 			<?php echo html::anchor('admin/clients/delete.'.$client->id, 'Usuń', array('class' => 'unsafe')) ?>
 		</td>

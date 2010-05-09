@@ -141,6 +141,14 @@ table td {
 	border: 1px solid #FF4900;
 }
 
+caption {
+	font-size: 1.4em;
+	padding-left: 30.5%;
+	text-align: right;
+	color: #FF4900;
+	border-bottom: 1px solid #FF4900;
+}
+
 form table {
 	width: 100%;
 	border: none;
