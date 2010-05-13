@@ -1,5 +1,9 @@
+
 <?php foreach($categories as $v): ?>
+
 	<div>
-	<?php echo $v->id ?>
+	<table>
+	<a href= ><?php echo $v->title ?></a>
+	<table>
 	</div>
 <?php endforeach ?>

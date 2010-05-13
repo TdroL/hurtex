@@ -61,11 +61,11 @@
                                         </div><div class="art-BlockContent">
                                             <div class="art-BlockContent-body">
                                                 <div>
-												<?php 
+												<a href="<?php echo url::site('categories') ?>">Kategorie</a>
 												
 												
-												?>
-												asdasdasd
+												
+													asdasdasd
 												
 												</div>
                                         		<div class="cleared"></div>
@@ -120,7 +120,8 @@
                                         </div>
 										<div class="art-BlockContent">
                                             <div class="art-BlockContent-body">
-                                               
+                                               Dział obsługi klienta:<BR />
+											   E-mail: <a href="mailto:BOK@hurtex.pl">BOK@hurtex.pl</a>
                                         		<div class="cleared"></div>
                                             </div>
                                         </div>
@@ -128,8 +129,8 @@
                             </div>
                         </div>
                     </div>
-                <div class="art-content">
-                    <div class="art-Post">
+					<div class="art-content">
+					<div class="art-Post">
                         <div class="art-Post-body">
 							<div class="art-Post-inner">
                                 <h2 class="art-PostHeader">
@@ -146,21 +147,20 @@
                         
                     </div>
                 </div>
-                <div class="cleared"></div>
+					<div class="cleared"></div>
+				</div>
 				<div class="art-Footer">
-                    <div class="art-Footer-inner">
-                        <div class="art-Footer-text">
+					<div class="art-Footer-inner">
+						<div class="art-Footer-text">
                             <p><br />
                                 Copyright &copy; 2010. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                    <div class="art-Footer-background"></div>
-                </div>
-        		<div class="cleared"></div>
+						</div>
+					</div>
+                <div class="art-Footer-background"></div>
+				<div class="cleared"></div>
+		</div>
+        
             </div>
-        </div>
-        <div class="cleared"></div>
-        <p class="art-page-footer"></p>
     </div>
     
 </body>

@@ -9,3 +9,5 @@ class Controller_Public_Categories extends Controller_Template
 		
 		$this->content->categories = Jelly::select('category')->execute();
 	}
+	
+}
