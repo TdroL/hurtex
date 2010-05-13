@@ -2,6 +2,7 @@
 
 class Field_Category extends Field_BelongsTo
 {
+	protected $no_root = FALSE;
 	protected $list = array();
 	protected $parent = array();
 	protected $dash = '&nbsp;&nbsp;&nbsp;';
@@ -24,6 +25,11 @@ class Field_Category extends Field_BelongsTo
 				}
 
 				$data['options'] = $this->view_category(0);
+				
+				if($this->no_root)
+				{
+					unset($data['options'][0]);
+				}
 		}
 
 		return parent::input($prefix, $data);

@@ -143,8 +143,8 @@ table td {
 
 table caption {
 	font-size: 1.4em;
-	padding-left: 30.5%;
-	text-align: right;
+	padding-bottom: 1em;
+	text-align: left;
 	color: #FF4900;
 	border-bottom: 1px solid #FF4900;
 }

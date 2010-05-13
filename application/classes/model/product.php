@@ -19,8 +19,9 @@ class Model_Product extends Jelly_Model
 						'not_empty' => NULL,
 					),
 				)),
-				'category' => new Field_BelongsTo(array(
+				'category' => new Field_Category(array(
 					'label' => 'Kategoria',
+					'no_root' => TRUE, // nie wyświetlaj kategorii "Brak"
 				)),
 				'unit' => new Field_BelongsTo(array(
 					'label' => 'Jednostka miary',
@@ -33,6 +34,7 @@ class Model_Product extends Jelly_Model
 				)),
 				'price' => new Field_BelongsTo(array(
 					'label' => 'Cena',
+					'null' => TRUE,
 				)),
 				'orders' => new Field_ManyToMany(array(
 				)),
