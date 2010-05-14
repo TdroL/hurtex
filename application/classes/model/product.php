@@ -3,6 +3,8 @@
 class Model_Product extends Jelly_Model
 {
 
+	public $_late_update = array();
+
 	public static function initialize(Jelly_Meta $meta)
 	{
 		$meta->fields(array(
@@ -32,9 +34,8 @@ class Model_Product extends Jelly_Model
 				'minimal_quantity' => new Field_Float(array(
 					'label' => 'Minimalna ilość',
 				)),
-				'price' => new Field_BelongsTo(array(
+				'price' => new Field_Price(array(
 					'label' => 'Cena',
-					'null' => TRUE,
 				)),
 				'orders' => new Field_ManyToMany(array(
 				)),
@@ -44,6 +45,21 @@ class Model_Product extends Jelly_Model
 				)),
 			))
 			->load_with(array('price'));
+	}
+	
+	public function save($key = NULL)
+	{
+		parent::save($key);
+
+		if(!empty($this->_late_update))
+		{
+			foreach($this->_late_update as $v)
+			{
+				list($model, $related, $field) = $v;
+				$model->{$related} = $this->{$field};
+				$model->save();
+			}
+		}
 	}
 
 	public function find_by_category($id)

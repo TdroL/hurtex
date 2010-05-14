@@ -51,6 +51,20 @@
 							</tr>
 							
 							<tr>
+								<td><?php echo $form->price->label('value') ?></td>
+								<td>
+									<?php echo $form->price->input('value') ?>
+								</td>
+							</tr>
+							
+							<tr>
+								<td><?php echo $form->price->label('vat') ?></td>
+								<td>
+									<?php echo $form->price->input('vat') ?>
+								</td>
+							</tr>
+							
+							<tr>
 								<td></td>
 								<td>
 									<?php echo form::submit('send', 'Wyślij') ?>

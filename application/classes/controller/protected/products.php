@@ -16,7 +16,6 @@ class Controller_Protected_Products extends Controller_Template
 													// lub $error to bedzie to w widoku te zmienne tez beda zmienione
 
 		$product = Jelly::factory('product');
-		$price = Jelly::factory('price');
 		
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{

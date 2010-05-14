@@ -11,14 +11,16 @@ class Model_Price extends Jelly_Model
 				'product' => new Field_BelongsTo(array(
 				)),
 				'value' => new Field_Float(array(
+					'label' => 'Cena',
 					'column' => 'price',
 				)),
 				'date' => new Field_Timestamp(array(
+					'auto_now_create' => TRUE,
 				)),
 				'vat' => new Field_BelongsTo(array(
+					'label' => 'VAT',
 				)),
 			))
 			->load_with(array('vat'));
 	}
-
 }

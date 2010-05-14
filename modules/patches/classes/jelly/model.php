@@ -14,7 +14,47 @@ class Jelly_Model extends Jelly_Model_Core
 			$value = NULL;
 		}
 
-		return parent::set($values, $value);
+		parent::set($values, $value);
+
+		if(!empty($this->_unmapped))
+		{
+			$related = array();
+			
+			foreach($this->_meta->fields() as $k => $v)
+			{
+				if($v instanceof Jelly_Field_Relationship)
+				{
+					$related[$k] = Jelly::meta($v->foreign['model']);
+				}
+			}
+
+			if(!empty($related))
+			{
+				foreach($this->_unmapped as $k => $v)
+				{
+					foreach($related as $key => $r)
+					{
+						if($r->fields($k) !== NULL)
+						{
+							$this->{$key}->set($k, $v);
+							continue;
+						}
+					}
+				}
+			}
+		}
+		
+		return $this;
+	}
+
+	public function original($key)
+	{
+		return $this->_original[$key];
+	}
+
+	public function key_exists($key)
+	{
+		return array_key_exists($key, $this->_original);
 	}
 
 	public function label($name)

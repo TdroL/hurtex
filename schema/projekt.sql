@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 28 Mar 2010, 21:24
+-- Czas wygenerowania: 15 Maj 2010, 01:53
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -48,12 +48,18 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
+INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
+(0, 'Brak', NULL),
+(1, 'RTV', 0),
+(2, 'Telewizory', 1),
+(3, 'Hi-Fi', 1),
+(5, 'Nowe prawo cywilne', 0);
 
 -- --------------------------------------------------------
 
@@ -73,12 +79,15 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `nip` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `clients`
 --
 
+INSERT INTO `clients` (`id`, `first_name`, `second_name`, `email`, `password`, `address`, `phone_number`, `company_name`, `nip`) VALUES
+(1, 'Jan', 'Kowalski', 'dupa2@o2.pl', '', 'ul. ajrzynowA 32/6', '9876543219', '', 0),
+(3, 'Alina', 'Krawczyk', 'dupa1@o2.pl', '8451ba8a14d79753d34cb33b51ba46b4', 'ul. Wolska 4', '0815015781', 'Dupa', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -117,19 +126,33 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 CREATE TABLE IF NOT EXISTS `prices` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) unsigned NOT NULL,
+  `product_id` int(11) unsigned DEFAULT NULL,
   `price` float NOT NULL,
   `date` int(11) unsigned NOT NULL,
   `vat_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vat_id` (`vat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Zrzut danych tabeli `prices`
 --
 
+INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
+(1, 9, 23.4, 1234567890, 2),
+(9, NULL, 23.45, 1273762291, 4),
+(10, NULL, 123.45, 1273762732, 4),
+(11, NULL, 12.32, 1273763728, 4),
+(12, NULL, 324, 1273763743, 3),
+(13, NULL, 12.323, 1273763758, 4),
+(14, NULL, 1352, 1273836663, 1),
+(15, NULL, 1352, 1273836718, 1),
+(16, NULL, 1352, 1273836747, 1),
+(17, NULL, 1352, 1273836759, 1),
+(18, NULL, 1352, 1273836766, 1),
+(19, NULL, 1352, 1273836779, 1),
+(20, 13, 1352, 1273836824, 1);
 
 -- --------------------------------------------------------
 
@@ -145,17 +168,28 @@ CREATE TABLE IF NOT EXISTS `products` (
   `unit_id` int(11) unsigned DEFAULT NULL,
   `quantity` float NOT NULL,
   `minimal_quantity` float NOT NULL,
-  `price_id` int(11) unsigned NOT NULL,
+  `price_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `unit_id` (`unit_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Zrzut danych tabeli `products`
 --
 
+INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
+(1, 'nowy produkt', 'opis produktu', 1, 1, 2, 1, NULL),
+(2, 'pupa, edytowany', 'pupa, poslady', 3, 2, 2, 1, NULL),
+(3, 'duplikat', 'duplikat', 1, 1, 1, 1, NULL),
+(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 3, 1, 1000, 10, NULL),
+(8, 'dfasdf', 'asdf', 1, 1, 0, 0, NULL),
+(9, 'szdfasdf', 'asdfasdf', 1, 1, 0, 0, 10),
+(10, 'dgfh', 'dfgh', 1, 1, 0, 0, 12),
+(11, 'asd', 'dfhdfgh', 1, 1, 0, 0, 13),
+(12, 'asdf', 'sdf', 1, 1, 3, 2, 19),
+(13, 'asdf', 'sdf', 1, 1, 3, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -309,12 +343,15 @@ CREATE TABLE IF NOT EXISTS `units` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `type` enum('integer','float') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'integer',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Zrzut danych tabeli `units`
 --
 
+INSERT INTO `units` (`id`, `name`, `type`) VALUES
+(1, 'szt.', 'integer'),
+(2, 'm', 'float');
 
 -- --------------------------------------------------------
 
@@ -327,12 +364,18 @@ CREATE TABLE IF NOT EXISTS `vats` (
   `value` float NOT NULL,
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Zrzut danych tabeli `vats`
 --
 
+INSERT INTO `vats` (`id`, `value`, `name`) VALUES
+(1, 0, 'z/w'),
+(2, 0, '0%'),
+(3, 0.07, '7%'),
+(4, 0.22, '22%'),
+(5, 0.4, '40%');
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -348,8 +391,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`),
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`);
 
 --
 -- Ograniczenia dla tabeli `prices`

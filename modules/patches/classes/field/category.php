@@ -36,6 +36,11 @@ class Field_Category extends Field_BelongsTo
 	}
 	protected function view_category($id = 0, $t = NULL)
 	{
+		if(!isset($this->list[$id]))
+		{
+			return array();
+		}
+	
 		$result = array();
 		
 		$tmp = $this->list[$id];
