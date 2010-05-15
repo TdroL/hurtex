@@ -62,10 +62,7 @@
                                             <div class="art-BlockContent-body">
                                                 <div>
 												<a href="<?php echo url::site('categories') ?>">Kategorie</a>
-												
-												
-												
-													asdasdasd
+												<?php include('/categories/index.php');?>
 												
 												</div>
                                         		<div class="cleared"></div>
@@ -141,12 +138,10 @@
 								<div class="art-PostContent">
 									<?php	echo $content ?>
 								</div>
-                        
 							</div>
                         </div>
-                        
                     </div>
-                </div>
+					</div>
 					<div class="cleared"></div>
 				</div>
 				<div class="art-Footer">
@@ -158,7 +153,7 @@
 					</div>
                 <div class="art-Footer-background"></div>
 				<div class="cleared"></div>
-		</div>
+				</div>
         
             </div>
     </div>
