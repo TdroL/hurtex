@@ -2,7 +2,6 @@
 
 class Model_Category extends Jelly_Model
 {
-
 	public static function initialize(Jelly_Meta $meta)
 	{
 		$meta->name_key('title')
@@ -16,5 +15,4 @@ class Model_Category extends Jelly_Model
 				)),
 			));
 	}
-
 }

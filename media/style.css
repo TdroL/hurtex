@@ -57,6 +57,58 @@ form
 	margin:0 !important;
 }
 
+#art-Header-login-form {
+	float: right;
+	width: 260px;
+}
+
+#art-Header-login-form dl 
+{
+	clear: both;
+	margin-bottom: 10px;
+	height: 25px;
+}
+
+#art-Header-login-form dt {
+	float: left;
+	width: 55px;
+	padding-top: 4px;
+}
+
+#art-Header-login-form dd {
+	width: 150px;
+	margin: 0;
+	float: left;
+}
+
+#art-Header-login-form dd input[type=text],
+#art-Header-login-form dd input[type=password] {
+	width: 145px;
+}
+
+#art-Header-login-form dl:last-child dd {
+	width: 250px;
+}
+
+#art-Header-search {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+#art-Header-search dt {
+	display: none;
+}
+
+#art-Header-search dd {
+	float: left;
+	margin-left: 5px;
+}
+
+#art-Header-search input[type=text] {
+	height: 18px;
+}
+
 table.position
 {
 	position: relative;
@@ -218,9 +270,8 @@ div.art-Header-jpeg
 {
 	display : block;
 	position: absolute;
-	left: 10px;
-	top: 82px;
-	width: 232px;
+	left: 5px;
+	top: 50px;
 }
 
 h1.art-Logo-name
@@ -237,6 +288,16 @@ text-decoration: none;
 	padding:0;
 	margin:0;
 	color: #272F35 !important;
+}
+
+h1.art-Logo-name a {
+	display: block;
+	width: 260px;
+	height: 110px;
+}
+
+h1.art-Logo-name span {
+	display: none;
 }
 
 .art-Logo-text
@@ -913,7 +974,7 @@ blockquote,
 {
 	display:inline-block;
 	position:relative;
-	height: 20px;
+	height: 24px;
 	overflow:hidden;
 	white-space: nowrap;
 	width: auto;

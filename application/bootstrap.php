@@ -131,7 +131,7 @@ if(class_exists('FirePHP_Log_Console'))
 		))
 		->defaults(array(
 			'directory'		=> 'public',
-			'controller'	=> 'main',
+			'controller'	=> 'products',
 			'action' 		=> 'index',
 			'id'			=> NULL,
 		));

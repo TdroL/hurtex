@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/products/update.'.$form->id) ?>
+				<?php echo form::open('admin/products/update.'.$form->id, array('enctype' => 'multipart/form-data')) ?>
 					<fieldset>
 						
 						<table>
@@ -26,6 +26,17 @@
 								<td><?php echo $form->label('description') ?></td>
 								<td>
 									<?php echo $form->input('description') ?>
+								</td>
+							</tr>
+							
+							<tr>
+								<td><?php echo $form->label('image') ?></td>
+								<td>
+									<?php echo $form->input('image') ?>
+<?php if(!empty($form->current_image)): ?>
+									<br />
+									<?php echo html::image($form->meta()->fields('image')->path.$form->current_image) ?>
+<?php endif ?>
 								</td>
 							</tr>
 							

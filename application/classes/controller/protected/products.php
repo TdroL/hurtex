@@ -22,6 +22,7 @@ class Controller_Protected_Products extends Controller_Template
 			try
 			{
 				$product->set($_POST);
+				$product->set($_FILES);
 				$product->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
@@ -29,6 +30,7 @@ class Controller_Protected_Products extends Controller_Template
 			}
 			catch(Validate_Exception $e)
 			{
+				$product->current_image = $product->image;
 				$errors = $e->errors();
 			}
 		}
@@ -46,12 +48,21 @@ class Controller_Protected_Products extends Controller_Template
 		{
 			$this->request->redirect($this->_base);
 		}
+		
+		$product->current_image = $product->image;
 
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
 			try
 			{
 				$product->set($_POST);
+				$product->set($_FILES);
+				
+				if(empty($product->image['name']))
+				{
+					unset($product->image);
+				}
+				
 				$product->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
@@ -59,6 +70,7 @@ class Controller_Protected_Products extends Controller_Template
 			}
 			catch(Validate_Exception $e)
 			{
+				$product->current_image = $product->image;
 				$errors = $e->errors();
 			}
 		}

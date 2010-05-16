@@ -2,12 +2,12 @@
 
 class Controller_Public_Categories extends Controller_Template
 {
-	
+	public $no_template = array('index');
 
 	public function action_index()
 	{
-		
-		$this->content->categories = Jelly::select('category')->execute();
+		$this->content->tree = Jelly::select('category')->load_as_tree();
+		$this->content->parent = 0; // najwyzsza kategoria ("Brak") [root]
 	}
 	
 }

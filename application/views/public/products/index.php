@@ -1,7 +1,6 @@
-<p>Lista produktów w tej kategorii:</p>
 <?php foreach($products as $v):  ?>
-		 <div>
-			<?php echo $v->id ?>
+		<div>
+			<h3>[<?php echo $v->id ?>] <?php echo $v->name ?></h3>
+			<p><?php echo $v->description ?></p>
 		</div>
-		
 <?php endforeach ?>

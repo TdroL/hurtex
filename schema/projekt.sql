@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 15 Maj 2010, 01:53
+-- Czas wygenerowania: 16 Maj 2010, 22:04
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vat_id` (`vat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
 -- Zrzut danych tabeli `prices`
@@ -152,7 +152,9 @@ INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
 (17, NULL, 1352, 1273836759, 1),
 (18, NULL, 1352, 1273836766, 1),
 (19, NULL, 1352, 1273836779, 1),
-(20, 13, 1352, 1273836824, 1);
+(20, 13, 1352, 1273836824, 1),
+(21, 14, 123.4, 1274023095, 3),
+(22, 15, 0, 1274031067, 1);
 
 -- --------------------------------------------------------
 
@@ -164,6 +166,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_id` int(11) unsigned DEFAULT NULL,
   `unit_id` int(11) unsigned DEFAULT NULL,
   `quantity` float NOT NULL,
@@ -173,23 +176,25 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `category_id` (`category_id`),
   KEY `unit_id` (`unit_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Zrzut danych tabeli `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
-(1, 'nowy produkt', 'opis produktu', 1, 1, 2, 1, NULL),
-(2, 'pupa, edytowany', 'pupa, poslady', 3, 2, 2, 1, NULL),
-(3, 'duplikat', 'duplikat', 1, 1, 1, 1, NULL),
-(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 3, 1, 1000, 10, NULL),
-(8, 'dfasdf', 'asdf', 1, 1, 0, 0, NULL),
-(9, 'szdfasdf', 'asdfasdf', 1, 1, 0, 0, 10),
-(10, 'dgfh', 'dfgh', 1, 1, 0, 0, 12),
-(11, 'asd', 'dfhdfgh', 1, 1, 0, 0, 13),
-(12, 'asdf', 'sdf', 1, 1, 3, 2, 19),
-(13, 'asdf', 'sdf', 1, 1, 3, 2, 20);
+INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
+(1, 'nowy produkt', 'opis produktu', NULL, 1, 1, 2, 1, NULL),
+(2, 'pupa, edytowany', 'pupa, poslady', NULL, 3, 2, 2, 1, NULL),
+(3, 'duplikat', 'duplikat', NULL, 1, 1, 1, 1, NULL),
+(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 3, 1, 1000, 10, NULL),
+(8, 'dfasdf', 'asdf', NULL, 1, 1, 0, 0, NULL),
+(9, 'szdfasdf', 'asdfasdf', NULL, 1, 1, 0, 0, 10),
+(10, 'dgfh', 'dfgh', NULL, 1, 1, 0, 0, 12),
+(11, 'asd', 'dfhdfgh', NULL, 1, 1, 0, 0, 13),
+(12, 'asdf', 'sdf', NULL, 1, 1, 3, 2, 19),
+(13, 'asdf', 'sdf', NULL, 1, 1, 3, 2, 20),
+(14, 'search text', 'test desc [edit]', NULL, 1, 1, 24, 23, 21),
+(15, 'obrazek', 'obrazek', '4bf02f3f147ab1_by_0.png', 1, 1, 0, 0, 22);
 
 -- --------------------------------------------------------
 
@@ -268,14 +273,16 @@ CREATE TABLE IF NOT EXISTS `product_search` (
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `full_data` text COLLATE utf8_unicode_ci NOT NULL,
   KEY `product_id` (`product_id`),
-  FULLTEXT KEY `name` (`name`),
-  FULLTEXT KEY `full_data` (`full_data`)
+  FULLTEXT KEY `container` (`name`,`full_data`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Zrzut danych tabeli `product_search`
 --
 
+INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
+(14, 'search text', 'test desc [edit]'),
+(15, 'obrazek', 'obrazek');
 
 -- --------------------------------------------------------
 

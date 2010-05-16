@@ -21,6 +21,16 @@ class Model_Product extends Jelly_Model
 						'not_empty' => NULL,
 					),
 				)),
+				'image' => new Field_File(array(
+					'label' => 'Miniaturka',
+					'path' => 'media/images/products',
+					'rules' => array(
+						'Upload::type' => array(array('jpg', 'png', 'gif')),
+					),
+				)),
+				'current_image' => new Field_String(array(
+					'in_db' => FALSE,
+				)),
 				'category' => new Field_Category(array(
 					'label' => 'Kategoria',
 					'no_root' => TRUE, // nie wyświetlaj kategorii "Brak"
@@ -44,12 +54,30 @@ class Model_Product extends Jelly_Model
 				'supplies' => new Field_ManyToMany(array(
 				)),
 			))
-			->load_with(array('price'));
+			->load_with(array('price'))
+			->sorting(array(':name_key' => 'ASC'));
 	}
 	
 	public function save($key = NULL)
 	{
 		parent::save($key);
+
+		try
+		{
+			DB::begin();
+			DB::delete('product_search')->where('product_id', '=', $this->id)->execute();
+			DB::insert('product_search')->values(array(
+					'product_id' => $this->id,
+					'name' => $this->name,
+					'fulltext' => $this->description,
+				))->execute();
+			DB::commit();
+		}
+		catch (Exception $e)
+		{
+			DB::rollback();
+		}
+		
 
 		if(!empty($this->_late_update))
 		{
@@ -60,6 +88,16 @@ class Model_Product extends Jelly_Model
 				$model->save();
 			}
 		}
+	}
+
+	public function delete($key = NULL)
+	{
+		if(parent::delete($key))
+		{
+			DB::delete('product_search')->where('product_id', '=', $this->id)->execute();
+			return TRUE;
+		}
+		return FALSE;
 	}
 
 	public function find_by_category($id)

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/products/create') ?>
+				<?php echo form::open('admin/products/create', array('enctype' => 'multipart/form-data')) ?>
 					<fieldset>
 						
 						<table>
@@ -26,6 +26,13 @@
 								<td><?php echo $form->label('description') ?></td>
 								<td>
 									<?php echo $form->input('description') ?>
+								</td>
+							</tr>
+							
+							<tr>
+								<td><?php echo $form->label('image') ?></td>
+								<td>
+									<?php echo $form->input('image') ?>
 								</td>
 							</tr>
 							
