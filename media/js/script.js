@@ -1,6 +1,5 @@
 /* begin Page */
 
-/* Generated with Artisteer version 2.3.0.21098, file checksum is D340F914. */
 
 cssFix = function(){
 var u = navigator.userAgent.toLowerCase(),

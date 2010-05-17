@@ -2,10 +2,14 @@
 
 class Controller_Public_Main extends Controller_Template
 {
+	
+
 	public function action_index()
 	{
-		//$this->request->redirect('admin/products');
-		
+		$this->view->title = 'Produkty';
+		$this->content->product = Jelly::select('products')->execute();
 		
 	}
+	
+	
 }

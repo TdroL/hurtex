@@ -8,6 +8,7 @@ class Controller_Public_Products extends Controller_Template
 	{
 		$this->view->title = 'Produkty';
 		$this->content->products = Jelly::select('product')->execute();
+		
 	}
 	
 	public function action_details()
