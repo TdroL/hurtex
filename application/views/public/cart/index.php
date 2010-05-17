@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
-<h4>Lista produktów w tej kategorii:</h4>
+<h2>Koszyk</h2>
+<?php echo form::open('cart') ?>
 <table class="art-article">
 <thead>
 	<tr>
@@ -7,7 +8,7 @@
 		<td>Nazwa produktu</td>
 		<td>Ilość</td>
 		<td>Cena</td>
-		<td>Koszyk</td>
+		<td>Opcje</td>
 	</tr>
 </thead>
 <tbody>
@@ -23,11 +24,27 @@
 			<a href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
 		</td>
-		<td><p><?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?> <?php echo $v->unit->name ?></p></td>
+		<td>
+			<p>
+				<?php echo form::input('product['.$v->id.']', ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2), array('class' => 'small-int')) ?>
+				<?php echo $v->unit->name ?>
+			</p>
+		</td>
 		<td><p><?php echo number_format($v->price->value, 2) ?> zł</p></td>
-		<td><div class="art-button"><?php echo html::anchor('cart/add.'.$v->id, 'Dodaj') ?></div></td>
+		<td><div class="art-button"><?php echo html::anchor('cart/remove.'.$v->id, 'Usuń') ?></div></td>
 	</tr>
 <?php endforeach ?>
 <?php endif ?>
 </tbody>
+<tfoot>
+	<tr>
+		<td colspan="3">
+			<?php echo form::submit('recount', 'Przelicz', array('class' => 'art-button')) ?>
+		</td>
+		<td colspan="2" class="align-center">
+			<?php echo form::submit('order', 'Zamów', array('class' => 'art-button')) ?>
+		</td>
+	</tr>
+</tfoot>
 </table>
+<?php echo form::close() ?>

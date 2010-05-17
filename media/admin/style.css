@@ -55,7 +55,7 @@ blockquote, q {
 /* Meyer's reset end */
 
 body {
-	font: 14px/30px "Lucida Sans", Lucida, Tahoma, Arial, sans-serif;
+	font: 14px/30px Lucida, Tahoma, Arial, sans-serif;
 	background: #E0E0E0 url('images/background.gif') repeat-x;
 }
 

@@ -14,7 +14,7 @@
 <?php foreach($units as $unit): ?>
 	<tr>
 		<td><?php echo $unit->name ?></td>
-		<td><?php echo $unit->type ?></td>
+		<td><?php echo $unit->meta()->fields('type')->choices[$unit->type] ?></td>
 		<td>
 			<?php echo html::anchor('admin/units/update.'.$unit->id, 'Edytuj') ?>
 			<?php echo html::anchor('admin/units/delete.'.$unit->id, 'Usuń') ?>

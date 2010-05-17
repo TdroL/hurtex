@@ -50,7 +50,6 @@ body
 	font-size:1px;
 }
 
-
 form
 {
 	padding:0 !important;
@@ -1211,5 +1210,14 @@ text-decoration: underline;
 	width: 872px;
 }
 /* end LayoutCell */
+
+input.small-int {
+	width: 60px;
+	text-align: right;
+}
+
+td.align-center {
+	text-align: center;
+}
 
 

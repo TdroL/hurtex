@@ -17,4 +17,16 @@ class Model_Builder_Product extends Jelly_Builder
 				->order_by('score', 'DESC')
 				->execute();
 	}
+	
+	public function load_by_ids(array $ids)
+	{
+		return $this->where(':primary_key', 'IN', $ids)->execute();
+	}
+	
+	public function exists($id)
+	{
+		$product = $this->load((int) $id);
+		
+		return $product->loaded();
+	}
 }
