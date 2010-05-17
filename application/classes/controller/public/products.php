@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+﻿<?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Public_Products extends Controller_Template
 {

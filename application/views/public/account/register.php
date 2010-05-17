@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
-	<?php echo form::open('register/register') ?>
+	<?php echo form::open('account/register') ?>
 	<?php echo html::error_messages($errors) ?>
 		<fieldset>
 			<legend><?php echo $clients->label('first_name') ?></legend>

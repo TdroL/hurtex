@@ -1,4 +1,4 @@
-/* begin Page */
+﻿/* begin Page */
 
 /* Generated with Artisteer version 2.3.0.21098, file checksum is 1CF607B7. */
 
@@ -634,9 +634,17 @@ a img
 {
 	border-collapse: collapse;
 	margin: 1px;
-	width:auto;
+	width:100%;
 }
+.art-article thead, thead.art-article
+{
+	background-color: #E8EBEE;
 
+}
+.description 
+{
+	font-size: 10px;
+}
 .art-article table, table.art-article .art-article tr, .art-article th, .art-article td
 {
 	background-color:Transparent;

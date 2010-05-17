@@ -1,6 +1,6 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+﻿<?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Public_Register extends Controller_Template
+class Controller_Public_Account extends Controller_Template
 {
 		
  
