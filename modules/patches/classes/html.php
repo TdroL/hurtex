@@ -12,6 +12,16 @@ class HTML extends Kohana_HTML
 		return View::factory('common/errors')->set('errors', $errors).PHP_EOL;
 	}
 	
+	public static function anchor_confirm($uri, $title = NULL, $message = NULL,array $attributes = NULL, $protocol = NULL)
+	{
+		if(!empty($message))
+		{
+			$attributes['onclick'] = 'return confirm("'.$message.'");';
+		}
+		
+		return static::anchor($uri, $title, $attributes, $protocol);
+	}
+	
 	public static function attributes(array $attributes = NULL)
 	{
 		if (empty($attributes))

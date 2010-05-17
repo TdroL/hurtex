@@ -30,8 +30,8 @@
 				<?php echo $v->unit->name ?>
 			</p>
 		</td>
-		<td><p><?php echo number_format($v->price->value, 2) ?> zł</p></td>
-		<td><div class="art-button"><?php echo html::anchor('cart/remove.'.$v->id, 'Usuń') ?></div></td>
+		<td><p><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
+		<td><div class="art-button"><?php echo html::anchor_confirm('cart/remove.'.$v->id, 'Usuń', 'Czy chcesz usunąć ten produkt z koszyka?') ?></div></td>
 	</tr>
 <?php endforeach ?>
 <?php endif ?>

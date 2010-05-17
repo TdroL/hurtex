@@ -1216,6 +1216,14 @@ input.small-int {
 	text-align: right;
 }
 
+td.align-left {
+	text-align: left;
+}
+
+td.align-right {
+	text-align: right;
+}
+
 td.align-center {
 	text-align: center;
 }
