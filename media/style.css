@@ -105,7 +105,7 @@ form
 }
 
 #art-Header-search input[type=text] {
-	height: 18px;
+	height: 20px;
 }
 
 table.position
@@ -229,7 +229,7 @@ table.position
 
 .art-Sheet
 {
-	margin-top: -13px !important;
+	margin-top: -30px !important;
 }
 
 #art-page-background-simple-gradient, #art-page-background-gradient, #art-page-background-glare
@@ -635,14 +635,24 @@ a img
 	margin: 1px;
 	width:100%;
 }
+.price_width
+{
+	width: 90px;
+}
+
 .art-article thead, thead.art-article
 {
 	background-color: #E8EBEE;
+	font-size: 15px;
 
 }
 .description 
 {
 	font-size: 10px;
+}
+.product_name
+{
+	font-size: 14px;
 }
 .art-article table, table.art-article .art-article tr, .art-article th, .art-article td
 {
@@ -981,7 +991,7 @@ blockquote,
 {
 	display:inline-block;
 	position:relative;
-	height: 24px;
+	height: 20px;
 	overflow:hidden;
 	white-space: nowrap;
 	width: auto;

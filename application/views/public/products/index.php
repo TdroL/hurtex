@@ -6,7 +6,7 @@
 		<td></td>
 		<td>Nazwa produktu</td>
 		<td>Ilość</td>
-		<td>Cena</td>
+		<td class="price_width">Cena netto</td>
 		<td>Koszyk</td>
 	</tr>
 </thead>
@@ -20,12 +20,12 @@
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
 		<td><?php echo html::image('media/images/products/'.$v->image, array('title' => $v->name, 'width' => 100)) ?></td>
 		<td>
-			<a href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
+			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>" title="Szczegóły"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
 		</td>
-		<td><p><?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?> <?php echo $v->unit->name ?></p></td>
-		<td><p><?php echo number_format($v->price->value, 2) ?> zł</p></td>
-		<td><div class="art-button"><?php echo html::anchor('cart/add.'.$v->id, 'Dodaj') ?></div></td>
+		<td><p class="product_name"><?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?> <?php echo $v->unit->name ?></p></td>
+		<td><p class="product_name"><?php echo number_format($v->price->value, 2) ?> zł</p></td>
+		<td><div class="product_name" title="Dodaj do koszyka"><?php echo html::anchor('cart/add.'.$v->id, 'Dodaj') ?></div></td>
 	</tr>
 <?php endforeach ?>
 <?php endif ?>
