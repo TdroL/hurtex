@@ -1,5 +1,5 @@
 <dl>
-	<dt><b>Nazwa</b></dt>
+	<dt><b>Nazwa produktu</b></dt>
 	<dd><?php echo $product->name ?></dd>
 	
 	<dt><b>Opis</b></dt>
