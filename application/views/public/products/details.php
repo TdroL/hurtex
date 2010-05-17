@@ -1,16 +1,16 @@
 <dl>
-	<dt>Nazwa</dt>
+	<dt><b>Nazwa</b></dt>
 	<dd><?php echo $product->name ?></dd>
 	
-	<dt>Opis</dt>
+	<dt><b>Opis</b></dt>
 	<dd><?php echo $product->description ?></dd>
 	
-	<dt>Cena netto</dt>
+	<dt><b>Cena netto</b></dt>
 	<dd><?php echo number_format($product->price->value, 2) ?></dd>
 	
-	<dt>Cena brutto</dt>
+	<dt><b>Cena brutto</b></dt>
 	<dd><?php echo number_format($product->price->value*(1 + (double) $product->price->vat->value), 2) ?></dd>
 	
-	<dt>VAT</dt>
+	<dt><b>VAT</b></dt>
 	<dd><?php echo $product->price->vat->name ?></dd>
 </dl>
