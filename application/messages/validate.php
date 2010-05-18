@@ -28,4 +28,5 @@ return array(
 	'email_available'		=> ':field must be unique',
 	'validate::email'		=> ':field must be a valid email',
 	'internal_error'		=> 'Internal error: :param1',
+	'nip'				=> ':field must be a valid NIP',
 );

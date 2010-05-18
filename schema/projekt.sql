@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 16 Maj 2010, 22:04
+-- Czas wygenerowania: 18 Maj 2010, 20:30
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -72,22 +72,23 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `second_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `password` char(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password` char(50) COLLATE utf8_unicode_ci NOT NULL,
   `address` text COLLATE utf8_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `company_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nip` int(11) DEFAULT NULL,
+  `nip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Zrzut danych tabeli `clients`
 --
 
 INSERT INTO `clients` (`id`, `first_name`, `second_name`, `email`, `password`, `address`, `phone_number`, `company_name`, `nip`) VALUES
-(1, 'Jan', 'Kowalski', 'dupa2@o2.pl', '', 'ul. ajrzynowA 32/6', '9876543219', '', 0),
-(3, 'Alina', 'Krawczyk', 'dupa1@o2.pl', '8451ba8a14d79753d34cb33b51ba46b4', 'ul. Wolska 4', '0815015781', 'Dupa', 2147483647);
+(1, 'Jan', 'Kowalski', 'dupa2@o2.pl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. ajrzynowA 32/6', '9876543219', '', '0'),
+(3, 'Alina', 'Krawczyk', 'dupa1@o2.pl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. Wolska 4', '0815015781', 'Dupa', '2147483647'),
+(4, 'Marian', 'Marian', 'marian@mail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test', '512 689 987', '', '768-000-24-66');
 
 -- --------------------------------------------------------
 

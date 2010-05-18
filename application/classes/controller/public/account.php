@@ -19,12 +19,29 @@ class Controller_Public_Account extends Controller_Template
 				$client->save();
 
 				$this->session->set($_POST['seed'], TRUE);
+				
+				// $this->force_login($client);
 				$this->request->redirect($this->_base);
 			}
 			catch(Validate_Exception $e)
 			{
 				$errors = $e->errors();
 			}
+		}
+	}
+	
+	public function action_login()
+	{
+		if($_POST)
+		{
+			$client = Jelly::factory('client')->set($_POST);
+			
+			if($client->login())
+			{
+				$this->request->redirect($this->_base);
+			}
+			
+			$this->content->error = TRUE;
 		}
 	}
 }
