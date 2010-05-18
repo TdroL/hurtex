@@ -36,6 +36,7 @@ class Controller_Public_Cart extends Controller_Template
 		$ids = array_keys($cart);
 		$quantity = $cart;
 		$this->content->products = Jelly::select('product')->load_by_ids($ids);
+		$this->content->order = Jelly::factory('order');
 	}
 
 	public function action_add()

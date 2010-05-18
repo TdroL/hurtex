@@ -26,7 +26,7 @@
 		</td>
 		<td>
 			<p class="product_name">
-				<?php echo form::input('product['.$v->id.']', ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2), array('class' => 'small-int')) ?>
+				<?php echo form::input('product['.$v->id.']', ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2), array('class' => 'input_width')) ?>
 				<?php echo $v->unit->name ?>
 			</p>
 		</td>
@@ -37,6 +37,11 @@
 <?php endif ?>
 </tbody>
 <tfoot>
+	<tr>
+	<td>Wybór opcji zapłaty: <?php echo $order->input("payment") ?>
+	</td>
+	
+	</tr>
 	<tr>
 		<td colspan="3">
 			<?php echo form::submit('recount', 'Przelicz', array('class' => 'art-button')) ?>

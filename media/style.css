@@ -1036,7 +1036,11 @@ font-weight: bold;
 	text-decoration: none !important;
 	color: #364149 !important;
 }
-
+.input_width
+{
+	width: 30px;
+	text-align: left;
+}
 input, select
 {
 font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans-Serif;
