@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 18 Maj 2010, 20:30
+-- Czas wygenerowania: 18 Maj 2010, 22:02
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -102,15 +102,14 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `client_id` int(11) unsigned NOT NULL,
   `status` enum('added','accepted','send','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'accepted',
   `printed` tinyint(1) NOT NULL DEFAULT '0',
+  `address` text COLLATE utf8_unicode_ci,
   `paragon_number` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `invoice` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `address_id` int(11) unsigned DEFAULT NULL,
-  `payment` enum('cach','transfer') COLLATE utf8_unicode_ci NOT NULL,
+  `payment` enum('cash','transfer') COLLATE utf8_unicode_ci NOT NULL,
   `send_form_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `paragon_number` (`paragon_number`,`invoice`),
   KEY `client_id` (`client_id`),
-  KEY `address_id` (`address_id`),
   KEY `send_form_id` (`send_form_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -134,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vat_id` (`vat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
 -- Zrzut danych tabeli `prices`
@@ -155,7 +154,12 @@ INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
 (19, NULL, 1352, 1273836779, 1),
 (20, 13, 1352, 1273836824, 1),
 (21, 14, 123.4, 1274023095, 3),
-(22, 15, 0, 1274031067, 1);
+(22, 15, 0, 1274031067, 1),
+(23, 8, 1, 1274212840, 1),
+(24, 3, 2, 1274212846, 4),
+(25, 1, 4, 1274212851, 1),
+(26, 7, 16, 1274212856, 1),
+(27, 2, 567.23, 1274212863, 1);
 
 -- --------------------------------------------------------
 
@@ -184,11 +188,11 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
-(1, 'nowy produkt', 'opis produktu', NULL, 1, 1, 2, 1, NULL),
-(2, 'pupa, edytowany', 'pupa, poslady', NULL, 3, 2, 2, 1, NULL),
-(3, 'duplikat', 'duplikat', NULL, 1, 1, 1, 1, NULL),
-(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 3, 1, 1000, 10, NULL),
-(8, 'dfasdf', 'asdf', NULL, 1, 1, 0, 0, NULL),
+(1, 'nowy produkt', 'opis produktu', NULL, 1, 1, 2, 1, 25),
+(2, 'pupa, edytowany', 'pupa, poslady', NULL, 3, 2, 2, 1, 27),
+(3, 'duplikat', 'duplikat', NULL, 1, 1, 1, 1, 24),
+(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 3, 1, 1000, 10, 26),
+(8, 'dfasdf', 'asdf', NULL, 1, 1, 0, 0, 23),
 (9, 'szdfasdf', 'asdfasdf', NULL, 1, 1, 0, 0, 10),
 (10, 'dgfh', 'dfgh', NULL, 1, 1, 0, 0, 12),
 (11, 'asd', 'dfhdfgh', NULL, 1, 1, 0, 0, 13),
@@ -283,7 +287,12 @@ CREATE TABLE IF NOT EXISTS `product_search` (
 
 INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
 (14, 'search text', 'test desc [edit]'),
-(15, 'obrazek', 'obrazek');
+(15, 'obrazek', 'obrazek'),
+(8, 'dfasdf', 'asdf'),
+(3, 'duplikat', 'duplikat'),
+(1, 'nowy produkt', 'opis produktu'),
+(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(2, 'pupa, edytowany', 'pupa, poslady');
 
 -- --------------------------------------------------------
 
@@ -399,8 +408,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `alt_addresses` (`id`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`send_form_id`) REFERENCES `send_form` (`id`);
 
 --
 -- Ograniczenia dla tabeli `prices`

@@ -8,6 +8,8 @@
 		<td>Nazwa</td>
 		<td>Kategoria</td>
 		<td>Ilość</td>
+		<td>Cena</td>
+		<td>Vat</td>
 		<td>Operacje</td>
 	</tr>
 </thead>
@@ -17,6 +19,8 @@
 		<td><?php echo $product->name ?></td>
 		<td><?php echo $product->category->title ?></td>
 		<td><?php echo $product->quantity ?> <?php echo $product->unit->name ?></td>
+		<td><?php echo number_format($product->price->value, 2) ?> zł</td>
+		<td><?php echo $product->price->vat->name ?></td>
 		<td>
 			<?php echo html::anchor('admin/products/update.'.$product->id, 'Edytuj') ?>
 			<?php echo html::anchor('admin/products/delete.'.$product->id, 'Usuń', array('class' => 'unsafe')) ?>

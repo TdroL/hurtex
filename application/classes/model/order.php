@@ -30,6 +30,9 @@ class Model_Order extends Jelly_Model
 				'send_form' => new Field_BelongsTo(array(
 					'foreign' => 'sendform',
 				)),
+				'address' => new Field_String(array(
+					'label' => 'Adres alternatywny',
+				)),
 				'products' => new Field_ManyToMany(array(
 				)),
 			));
