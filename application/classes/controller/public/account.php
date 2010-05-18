@@ -1,8 +1,13 @@
 ﻿<?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Public_Account extends Controller_Template
+class Controller_Public_Account extends Controller_Frontend
 {
 	protected $_base = 'account';
+	
+	public function action_index()
+	{
+		
+	}
 	
 	public function action_create()
 	{
@@ -42,6 +47,15 @@ class Controller_Public_Account extends Controller_Template
 			}
 			
 			$this->content->error = TRUE;
+		}
+	}
+	
+	public function action_logout()
+	{
+		if($this->user)
+		{
+			$this->user->logout();
+			$this->request->redirect($this->_base);
 		}
 	}
 }

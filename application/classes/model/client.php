@@ -93,6 +93,16 @@ class Model_Client extends Jelly_Model
 		return FALSE;
 	}
 	
+	public function logout()
+	{
+		Session::instance()->delete('client');
+	}
+	
+	public function logged_in()
+	{
+		return Session::instance()->get('client', NULL);
+	}
+	
 	public static function prepare_nip($value)
 	{
 		return preg_replace('/\D/i', NULL, $value);

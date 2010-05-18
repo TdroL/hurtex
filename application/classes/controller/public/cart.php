@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Public_Cart extends Controller_Template
+class Controller_Public_Cart extends Controller_Frontend
 {
 	protected $_base = 'cart';
 	

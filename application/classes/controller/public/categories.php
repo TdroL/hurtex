@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Public_Categories extends Controller_Template
+class Controller_Public_Categories extends Controller_Frontend
 {
 	public $no_template = array('index');
 

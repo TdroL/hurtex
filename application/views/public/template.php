@@ -32,6 +32,13 @@
 					</div>
 					
 					<div id="art-Header-login-form">
+<?php if($user and $user->logged_in()): ?>
+						<div class="art-Header-logged-in">
+							Zalogowano jako <b><?php echo $user->email ?></b><br />
+							<?php echo html::anchor('account', 'Zarządzaj kontem') ?><br />
+							<?php echo html::anchor('account/logout', 'Wyloguj') ?>
+						</div>
+<?php else: ?>
 						<?php echo form::open('account/login') ?>
 							<dl>
 								<dt><label for="field-header-email">Email:</label></dt>
@@ -57,6 +64,7 @@
 								</dd>
 							</dl>
 						<?php echo form::close() ?>
+<?php endif ?>
 					</div>
 				
 					<div id="art-Header-search">
@@ -118,8 +126,10 @@
 												<div class="t">Koszyk</div>
 											</div>
 										</div><div class="art-BlockContent">
-											<div class="art-BlockContent-body">
-												<input class="art-button" type="submit" name="Zamów" value="Zamów" />
+											<div class="art-BlockContent-body align-center">
+												<a href="<?php echo url::site('cart') ?>"><?php echo html::image('media/images/cart.png') ?></a>
+												<br />
+												<a href="<?php echo url::site('cart') ?>">Przejdź do koszyka</a>
 												<div class="cleared"></div>
 											</div>
 										</div>

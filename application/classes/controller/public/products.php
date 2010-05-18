@@ -1,6 +1,6 @@
 ﻿<?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Public_Products extends Controller_Template
+class Controller_Public_Products extends Controller_Frontend
 {
 	protected $_base = 'products'; // zmienna przechowujaca adres glowny modulu, uzywany przez redirecty
 

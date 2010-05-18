@@ -1247,15 +1247,15 @@ input.small-int {
 	text-align: right;
 }
 
-td.align-left {
+td.align-left, .align-left {
 	text-align: left;
 }
 
-td.align-right {
+td.align-right, .align-right {
 	text-align: right;
 }
 
-td.align-center {
+td.align-center, .align-center {
 	text-align: center;
 }
 
