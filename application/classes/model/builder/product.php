@@ -20,6 +20,10 @@ class Model_Builder_Product extends Jelly_Builder
 	
 	public function load_by_ids(array $ids)
 	{
+		if(empty($ids))
+		{
+			$ids = array(0);
+		}
 		return $this->where(':primary_key', 'IN', $ids)->execute();
 	}
 	
