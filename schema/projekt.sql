@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 18 Maj 2010, 22:02
+-- Czas wygenerowania: 18 Maj 2010, 22:45
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -18,23 +18,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Baza danych: `projekt`
 --
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla  `alt_addresses`
---
-
-CREATE TABLE IF NOT EXISTS `alt_addresses` (
-  `id` int(11) unsigned NOT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Zrzut danych tabeli `alt_addresses`
---
-
 
 -- --------------------------------------------------------
 
