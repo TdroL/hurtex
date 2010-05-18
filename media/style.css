@@ -648,6 +648,10 @@ a img
 {
 	width: 90px;
 }
+.thumbnails
+{
+	width: 132px;
+}
 
 .art-article thead, thead.art-article
 {
