@@ -32,7 +32,7 @@
 					</div>
 					
 					<div id="art-Header-login-form">
-						<?php echo form::open('account') ?>
+						<?php echo form::open('account/login') ?>
 							<dl>
 								<dt><label for="field-header-login">Login:</label></dt>
 								<dd><input type="text" name="login" id="field-header-login" /></dd>
