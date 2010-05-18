@@ -49,7 +49,7 @@
 								</dd>
 								<dd>
 									<div>
-										<?php echo html::anchor('account/create', 'Zarejestruj') ?>
+										<?php echo html::anchor('account/create', 'Zarejestruj')?>
 									</div>
 									<div>
 										<?php echo html::anchor('account/recover', 'Przypomnij hasło') ?>
