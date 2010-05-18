@@ -8,21 +8,31 @@ class Model_Order extends Jelly_Model
 		$meta->fields(array(
 				'id' => new Field_Primary,
 				'date' => new Field_Timestamp(array(
+					'label' => 'Data',
 					'pretty_format' => 'Y-m-d H:i:s',
 					'default' => time(),
 				)),
 				'client' => new Field_BelongsTo(array(
+					'label' => 'Klient',
 				)),
 				'status' => new Field_Enum(array(
-					'choices' => array('added', 'accepted', 'send', 'canceled'),
+					'label' => 'Status',
+					'choices' => array(
+						'added' => 'Dodany',
+						'accepted' => 'Zaakceptowany',
+						'send' => 'Wysłany',
+						'canceled' => 'Anulowany',
+					),
 				)),
 				'printed' => new Field_Boolean(array(
+					'label' => 'Wydrukowano',
 				)),
 				'paragon_number' => new Field_String(array(
+					'label' => 'Numer paragonu',
 				)),
 				'invoice' => new Field_String(array(
-				)),
-				'address' => new Field_BelongsTo(array(
+					'label' => 'Numer faktury',
+					'unique' => TRUE,
 				)),
 				'payment' => new Field_Enum(array(
 					'choices' => array('cach', 'transfer'),
@@ -34,6 +44,7 @@ class Model_Order extends Jelly_Model
 					'label' => 'Adres alternatywny',
 				)),
 				'products' => new Field_ManyToMany(array(
+					'label' => 'Produkty',
 				)),
 			));
 	}
