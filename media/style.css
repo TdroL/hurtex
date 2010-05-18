@@ -644,9 +644,13 @@ a img
 	margin: 1px;
 	width:100%;
 }
+.basket_width
+{
+	width: 52px;
+}
 .price_width
 {
-	width: 90px;
+	width: 82px;
 }
 .thumbnails
 {

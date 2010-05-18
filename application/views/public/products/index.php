@@ -7,7 +7,7 @@
 		<td>Nazwa produktu</td>
 		<td>Ilość</td>
 		<td class="price_width">Cena netto</td>
-		<td>Koszyk</td>
+		<td class="basket_width">Koszyk</td>
 	</tr>
 </thead>
 <tbody>
