@@ -32,7 +32,7 @@
 					</div>
 					
 					<div id="art-Header-login-form">
-						<form method="post" action="#">
+						<?php echo form::open('account') ?>
 							<dl>
 								<dt><label for="field-header-login">Login:</label></dt>
 								<dd><input type="text" name="login" id="field-header-login" /></dd>
@@ -45,8 +45,15 @@
 							
 							<dl>
 								<dd>
-									<input class="art-button" type="submit" name="Zaloguj" value="Zaloguj" />
-									<input class="art-button" type="submit" name="Zarejestruj" value="Zarejestruj" />
+									<input class="art-button" type="submit" name="send" value="Zaloguj" />
+								</dd>
+								<dd>
+									<div>
+										<?php echo html::anchor('account/create', 'Zarejestruj') ?>
+									</div>
+									<div>
+										<?php echo html::anchor('account/recover', 'Przypomnij hasło') ?>
+									</div>
 								</dd>
 							</dl>
 						</form>

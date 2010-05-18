@@ -85,8 +85,17 @@ form
 	width: 145px;
 }
 
+#art-Header-login-form dl:last-child {
+	margin-top: 0;
+}
+
 #art-Header-login-form dl:last-child dd {
-	width: 250px;
+	margin-left: 55px;
+}
+
+#art-Header-login-form dl:last-child dd:last-child a {
+	color: #000;
+	font-size: 12px;
 }
 
 #art-Header-search {

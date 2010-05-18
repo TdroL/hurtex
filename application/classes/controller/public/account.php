@@ -2,11 +2,11 @@
 
 class Controller_Public_Account extends Controller_Template
 {
-		
- 
-public function action_register()
+	protected $_base = 'account';
+	
+	public function action_create()
 	{
-		$this->content->bind('clients', $client);
+		$this->content->bind('client', $client);
 		$this->content->bind('errors', $errors);
 
 		$client = Jelly::factory('client');
@@ -19,7 +19,7 @@ public function action_register()
 				$client->save();
 
 				$this->session->set($_POST['seed'], TRUE);
-				/*$this->request->redirect($this->_base);*/
+				$this->request->redirect($this->_base);
 			}
 			catch(Validate_Exception $e)
 			{
