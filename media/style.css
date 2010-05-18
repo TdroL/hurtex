@@ -644,6 +644,10 @@ a img
 	margin: 1px;
 	width:100%;
 }
+.quantity_width
+{
+	width: 62px;
+}
 .basket_width
 {
 	width: 52px;
@@ -1038,7 +1042,8 @@ font-weight: bold;
 }
 .input_width
 {
-	width: 30px;
+	height: 20px;
+	width: 32px;
 	text-align: left;
 }
 input, select

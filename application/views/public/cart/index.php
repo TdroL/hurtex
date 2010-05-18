@@ -6,7 +6,7 @@
 	<tr>
 		<td class="thumbnails"></td>
 		<td>Nazwa produktu</td>
-		<td>Ilość</td>
+		<td class="quantity_width">Ilość</td>
 		<td class="price_width">Cena</td>
 		<td>Opcje</td>
 	</tr>
@@ -24,22 +24,20 @@
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
 		</td>
-		<td>
-			<p class="product_name">
+		<td ><p class="product_name">
 				<?php echo form::input('product['.$v->id.']', ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2), array('class' => 'input_width')) ?>
 				<?php echo $v->unit->name ?>
-			</p>
-		</td>
+			
+		</p></td>
 		<td><p class="product_name"><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
-		<td><div class="art-button" title="Usuń z koszyka"><?php echo html::anchor_confirm('cart/remove.'.$v->id, 'Usuń', 'Czy chcesz usunąć ten produkt z koszyka?') ?></div></td>
+		<td><p class="product_name" title="Usuń z koszyka"><?php echo html::anchor_confirm('cart/remove.'.$v->id, 'Usuń', 'Czy chcesz usunąć ten produkt z koszyka?') ?></p></td>
 	</tr>
 <?php endforeach ?>
 <?php endif ?>
 </tbody>
 <tfoot>
 	<tr>
-	<td>Wybór opcji zapłaty: <?php echo $order->input("payment") ?>
-	</td>
+	<td colspan="2">Wybór opcji zapłaty: <?php echo $order->input("payment") ?></td>
 	
 	</tr>
 	<tr>

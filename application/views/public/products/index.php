@@ -5,7 +5,7 @@
 	<tr>
 		<td class="thumbnails"></td>
 		<td>Nazwa produktu</td>
-		<td>Ilość</td>
+		<td class="quantity_width">Ilość</td>
 		<td class="price_width">Cena netto</td>
 		<td class="basket_width">Koszyk</td>
 	</tr>
