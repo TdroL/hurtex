@@ -13,6 +13,7 @@ class Model_Price extends Jelly_Model
 				'value' => new Field_Float(array(
 					'label' => 'Cena',
 					'column' => 'price',
+					'default' => 0,
 				)),
 				'date' => new Field_Timestamp(array(
 					'auto_now_create' => TRUE,
