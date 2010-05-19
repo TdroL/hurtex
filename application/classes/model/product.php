@@ -100,6 +100,13 @@ class Model_Product extends Jelly_Model
 		return FALSE;
 	}
 
+	public function decrease_quantity($value)
+	{
+		$this->quantity = $this->quantity - (float) $value;
+		$this->save();
+		return $this;
+	}
+
 	public function find_by_category($id)
 	{
 		return $this->where('category_id', '=', (int) $id)

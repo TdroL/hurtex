@@ -61,14 +61,15 @@ class Controller_Public_Cart extends Controller_Frontend
 
 	public function action_order()
 	{
-		$this->content->bind('quantity', $quantity);
+		$this->content->bind('quantity', $cart);
 		$this->content->bind('sum_netto', $sum_netto);
 		$this->content->bind('sum_brutto', $sum_brutto);
+		$this->content->bind('sum_netto_plus', $sum_netto_plus);
+		$this->content->bind('sum_brutto_plus', $sum_brutto_plus);
 
 		$cart = $this->session->get('cart_products', array());
 		
 		$ids = array_keys($cart);
-		$quantity = $cart;
 		$this->content->products = Jelly::select('product')->load_by_ids($ids);
 		
 		$sum_netto = 0;
@@ -76,13 +77,13 @@ class Controller_Public_Cart extends Controller_Frontend
 		
 		foreach($this->content->products as $k => $v)
 		{
-			$sum_netto += round($v->price->value*$quantity[$v->id], 2);
-			$sum_brutto += round($v->price->value*$quantity[$v->id] * (1 + $v->price->vat->value), 2);
+			$sum_netto += round($v->price->value*$cart[$v->id], 2);
+			$sum_brutto += round($v->price->value*$cart[$v->id] * (1 + $v->price->vat->value), 2);
 		}
 		$order = Jelly::factory('order')
 				->set($this->session->get('order_details', array()));
 		
-		if($_POST)
+		if($_POST and !empty($cart))
 		{
 			if(isset($_POST['back-step-cart']))
 			{
@@ -105,11 +106,56 @@ class Controller_Public_Cart extends Controller_Frontend
 				}
 				
 				$this->content->set_filename('public/cart/confirm');
-				$sum_netto += $order->sendform->value;
-				$sum_brutto += $order->sendform->value;
+				$sum_netto_plus = $sum_netto + $order->sendform->value;
+				$sum_brutto_plus = $sum_brutto + $order->sendform->value;
 			}
-			else if(isset($_POST['next-step-2']))
+			else if(isset($_POST['next-step-2']) and ($order_details = $this->session->get('order_details')))
 			{
+				$ids = array_keys($cart);
+				
+				if(empty($order_details['address']))
+				{
+					$order->address = $this->user->address;
+				}
+				
+				$order->client = $this->user;
+				
+				try
+				{
+					DB::begin();
+					
+					$order->save();
+					
+					$order->generate_invoice();
+					$order->generate_paragon_number();
+					
+					foreach($cart as $k => $v)
+					{
+						
+						$product = Jelly::select('product', $k);
+						
+						$relation = Jelly::factory('productorder');
+						
+						$relation->order = $order;
+						$relation->product = $product;
+						$relation->price = $product->price->id;
+						$relation->quantity = $v;
+						
+						$relation->save();
+						$product->decrease_quantity($v);
+					}
+					
+					DB::commit();
+					
+					$this->session->set('cart', array());
+					$this->session->set('order_details', array());
+					
+					$this->request->redirect('account/history');
+				}
+				catch (Exception $e)
+				{
+					DB::rollback();
+				}
 				
 			}
 			

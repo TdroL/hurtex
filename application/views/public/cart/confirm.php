@@ -61,8 +61,8 @@
 	<tr>
 		<td class="align-right"><b>Do zapłaty</b></td>
 		<td colspan="4">
-			Netto: <b><?php echo number_format($sum_netto, 2) ?> zł</b><br />
-			Brutto: <b><?php echo number_format($sum_brutto, 2) ?> zł</b>
+			Netto: <b><?php echo number_format($sum_netto_plus, 2) ?> zł</b><br />
+			Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b>
 		</td>
 	</tr>
 </tbody>
