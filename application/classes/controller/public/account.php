@@ -58,4 +58,43 @@ class Controller_Public_Account extends Controller_Frontend
 			$this->request->redirect($this->_base);
 		}
 	}
+	public function action_update()
+	{
+		$this->content->bind('form', $client);
+		$this->content->bind('errors', $errors);
+
+		$id = $this->request->param('id');
+		$client = Jelly::select('client', $id);
+
+		/*if(!$client->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		{
+			$this->request->redirect($this->_base);
+		}*/
+
+		if($_POST and !$this->session->get($_POST['seed'], FALSE))
+		{
+			if(empty($_POST['password']))
+			{
+				unset($_POST['password'], $_POST['password_confirm']);
+			}
+			
+			if(empty($_POST['email_confirm']))
+			{
+				unset($_POST['email'], $_POST['email_confirm']);
+			}
+			
+			try
+			{
+				$client->set($_POST);
+				$client->save();
+
+				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
+				$this->request->redirect($this->_base);
+			}
+			catch(Validate_Exception $e)
+			{
+				$errors = $e->errors();
+			}
+		}
+	}
 }
