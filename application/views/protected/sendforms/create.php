@@ -4,7 +4,7 @@
 					<fieldset>
 						
 						<table>
-							<caption>Dodaj stawkę</caption>
+							<caption>Dodaj formę wysyłki</caption>
 							
 							<?php echo html::error_messages($errors) ?>
 
