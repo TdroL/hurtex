@@ -34,7 +34,7 @@
 					<div id="art-Header-login-form">
 <?php if($user and $user->logged_in()): ?>
 						<div class="art-Header-logged-in">
-							Zalogowano jako <b><?php echo $user->email ?></b><br />
+							<b>Zalogowano jako <?php echo $user->email ?></b><br />
 							<?php echo html::anchor('account', 'Zarządzaj kontem') ?><br />
 							<?php echo html::anchor('account/logout', 'Wyloguj') ?>
 						</div>

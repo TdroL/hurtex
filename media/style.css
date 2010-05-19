@@ -53,6 +53,7 @@ form
 }
 
 #art-Header-login-form {
+	color: #1E6194;
 	float: right;
 	width: 260px;
 }
@@ -826,7 +827,7 @@ a:visited, a.visited
 {
 font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans-Serif;
 text-decoration: none;
-  color: #647887;
+  color: #1E6194;
 }
 
 /* :hover - adds special style to an element when you mouse over it. */
