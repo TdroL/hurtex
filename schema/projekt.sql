@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 18 Maj 2010, 22:45
+-- Czas wygenerowania: 19 Maj 2010, 14:42
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -280,19 +280,19 @@ INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla  `send_form`
+-- Struktura tabeli dla  `sendforms`
 --
 
-CREATE TABLE IF NOT EXISTS `send_form` (
+CREATE TABLE IF NOT EXISTS `sendforms` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `price_id` int(11) unsigned NOT NULL,
+  `price` float unsigned NOT NULL DEFAULT '0',
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `prive_id` (`price_id`)
+  KEY `prive_id` (`price`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Zrzut danych tabeli `send_form`
+-- Zrzut danych tabeli `sendforms`
 --
 
 
@@ -392,7 +392,7 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`send_form_id`) REFERENCES `send_form` (`id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`send_form_id`) REFERENCES `sendforms` (`id`);
 
 --
 -- Ograniczenia dla tabeli `prices`
@@ -431,9 +431,3 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
-
---
--- Ograniczenia dla tabeli `send_form`
---
-ALTER TABLE `send_form`
-  ADD CONSTRAINT `send_form_ibfk_1` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`);

@@ -5,14 +5,15 @@ class Model_Sendform extends Jelly_Model
 
 	public static function initialize(Jelly_Meta $meta)
 	{
-		$meta->table('send_form')
-			->fields(array(
+		$meta->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
 					'label' => 'Nazwa',
 				)),
-				'price' => new Field_Price(array(
+				'value' => new Field_Float(array(
 					'label' => 'Cena',
+					'column' => 'price',
+					'default' => 0,
 				)),
 			));
 	}
