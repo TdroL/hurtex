@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.'); ?>
+﻿<?php defined('SYSPATH') or die('No direct script access.'); ?>
 <h4>Koszyk</h4>
 <?php echo form::open('cart') ?>
 <table class="art-article">
@@ -9,7 +9,7 @@
 		<td class="price_width">Cena netto</td>
 		<td class="price_vat">VAT</td>
 		<td class="price_width">Cena brutto</td>
-		<td>Opcje</td>
+		<td class="option_width">Opcje</td>
 	</tr>
 </thead>
 <tbody>
@@ -21,7 +21,7 @@
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
 		<td>
-			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
+			<a class="product_name" title="Szczegóły" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
 		</td>
 		<td ><p class="product_name">

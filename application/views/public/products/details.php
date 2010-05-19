@@ -1,3 +1,4 @@
+<dl><?php echo html::image('media/images/products/'.$product->image, array('title' => $product->name, 'width' => 100)) ?></dl>
 <dl>
 	<dt><b>Nazwa produktu</b></dt>
 	<dd><?php echo $product->name ?></dd>

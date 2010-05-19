@@ -641,9 +641,13 @@ a img
 	margin: 1px;
 	width:100%;
 }
+.option_width
+{
+	width: 48;
+}
 .quantity_width
 {
-	width: 62px;
+	width: 40px;
 }
 .basket_width
 {
@@ -655,7 +659,7 @@ a img
 }
 .price_width
 {
-	width: 72px;
+	width: 92px;
 }
 .thumbnails
 {
@@ -1044,7 +1048,7 @@ font-weight: bold;
 .input_width
 {
 	height: 20px;
-	width: 32px;
+	width: 35px;
 	text-align: left;
 }
 input, select
