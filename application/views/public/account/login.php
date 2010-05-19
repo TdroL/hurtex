@@ -1,4 +1,4 @@
-						<?php echo form::open('account/login') ?>
+						<?php echo form::open('account/login'.$from) ?>
 <?php if(isset($error)): ?>
 							<dl>
 								<dt>Błąd</dt>
@@ -18,6 +18,14 @@
 							<dl>
 								<dd>
 									<input class="art-button" type="submit" name="send" value="Zaloguj" />
+								</dd>
+								<dd>
+									<div>
+										<?php echo html::anchor('account/create', 'Zarejestruj')?>
+									</div>
+									<div>
+										<?php echo html::anchor('account/recover', 'Przypomnij hasło') ?>
+									</div>
 								</dd>
 							</dl>
 						<?php echo form::close() ?>

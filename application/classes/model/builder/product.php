@@ -26,11 +26,4 @@ class Model_Builder_Product extends Jelly_Builder
 		}
 		return $this->where(':primary_key', 'IN', $ids)->execute();
 	}
-	
-	public function exists($id)
-	{
-		$product = $this->load((int) $id);
-		
-		return $product->loaded();
-	}
 }

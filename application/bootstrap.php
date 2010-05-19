@@ -125,9 +125,10 @@ if(class_exists('FirePHP_Log_Console'))
 			'id'			=> NULL,
 		));
 
-	Route::set('default', '(<controller>(/<action>(.<id>)))', 
+	Route::set('default', '(<controller>(/<action>(.<id>)))(/from:<from>)', 
 		array(
 			'id'			=> '\d+',
+			'from'			=> '.+',
 		))
 		->defaults(array(
 			'directory'		=> 'public',

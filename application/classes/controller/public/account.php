@@ -40,16 +40,28 @@ class Controller_Public_Account extends Controller_Frontend
 	
 	public function action_login()
 	{
+		$this->content->from = $this->request->param('from');
+		
 		if($_POST)
 		{
 			$client = Jelly::factory('client')->set($_POST);
 			
 			if($client->login())
 			{
+				if(!empty($this->content->from))
+				{
+					$this->request->redirect($this->content->from);
+				}
+				
 				$this->request->redirect($this->_base);
 			}
 			
 			$this->content->error = TRUE;
+		}
+		
+		if(!empty($this->content->from))
+		{
+			$this->content->from = '/from:'.$this->content->from;
 		}
 	}
 	

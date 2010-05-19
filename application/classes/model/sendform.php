@@ -19,5 +19,4 @@ class Model_Sendform extends Jelly_Model
 			))
 			->sorting(array('value' => 'asc'));
 	}
-
 }

@@ -39,7 +39,7 @@ class Model_Order extends Jelly_Model
 				)),
 				'sendform' => new Field_Sendform(array(
 				)),
-				'address' => new Field_String(array(
+				'address' => new Field_Text(array(
 					'label' => 'Adres alternatywny',
 				)),
 				'products' => new Field_ManyToMany(array(
