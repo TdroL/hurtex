@@ -1,6 +1,6 @@
 <?php 
 
-class Controller_Frontend extends Controller_Template
+abstract class Controller_Frontend extends Controller_Template
 {
 	public $user = NULL;
 	
@@ -10,7 +10,7 @@ class Controller_Frontend extends Controller_Template
 		
 		$this->user = $this->session->get('client', NULL);
 		
-		if($this->view !== NULL)
+		if($this->view instanceof View)
 		{
 			$this->view->set_global('user', $this->user);
 		}
