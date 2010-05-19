@@ -11,8 +11,10 @@ class Model_Sendform extends Jelly_Model
 				'name' => new Field_String(array(
 					'label' => 'Nazwa',
 				)),
-				'price' => new Field_Price(array(
-					'label' => 'Koszt wysy³ki',
+				'value' => new Field_Float(array(
+					'label' => 'Koszt wysyÅ‚ki',
+					'column' => 'price',
+					'default' => 0,
 				)),
 			));
 	}
