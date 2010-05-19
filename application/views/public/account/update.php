@@ -19,10 +19,10 @@
 			<td><?php echo $form->email ?></td>
 		</tr>
 		<tr><td><legend><?php echo $form->label('password') ?>*</legend></td>
-			<td><?php echo $form->input('password') ?></td>
+			<td class="description"><?php echo $form->input('password') ?>(wypełnić tylko przy zmianie hasła)</td>
 		</tr>
 		<tr><td><legend><?php echo $form->label('password_confirm') ?>*</legend></td>
-			<td><?php echo $form->input('password_confirm') ?></td>
+			<td class="description"><?php echo $form->input('password_confirm') ?>(wypełnić tylko przy zmianie hasła)</td>
 		</tr>
 		<tr><td><legend><?php echo $form->label('address') ?>*</legend></td>
 			<td><?php echo $form->input('address') ?></td>
