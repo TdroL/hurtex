@@ -108,6 +108,10 @@ class Controller_Public_Cart extends Controller_Frontend
 				$sum_netto += $order->sendform->value;
 				$sum_brutto += $order->sendform->value;
 			}
+			else if(isset($_POST['next-step-2']))
+			{
+				
+			}
 			
 			$this->session->set('order_details', $_POST);
 		}
