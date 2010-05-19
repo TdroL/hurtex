@@ -648,9 +648,13 @@ a img
 {
 	width: 52px;
 }
+.price_vat
+{
+	width: 35px;
+}
 .price_width
 {
-	width: 82px;
+	width: 72px;
 }
 .thumbnails
 {

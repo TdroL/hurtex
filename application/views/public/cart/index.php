@@ -4,10 +4,11 @@
 <table class="art-article">
 <thead>
 	<tr>
-		<td class="thumbnails"></td>
 		<td>Nazwa produktu</td>
 		<td class="quantity_width">Ilość</td>
-		<td class="price_width">Cena</td>
+		<td class="price_width">Cena netto</td>
+		<td class="price_vat">VAT</td>
+		<td class="price_width">Cena brutto</td>
 		<td>Opcje</td>
 	</tr>
 </thead>
@@ -19,7 +20,6 @@
 <?php else: ?>
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
-		<td><?php echo html::image('media/images/products/'.$v->image, array('title' => $v->name, 'width' => 100)) ?></td>
 		<td>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
@@ -30,6 +30,8 @@
 			
 		</p></td>
 		<td><p class="product_name"><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
+		<td><?php echo $v->price->vat->name ?></td>
+		<td><p class="product_name"><?php echo number_format(($v->price->value*$quantity[$v->id]) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
 		<td><p class="product_name" title="Usuń z koszyka"><?php echo html::anchor_confirm('cart/remove.'.$v->id, 'Usuń', 'Czy chcesz usunąć ten produkt z koszyka?') ?></p></td>
 	</tr>
 <?php endforeach ?>
@@ -37,14 +39,10 @@
 </tbody>
 <tfoot>
 	<tr>
-	<td colspan="2">Wybór opcji zapłaty: <?php echo $order->input("payment") ?></td>
-	
-	</tr>
-	<tr>
-		<td colspan="3">
+		<td colspan="2" class="align-right">
 			<?php echo form::submit('recount', 'Przelicz', array('class' => 'art-button')) ?>
 		</td>
-		<td colspan="2" class="align-center">
+		<td colspan="4" class="align-right">
 			<?php echo form::submit('order', 'Zamów', array('class' => 'art-button')) ?>
 		</td>
 	</tr>

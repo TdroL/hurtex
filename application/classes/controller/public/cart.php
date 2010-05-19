@@ -36,6 +36,28 @@ class Controller_Public_Cart extends Controller_Frontend
 		$ids = array_keys($cart);
 		$quantity = $cart;
 		$this->content->products = Jelly::select('product')->load_by_ids($ids);
+	}
+
+	public function action_order()
+	{
+		$this->content->bind('quantity', $quantity);
+		$this->content->bind('sum_netto', $sum_netto);
+		$this->content->bind('sum_brutto', $sum_brutto);
+		
+		$cart = $this->session->get('cart_products', array());
+		
+		$ids = array_keys($cart);
+		$quantity = $cart;
+		$this->content->products = Jelly::select('product')->load_by_ids($ids);
+		
+		$sum_netto = 0;
+		$sum_brutto = 0;
+		
+		foreach($this->content->products as $k => $v)
+		{
+			$sum_netto += round($v->price->value*$quantity[$v->id], 2);
+			$sum_brutto += round($v->price->value*$quantity[$v->id] * (1 + $v->price->vat->value), 2);
+		}
 		$this->content->order = Jelly::factory('order');
 	}
 

@@ -4,6 +4,8 @@ class Controller_Public_Account extends Controller_Frontend
 {
 	protected $_base = 'account';
 	
+	public $no_view = array('logout');
+	
 	public function action_index()
 	{
 		

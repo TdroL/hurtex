@@ -35,10 +35,9 @@ class Model_Order extends Jelly_Model
 					'unique' => TRUE,
 				)),
 				'payment' => new Field_Enum(array(
-					'choices' => array('cash' => 'KASAAAA!!!', 'transfer' => 'Przelew'),
+					'choices' => array('cash' => 'Gotówka', 'transfer' => 'Przelew'),
 				)),
-				'send_form' => new Field_BelongsTo(array(
-					'foreign' => 'sendform',
+				'sendform' => new Field_Sendform(array(
 				)),
 				'address' => new Field_String(array(
 					'label' => 'Adres alternatywny',

@@ -5,7 +5,8 @@ class Model_Sendform extends Jelly_Model
 
 	public static function initialize(Jelly_Meta $meta)
 	{
-		$meta->fields(array(
+		$meta//->name_key('name')
+			->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
 					'label' => 'Nazwa',
@@ -15,7 +16,8 @@ class Model_Sendform extends Jelly_Model
 					'column' => 'price',
 					'default' => 0,
 				)),
-			));
+			))
+			->sorting(array('value' => 'asc'));
 	}
 
 }

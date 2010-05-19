@@ -34,6 +34,7 @@ class Field_Category extends Field_BelongsTo
 
 		return parent::input($prefix, $data);
 	}
+	
 	protected function view_category($id = 0, $t = NULL)
 	{
 		if(!isset($this->list[$id]))
