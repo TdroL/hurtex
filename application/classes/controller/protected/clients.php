@@ -110,7 +110,7 @@ class Controller_Protected_Clients extends Controller_Template
 		$id = $this->request->param('id');
 		$this->content->client = Jelly::select('client', $id);
 
-		if(!$this->content->client->loaded()) // jesli ine istnieje to przekieruj do listy klientów
+		/if(!$this->content->client->loaded()) // jesli ine istnieje to przekieruj do listy klientów
 		{
 			$this->request->redirect($this->_base);
 		}
