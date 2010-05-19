@@ -18,7 +18,7 @@
 							<tr>
 								<td><?php echo $form->label('value') ?></td>
 								<td>
-									<?php echo number_format($form->value*100, 0) ?>%
+									<?php echo number_format($form->value) ?> zł
 								</td>
 							</tr>
 							<tr>

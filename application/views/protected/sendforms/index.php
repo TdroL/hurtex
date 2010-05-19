@@ -14,7 +14,7 @@
 <?php foreach($sendforms as $sendform): ?>
 	<tr>
 		<td><?php echo $sendform->name ?></td>
-		<td><?php echo $sendform->value ?>zł</td>
+		<td><?php echo $sendform->value ?> zł</td>
 		<td>
 			<?php echo html::anchor('admin/sendforms/update.'.$sendform->id, 'Edytuj') ?>
 			<?php echo html::anchor('admin/sendforms/delete.'.$sendform->id, 'Usuń', array('class' => 'unsafe')) ?>
