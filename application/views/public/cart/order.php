@@ -29,7 +29,7 @@
 				<?php echo $v->unit->name ?>
 		</p></td>
 		<td><p class="product_name"><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
-		<td><?php echo $v->price->vat->name ?></td>
+		<td><p class="product_name"><?php echo $v->price->vat->name ?></p></td>
 		<td><p class="product_name"><?php echo number_format(($v->price->value*$quantity[$v->id]) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
 	</tr>
 <?php endforeach ?>
@@ -52,7 +52,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>Adres dostawy <br /><small>(pozostaw pole puste jeśli zamówienie ma zostać wysłane na adres podany w )</small></td>
+		<td>Adres dostawy <br /><small>(jeśli inny niż adres podany w ustawieniach konta klienta)</small></td>
 		<td colspan="4">
 			<?php echo $order->input('address') ?>
 		</td>
