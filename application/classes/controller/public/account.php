@@ -66,11 +66,7 @@ class Controller_Public_Account extends Controller_Frontend
 		$id = $this->request->param('id');
 		$client = Jelly::select('client', $id);
 
-		/*if(!$client->loaded()) // jesli ine istnieje to przekieruj do listy produktow
-		{
-			$this->request->redirect($this->_base);
-		}*/
-
+		
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
 			if(empty($_POST['password']))
