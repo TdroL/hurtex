@@ -9,8 +9,10 @@ class Model_Sendform extends Jelly_Model
 			->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
+					'label' => 'Nazwa',
 				)),
-				'price' => new Field_BelongsTo(array(
+				'price' => new Field_Price(array(
+					'label' => 'Cena',
 				)),
 			));
 	}

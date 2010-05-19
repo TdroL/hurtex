@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/vats/update.'.$form->id) ?>
+				<?php echo form::open('admin/sendforms/update.'.$form->id) ?>
 					<fieldset>
 						
 						<table>

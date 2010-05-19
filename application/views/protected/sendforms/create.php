@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/vats/create') ?>
+				<?php echo form::open('admin/sendforms/create') ?>
 					<fieldset>
 						
 						<table>

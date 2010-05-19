@@ -2,7 +2,7 @@
 
 
 <table>
-<caption><?php echo html::anchor('admin/vats/create', 'Dodaj nową stawkę') ?></caption>
+<caption><?php echo html::anchor('admin/sendforms/create', 'Dodaj nową formę wysyłki') ?></caption>
 <thead>
 	<tr>
 		<td>Nazwa</td>
@@ -11,13 +11,13 @@
 	</tr>
 </thead>
 <tbody>
-<?php foreach($vats as $vat): ?>
+<?php foreach($sendforms as $sendform): ?>
 	<tr>
-		<td><?php echo $vat->name ?></td>
-		<td><?php echo $vat->value*100 ?>%</td>
+		<td><?php echo $sendform->name ?></td>
+		<td><?php echo $sendform->value*100 ?>%</td>
 		<td>
-			<?php echo html::anchor('admin/vats/update.'.$vat->id, 'Edytuj') ?>
-			<?php echo html::anchor('admin/vats/delete.'.$vat->id, 'Usuń', array('class' => 'unsafe')) ?>
+			<?php echo html::anchor('admin/sendforms/update.'.$sendform->id, 'Edytuj') ?>
+			<?php echo html::anchor('admin/sendforms/delete.'.$sendform->id, 'Usuń', array('class' => 'unsafe')) ?>
 		</td>
 	</tr>
 <?php endforeach ?>

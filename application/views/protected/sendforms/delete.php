@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/vats/delete.'.$form->id) ?>
+				<?php echo form::open('admin/sendforms/delete.'.$form->id) ?>
 					<fieldset>
 
 						<table>
