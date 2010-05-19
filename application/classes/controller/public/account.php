@@ -63,9 +63,16 @@ class Controller_Public_Account extends Controller_Frontend
 		$this->content->bind('form', $client);
 		$this->content->bind('errors', $errors);
 
-		$id = $this->request->param('id');
-		$client = Jelly::select('client', $id);
-
+		$id = 0;
+		
+		$client = $this->user;
+		
+		if(!$client)
+		{
+			$this->request->redirect($this->_base);
+		}
+		
+		unset($client->password);
 		
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
