@@ -30,7 +30,7 @@
 			
 		</p></td>
 		<td><p class="product_name"><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
-		<td><?php echo $v->price->vat->name ?></td>
+		<td><p class="product_name"><?php echo $v->price->vat->name ?></p></td>
 		<td><p class="product_name"><?php echo number_format(($v->price->value*$quantity[$v->id]) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
 		<td><p class="product_name" title="Usuń z koszyka"><?php echo html::anchor_confirm('cart/remove.'.$v->id, 'Usuń', 'Czy chcesz usunąć ten produkt z koszyka?') ?></p></td>
 	</tr>
