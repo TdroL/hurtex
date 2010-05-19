@@ -3,7 +3,7 @@
 class Controller_Public_Account extends Controller_Frontend
 {
 	protected $_base = 'account';
-	protected $_base2 = '/';
+	protected $_login = 'account/login';
 	
 	public $no_view = array('logout');
 	
@@ -46,7 +46,7 @@ class Controller_Public_Account extends Controller_Frontend
 			
 			if($client->login())
 			{
-				$this->request->redirect($this->_base2);
+				$this->request->redirect($this->_base);
 			}
 			
 			$this->content->error = TRUE;
@@ -58,7 +58,7 @@ class Controller_Public_Account extends Controller_Frontend
 		if($this->user)
 		{
 			$this->user->logout();
-			$this->request->redirect($this->_base2);
+			$this->request->redirect($this->_login);
 		}
 	}
 	public function action_update()
@@ -72,7 +72,7 @@ class Controller_Public_Account extends Controller_Frontend
 		
 		if(!$client)
 		{
-			$this->request->redirect($this->_base);
+			$this->request->redirect($this->_login);
 		}
 		
 		unset($client->password);
