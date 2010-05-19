@@ -41,7 +41,7 @@ class Controller_Public_Products extends Controller_Frontend
 	public function action_category()
 	{
 		$id = $this->request->param('id');
-		
+		$this->view->title = Jelly::select('category', $id)->title;
 		$this->content->products = Jelly::select('product')->belongs_to_category($id)->execute();
 	}
 }
