@@ -81,10 +81,10 @@ class Controller_Public_Account extends Controller_Frontend
 				unset($_POST['password'], $_POST['password_confirm']);
 			}
 			
-			if(empty($_POST['email_confirm']))
-			{
-				unset($_POST['email'], $_POST['email_confirm']);
-			}
+			
+			
+				unset($_POST['email']);
+			
 			
 			try
 			{

@@ -18,12 +18,9 @@
 		</fieldset>
 		<fieldset>
 			<legend><?php echo $form->label('email') ?>*</legend>
-			<?php echo $form->input('email') ?>
+			<?php echo $form->email ?>
 		</fieldset>
-		<fieldset>
-			<legend><?php echo $form->label('email_confirm') ?>*</legend>
-			<?php echo $form->input('email_confirm') ?>
-		</fieldset>
+		
 		<fieldset>
 			<legend><?php echo $form->label('password') ?>*</legend>
 			<?php echo $form->input('password') ?>
