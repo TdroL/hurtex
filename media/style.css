@@ -1263,6 +1263,7 @@ td.align-left, .align-left {
 
 td.align-right, .align-right {
 	text-align: right;
+	font-weight: bold;
 }
 
 td.align-center, .align-center {

@@ -40,20 +40,20 @@
 		<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 	</tr>
 	<tr>
-		<td>Forma płatności</td>
+		<td class="align-right">Forma dostawy</td>
 		<td colspan="4">
 			<?php echo $order->sendform->name ?>
 			 - <?php echo number_format($order->sendform->value, 2) ?> zł
 		</td>
 	</tr>
 	<tr>
-		<td>Forma dostawy</td>
+		<td class="align-right">Forma płatności</td>
 		<td colspan="4">
 			<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 		</td>
 	</tr>
 	<tr>
-		<td>Adres dostawy</td>
+		<td class="align-right">Adres dostawy</td>
 		<td colspan="4">
 			<?php echo nl2br(html::chars($order->address)) ?>
 		</td>
