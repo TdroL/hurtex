@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 19 Maj 2010, 14:42
--- Wersja serwera: 5.1.37
--- Wersja PHP: 5.3.0
+-- Czas wygenerowania: 20 Maj 2010, 10:58
+-- Wersja serwera: 5.1.41
+-- Wersja PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -31,18 +31,12 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
-INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
-(0, 'Brak', NULL),
-(1, 'RTV', 0),
-(2, 'Telewizory', 1),
-(3, 'Hi-Fi', 1),
-(5, 'Nowe prawo cywilne', 0);
 
 -- --------------------------------------------------------
 
@@ -86,14 +80,14 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `status` enum('added','accepted','send','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'accepted',
   `printed` tinyint(1) NOT NULL DEFAULT '0',
   `address` text COLLATE utf8_unicode_ci,
-  `paragon_number` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `invoice` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `paragon_number` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invoice` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `payment` enum('cash','transfer') COLLATE utf8_unicode_ci NOT NULL,
-  `send_form_id` int(11) unsigned NOT NULL,
+  `sendform_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `paragon_number` (`paragon_number`,`invoice`),
   KEY `client_id` (`client_id`),
-  KEY `send_form_id` (`send_form_id`)
+  KEY `send_form_id` (`sendform_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
@@ -116,33 +110,12 @@ CREATE TABLE IF NOT EXISTS `prices` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vat_id` (`vat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Zrzut danych tabeli `prices`
 --
 
-INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
-(1, 9, 23.4, 1234567890, 2),
-(9, NULL, 23.45, 1273762291, 4),
-(10, NULL, 123.45, 1273762732, 4),
-(11, NULL, 12.32, 1273763728, 4),
-(12, NULL, 324, 1273763743, 3),
-(13, NULL, 12.323, 1273763758, 4),
-(14, NULL, 1352, 1273836663, 1),
-(15, NULL, 1352, 1273836718, 1),
-(16, NULL, 1352, 1273836747, 1),
-(17, NULL, 1352, 1273836759, 1),
-(18, NULL, 1352, 1273836766, 1),
-(19, NULL, 1352, 1273836779, 1),
-(20, 13, 1352, 1273836824, 1),
-(21, 14, 123.4, 1274023095, 3),
-(22, 15, 0, 1274031067, 1),
-(23, 8, 1, 1274212840, 1),
-(24, 3, 2, 1274212846, 4),
-(25, 1, 4, 1274212851, 1),
-(26, 7, 16, 1274212856, 1),
-(27, 2, 567.23, 1274212863, 1);
 
 -- --------------------------------------------------------
 
@@ -164,25 +137,12 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `category_id` (`category_id`),
   KEY `unit_id` (`unit_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Zrzut danych tabeli `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
-(1, 'nowy produkt', 'opis produktu', NULL, 1, 1, 2, 1, 25),
-(2, 'pupa, edytowany', 'pupa, poslady', NULL, 3, 2, 2, 1, 27),
-(3, 'duplikat', 'duplikat', NULL, 1, 1, 1, 1, 24),
-(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 3, 1, 1000, 10, 26),
-(8, 'dfasdf', 'asdf', NULL, 1, 1, 0, 0, 23),
-(9, 'szdfasdf', 'asdfasdf', NULL, 1, 1, 0, 0, 10),
-(10, 'dgfh', 'dfgh', NULL, 1, 1, 0, 0, 12),
-(11, 'asd', 'dfhdfgh', NULL, 1, 1, 0, 0, 13),
-(12, 'asdf', 'sdf', NULL, 1, 1, 3, 2, 19),
-(13, 'asdf', 'sdf', NULL, 1, 1, 3, 2, 20),
-(14, 'search text', 'test desc [edit]', NULL, 1, 1, 24, 23, 21),
-(15, 'obrazek', 'obrazek', '4bf02f3f147ab1_by_0.png', 1, 1, 0, 0, 22);
 
 -- --------------------------------------------------------
 
@@ -268,14 +228,6 @@ CREATE TABLE IF NOT EXISTS `product_search` (
 -- Zrzut danych tabeli `product_search`
 --
 
-INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
-(14, 'search text', 'test desc [edit]'),
-(15, 'obrazek', 'obrazek'),
-(8, 'dfasdf', 'asdf'),
-(3, 'duplikat', 'duplikat'),
-(1, 'nowy produkt', 'opis produktu'),
-(7, 'Nowy produkt 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
-(2, 'pupa, edytowany', 'pupa, poslady');
 
 -- --------------------------------------------------------
 
@@ -289,12 +241,15 @@ CREATE TABLE IF NOT EXISTS `sendforms` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `prive_id` (`price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Zrzut danych tabeli `sendforms`
 --
 
+INSERT INTO `sendforms` (`id`, `price`, `name`) VALUES
+(1, 10, 'Poczta polska'),
+(2, 0, 'Odbiór  osobisty');
 
 -- --------------------------------------------------------
 
@@ -392,22 +347,22 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`send_form_id`) REFERENCES `sendforms` (`id`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`sendform_id`) REFERENCES `sendforms` (`id`);
 
 --
 -- Ograniczenia dla tabeli `prices`
 --
 ALTER TABLE `prices`
-  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `prices_ibfk_4` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `prices_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`);
+  ADD CONSTRAINT `products_ibfk_6` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `products_ibfk_4` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `products_ibfk_5` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL;
 
 --
 -- Ograniczenia dla tabeli `products_orders`
