@@ -12,7 +12,7 @@
 </thead>
 <tbody>
 <?php foreach($categories as $category): ?>
-<?php if($category->id == 0) continue ?>
+<?php if(!$category->category->loaded()) continue ?>
 	<tr>
 		<td><?php echo $category->title ?></td>
 		<td><?php echo $category->category->title ?></td>

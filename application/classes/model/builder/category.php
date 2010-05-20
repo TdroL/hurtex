@@ -9,10 +9,10 @@ class Model_Builder_Category extends Jelly_Builder
 			
 		foreach ($categories as $k => $v)
 		{
-			if($v->id != 0)
+			if($v->id != 1)
 			{
 				$parent = $v->get('parent');
-				$parent = empty($parent) ? 0 : $parent;
+				$parent = empty($parent) ? 1 : $parent;
 				$tree[$parent][] = $v;
 			}
 		}

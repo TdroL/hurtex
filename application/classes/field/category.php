@@ -24,18 +24,18 @@ class Field_Category extends Field_BelongsTo
 					}
 				}
 
-				$data['options'] = $this->view_category(0);
+				$data['options'] = $this->view_category(1);
 				
 				if($this->no_root)
 				{
-					unset($data['options'][0]);
+					unset($data['options'][1]);
 				}
 		}
 
 		return parent::input($prefix, $data);
 	}
 	
-	protected function view_category($id = 0, $t = NULL)
+	protected function view_category($id = 1, $t = NULL)
 	{
 		if(!isset($this->list[$id]))
 		{

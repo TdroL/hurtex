@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.3.0
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 20 Maj 2010, 11:45
--- Wersja serwera: 5.1.41
--- Wersja PHP: 5.3.1
+-- Czas wygenerowania: 20 Maj 2010, 21:31
+-- Wersja serwera: 5.1.37
+-- Wersja PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -31,46 +31,46 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
-(0, 'Brak', NULL),
-(9, 'Edukacyjne', 0),
-(10, 'Klocki', 0),
-(11, 'Kolejki', 0),
-(12, 'Lalki', 0),
-(13, 'Maskotki', 0),
-(14, 'Piłki', 0),
-(15, 'Pojazdy', 0),
-(16, 'Puzzle', 0),
-(22, 'Pozostałe', 0),
-(38, 'Modele', 0),
-(39, 'Figurki', 0),
-(40, 'AGD', 9),
-(41, 'Do majsterkowania', 9),
-(42, 'Gry', 9),
-(43, 'Instrumenty', 9),
-(44, 'Komputerki', 9),
-(45, 'Układanki', 9),
-(46, 'Pozostałe', 9),
-(47, 'Action Man', 39),
-(48, 'Postacie z bajek i filmów', 39),
-(49, 'Power Rangers', 39),
-(50, 'Star Wars', 39),
-(51, 'Transformers', 39),
-(52, 'Zwierzęta', 39),
-(53, 'Pozostałe', 39),
-(54, 'Do 100 elementów', 16),
-(55, 'Od 101 do 500 elementów', 16),
-(56, 'Powyżej 501', 16),
-(57, 'Pozostałe', 16),
-(58, 'Jeździki', 15),
-(59, 'Na pedały', 15),
-(60, 'Pozostałe', 15);
+(1, 'Brak', NULL),
+(2, 'Edukacyjne', 1),
+(3, 'Klocki', 1),
+(4, 'Kolejki', 1),
+(5, 'Lalki', 1),
+(6, 'Maskotki', 1),
+(7, 'Piłki', 1),
+(8, 'Pojazdy', 1),
+(9, 'Puzzle', 1),
+(10, 'Pozostałe', 1),
+(11, 'Modele', 1),
+(12, 'Figurki', 1),
+(13, 'AGD', 2),
+(14, 'Do majsterkowania', 2),
+(15, 'Gry', 2),
+(16, 'Instrumenty', 2),
+(17, 'Komputerki', 2),
+(18, 'Układanki', 2),
+(19, 'Pozostałe', 2),
+(20, 'Action Man', 12),
+(21, 'Postacie z bajek i filmów', 12),
+(22, 'Power Rangers', 12),
+(23, 'Star Wars', 12),
+(24, 'Transformers', 12),
+(25, 'Zwierzęta', 12),
+(26, 'Pozostałe', 12),
+(27, 'Do 100 elementów', 9),
+(28, 'Od 101 do 500 elementów', 9),
+(29, 'Powyżej 501', 9),
+(30, 'Pozostałe', 9),
+(31, 'Jeździki', 8),
+(32, 'Na pedały', 8),
+(33, 'Pozostałe', 8);
 
 -- --------------------------------------------------------
 
@@ -122,12 +122,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   UNIQUE KEY `paragon_number` (`paragon_number`,`invoice`),
   KEY `client_id` (`client_id`),
   KEY `send_form_id` (`sendform_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Zrzut danych tabeli `orders`
 --
 
+INSERT INTO `orders` (`id`, `date`, `client_id`, `status`, `printed`, `address`, `paragon_number`, `invoice`, `payment`, `sendform_id`) VALUES
+(3, 1274302934, 3, 'added', 0, 'test', '3', '2010/05/19-3', 'cash', 2),
+(4, 1274303385, 3, 'added', 0, 'test 2', '4', '2010/05/19-4', 'transfer', 1);
 
 -- --------------------------------------------------------
 
@@ -144,12 +147,25 @@ CREATE TABLE IF NOT EXISTS `prices` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vat_id` (`vat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Zrzut danych tabeli `prices`
 --
 
+INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
+(1, 1, 129.99, 1234567890, 1),
+(2, 2, 149.99, 1234567890, 2),
+(3, 3, 99.99, 1234567890, 3),
+(4, 4, 69.99, 1234567890, 4),
+(5, 5, 29.99, 1234567890, 5),
+(6, 6, 279.99, 1234567890, 1),
+(7, 7, 19.99, 1234567890, 2),
+(8, 8, 189.99, 1234567890, 3),
+(9, 9, 49.99, 1234567890, 4),
+(10, 10, 9.99, 1234567890, 5),
+(11, 11, 7.99, 1234567890, 1),
+(12, 12, 0.99, 1234567890, 2);
 
 -- --------------------------------------------------------
 
@@ -171,12 +187,25 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `category_id` (`category_id`),
   KEY `unit_id` (`unit_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Zrzut danych tabeli `products`
 --
 
+INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `unit_id`, `quantity`, `minimal_quantity`, `price_id`) VALUES
+(1, 'Produkt #001', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 2, 1, 100, 90, 1),
+(2, 'Produkt #002', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 22, 2, 500, 70, 2),
+(3, 'Produkt #003', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 15, 1, 900, 10, 3),
+(4, 'Produkt #004', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 8, 1, 900, 80, 4),
+(5, 'Produkt #005', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 27, 1, 300, 10, 5),
+(6, 'Produkt #006', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 21, 1, 900, 20, 6),
+(7, 'Produkt #007', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 23, 1, 500, 60, 7),
+(8, 'Produkt #008', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 23, 1, 900, 60, 8),
+(9, 'Produkt #009', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 18, 1, 900, 10, 9),
+(10, 'Produkt #010', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 22, 1, 300, 80, 10),
+(11, 'Produkt #011', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 24, 1, 900, 60, 11),
+(12, 'Produkt #012', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, 27, 1, 100, 60, 12);
 
 -- --------------------------------------------------------
 
@@ -194,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `products_orders` (
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `products_orders`
@@ -262,6 +291,19 @@ CREATE TABLE IF NOT EXISTS `product_search` (
 -- Zrzut danych tabeli `product_search`
 --
 
+INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
+(1, 'Produkt #001', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(2, 'Produkt #002', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(3, 'Produkt #003', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(4, 'Produkt #004', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(5, 'Produkt #005', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(6, 'Produkt #006', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(7, 'Produkt #007', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(8, 'Produkt #008', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(9, 'Produkt #009', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(10, 'Produkt #010', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(11, 'Produkt #011', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+(12, 'Produkt #012', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
 
 -- --------------------------------------------------------
 
@@ -275,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `sendforms` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `prive_id` (`price`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `sendforms`
@@ -283,7 +325,8 @@ CREATE TABLE IF NOT EXISTS `sendforms` (
 
 INSERT INTO `sendforms` (`id`, `price`, `name`) VALUES
 (1, 10, 'Poczta polska'),
-(2, 0, 'Odbiór  osobisty');
+(2, 12, 'DHL'),
+(3, 0, 'Odbiór osobisty');
 
 -- --------------------------------------------------------
 
@@ -374,7 +417,7 @@ INSERT INTO `vats` (`id`, `value`, `name`) VALUES
 -- Ograniczenia dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `orders`
@@ -387,16 +430,16 @@ ALTER TABLE `orders`
 -- Ograniczenia dla tabeli `prices`
 --
 ALTER TABLE `prices`
-  ADD CONSTRAINT `prices_ibfk_4` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `prices_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `prices_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prices_ibfk_2` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_6` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `products_ibfk_4` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `products_ibfk_5` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `products_orders`
@@ -420,7 +463,3 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
