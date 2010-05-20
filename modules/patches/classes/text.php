@@ -56,8 +56,8 @@ class Text extends Kohana_Text
 		if( $i > 3 && $digits[3] > 0 && $digits[4] != 1 )
 			$string .= $jednosci[ $digits[3] ] . ' ';
 	
-		$tmpStr = substr( strrev( $digits ), 0, -3 );
-		if( strlen( $tmpStr ) > 0 )
+		$tmpStr = utf8::substr(utf8::strrev( $digits ), 0, -3);
+		if(utf8::strlen( $tmpStr ) > 0)
 		{
 			$tmpInt = (int) $tmpStr;
 			if( $tmpInt == 1 )

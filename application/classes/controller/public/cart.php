@@ -147,7 +147,7 @@ class Controller_Public_Cart extends Controller_Frontend
 					
 					DB::commit();
 					
-					$this->session->delete('cart');
+					$this->session->delete('cart_products');
 					$this->session->delete('order_details');
 					
 					$this->request->redirect('account/history');

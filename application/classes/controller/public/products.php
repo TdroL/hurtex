@@ -8,7 +8,6 @@ class Controller_Public_Products extends Controller_Frontend
 	{
 		$this->view->title = 'Produkty';
 		$this->content->products = Jelly::select('product')->with('unit')->execute();
-				var_dump(str_pad(strval(123), 10, '0', STR_PAD_LEFT));
 	}
 	
 	public function action_details()
