@@ -1048,7 +1048,7 @@ font-weight: bold;
 .input_width
 {
 	height: 20px;
-	width: 35px;
+	width: 40px;
 	text-align: left;
 }
 input, select
@@ -1263,6 +1263,7 @@ td.align-left, .align-left {
 
 td.align-right, .align-right {
 	text-align: right;
+	font-weight: bold;
 }
 
 td.align-center, .align-center {

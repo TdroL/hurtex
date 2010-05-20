@@ -53,8 +53,7 @@ class Model_Order extends Jelly_Model
 
 	public function generate_paragon_number()
 	{
-		$this->paragon_number = (string) $this->id;
-		$this->paragon_number = str_pad($this->paragon_number, '0', 10 - strlen($this->paragon_number), STR_PAD_LEFT);
+		$this->paragon_number = str_pad(strval($this->id), 10, '0', STR_PAD_LEFT);
 		$this->save();
 		return $this;
 	}

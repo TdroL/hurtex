@@ -40,19 +40,19 @@
 		<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 	</tr>
 	<tr>
-		<td>Forma płatności</td>
+		<td class="align-right">Forma dostawy</td>
 		<td colspan="4">
 			<?php echo $order->input('sendform') ?>
 		</td>
 	</tr>
 	<tr>
-		<td>Forma dostawy</td>
+		<td class="align-right">Forma płatności</td>
 		<td colspan="4">
 			<?php echo $order->input('payment') ?>
 		</td>
 	</tr>
 	<tr>
-		<td>Adres dostawy <br /><small>(jeśli inny niż adres podany w ustawieniach konta klienta)</small></td>
+		<td class="align-right">Adres dostawy <br /><small>(jeśli inny niż adres podany w ustawieniach konta klienta)</small></td>
 		<td colspan="4">
 			<?php echo $order->input('address') ?>
 		</td>

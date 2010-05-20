@@ -147,13 +147,15 @@ class Controller_Public_Cart extends Controller_Frontend
 					
 					DB::commit();
 					
-					$this->session->set('cart', array());
-					$this->session->set('order_details', array());
+					$this->session->delete('cart_products');
+					$this->session->delete('order_details');
 					
 					$this->request->redirect('account/history');
 				}
 				catch (Exception $e)
 				{
+					echo Kohana::debug($e);
+					die('blad');
 					DB::rollback();
 				}
 			}
