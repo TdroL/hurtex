@@ -2,7 +2,7 @@
 
 class Model_Builder_Order extends Jelly_Builder
 {
-	public function load_clients_orders($id)
+	public function load_client_orders($id)
 	{
 		return $this->where('client_id', '=', $id)->execute();
 	}
