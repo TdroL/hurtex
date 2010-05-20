@@ -150,7 +150,7 @@ class Controller_Public_Cart extends Controller_Frontend
 					$this->session->delete('cart_products');
 					$this->session->delete('order_details');
 					
-					$this->request->redirect('account/history');
+					$this->request->redirect('account/orders_history');
 				}
 				catch (Exception $e)
 				{
@@ -158,6 +158,7 @@ class Controller_Public_Cart extends Controller_Frontend
 					die('blad');
 					DB::rollback();
 				}
+				
 			}
 			
 			$this->session->set('order_details', $_POST);

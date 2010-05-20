@@ -17,9 +17,9 @@ class Model_Order extends Jelly_Model
 				)),
 				'status' => new Field_Enum(array(
 					'label' => 'Status',
-					'default' => 'added',
+					'default' => 'Dodane',
 					'choices' => array(
-						'added' => 'Dodany',
+						'added' => 'Dodane',
 						'accepted' => 'Zaakceptowany',
 						'send' => 'Wysłany',
 						'canceled' => 'Anulowany',

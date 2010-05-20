@@ -112,7 +112,7 @@ class Controller_Public_Account extends Controller_Frontend
 			}
 		}
 	}
-	public function action_orders()
+	public function action_orders_history()
 	{
 		if(!$this->user)
 		{
@@ -121,5 +121,13 @@ class Controller_Public_Account extends Controller_Frontend
 		$this->content->orders = Jelly::select('order')->load_client_orders($this->user->id); // ładowanie zamówien klienta do zmiennej orders
 		
 	
+	}
+	public function action_order_details()
+	{
+		if(!$this->user)
+		{
+			$this->request->redirect($this->_login); //sprawdzanie zalogowania
+		}
+		
 	}
 }
