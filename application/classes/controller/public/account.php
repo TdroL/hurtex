@@ -96,10 +96,7 @@ class Controller_Public_Account extends Controller_Frontend
 				unset($_POST['password'], $_POST['password_confirm']);
 			}
 			
-			
-			
-				unset($_POST['email']);
-			
+			unset($_POST['email']);
 			
 			try
 			{
@@ -114,5 +111,15 @@ class Controller_Public_Account extends Controller_Frontend
 				$errors = $e->errors();
 			}
 		}
+	}
+	public function action_orders()
+	{
+		if(!$this->user)
+		{
+			$this->request->redirect($this->_login); //sprawdzanie zalogowania
+		}
+		$this->content->orders = Jelly::select('order')->load_client_orders($this->user->id); // ładowanie zamówien klienta do zmiennej orders
+		
+	
 	}
 }
