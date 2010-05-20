@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 20 Maj 2010, 10:58
+-- Czas wygenerowania: 20 Maj 2010, 11:01
 -- Wersja serwera: 5.1.41
 -- Wersja PHP: 5.3.1
 
@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Zrzut danych tabeli `categories`
 --
 
+INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
+(0, 'Brak', NULL);
 
 -- --------------------------------------------------------
 
