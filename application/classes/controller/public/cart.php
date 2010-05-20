@@ -156,7 +156,6 @@ class Controller_Public_Cart extends Controller_Frontend
 				{
 					DB::rollback();
 				}
-				
 			}
 			
 			$this->session->set('order_details', $_POST);
