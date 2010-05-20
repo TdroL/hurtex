@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.0
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 20 Maj 2010, 11:01
+-- Czas wygenerowania: 20 Maj 2010, 11:45
 -- Wersja serwera: 5.1.41
 -- Wersja PHP: 5.3.1
 
@@ -31,14 +31,46 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
-(0, 'Brak', NULL);
+(0, 'Brak', NULL),
+(9, 'Edukacyjne', 0),
+(10, 'Klocki', 0),
+(11, 'Kolejki', 0),
+(12, 'Lalki', 0),
+(13, 'Maskotki', 0),
+(14, 'Piłki', 0),
+(15, 'Pojazdy', 0),
+(16, 'Puzzle', 0),
+(22, 'Pozostałe', 0),
+(38, 'Modele', 0),
+(39, 'Figurki', 0),
+(40, 'AGD', 9),
+(41, 'Do majsterkowania', 9),
+(42, 'Gry', 9),
+(43, 'Instrumenty', 9),
+(44, 'Komputerki', 9),
+(45, 'Układanki', 9),
+(46, 'Pozostałe', 9),
+(47, 'Action Man', 39),
+(48, 'Postacie z bajek i filmów', 39),
+(49, 'Power Rangers', 39),
+(50, 'Star Wars', 39),
+(51, 'Transformers', 39),
+(52, 'Zwierzęta', 39),
+(53, 'Pozostałe', 39),
+(54, 'Do 100 elementów', 16),
+(55, 'Od 101 do 500 elementów', 16),
+(56, 'Powyżej 501', 16),
+(57, 'Pozostałe', 16),
+(58, 'Jeździki', 15),
+(59, 'Na pedały', 15),
+(60, 'Pozostałe', 15);
 
 -- --------------------------------------------------------
 
@@ -388,3 +420,7 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
