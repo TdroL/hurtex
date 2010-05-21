@@ -18,7 +18,7 @@
 </tbody>
 <?php else: ?>
 <tbody>
-<?php foreach($products as $v):  ?>
+<?php foreach($products_orders as $v):  ?>
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
 		<td>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>

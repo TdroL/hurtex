@@ -128,6 +128,6 @@ class Controller_Public_Account extends Controller_Frontend
 		{
 			$this->request->redirect($this->_login); //sprawdzanie zalogowania
 		}
-		$this->content->orders = Jelly::select('order')->load_client_orders($this->user->id);
+		$this->content->products_orders = Jelly::select('products_orders')->load_products_orders($this->user->id);
 	}
 }
