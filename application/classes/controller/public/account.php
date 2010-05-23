@@ -120,4 +120,25 @@ class Controller_Public_Account extends Controller_Frontend
 		}
 		$this->content->orders = Jelly::select('order')->load_client_orders($this->user->id); // ładowanie zamówien klienta do zmiennej orders
 	}
+	
+	public function action_order()
+	{
+		if(!$this->user)
+		{
+			$this->request->redirect($this->_base);
+		}
+		
+		$id = $this->request->param('id');
+		
+		$order = Jelly::select('order')
+						->with('client')
+						->load($id);
+		
+		if(!$order->loaded() or $order->client->id == $this->user->id)
+		{
+			$this->request->redirect($this->_base);
+		}
+		
+		$this->content->order = $order;
+	}
 }
