@@ -1,5 +1,4 @@
 ﻿<?php defined('SYSPATH') or die('No direct script access.'); ?>
-<h4>Koszyk</h4>
 <table class="art-article">
 <thead>
 	<tr>
@@ -18,18 +17,18 @@
 </tbody>
 <?php else: ?>
 <tbody>
-<?php foreach($products_orders as $v):  ?>
+<?php foreach($order->products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
 		<td>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
 		</td>
 		<td ><p class="product_name">
-				<?php echo ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2) ?>
+				<?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
 				<?php echo $v->unit->name ?>
 		</p></td>
-		<td><p class="product_name"><?php echo number_format($v->price->value*$quantity[$v->id], 2) ?> zł</p></td>
+		<td><p class="product_name"><?php echo number_format($v->price->value*$v->quantity, 2) ?> zł</p></td>
 		<td><p class="product_name"><?php echo $v->price->vat->name ?></p></td>
-		<td><p class="product_name"><?php echo number_format(($v->price->value*$quantity[$v->id]) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
+		<td><p class="product_name"><?php echo number_format(($v->price->value*$v->quantity) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
 	</tr>
 <?php endforeach ?>
 	<tr>

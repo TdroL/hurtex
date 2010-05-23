@@ -18,4 +18,9 @@ class Model_Category extends Jelly_Model
 				)),
 			));
 	}
+	
+	public function is_empty()
+	{
+		return $this->id === NULL;
+	}
 }

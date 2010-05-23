@@ -134,7 +134,7 @@ class Controller_Public_Cart extends Controller_Frontend
 						
 						$product = Jelly::select('product', $k);
 						
-						$relation = Jelly::factory('productorder');
+						$relation = Jelly::factory('orderproduct');
 						
 						$relation->order = $order;
 						$relation->product = $product;
@@ -150,7 +150,7 @@ class Controller_Public_Cart extends Controller_Frontend
 					$this->session->delete('cart_products');
 					$this->session->delete('order_details');
 					
-					$this->request->redirect('account/orders_history');
+					$this->request->redirect('account/history');
 				}
 				catch (Exception $e)
 				{

@@ -7,7 +7,7 @@ class Controller_Public_Products extends Controller_Frontend
 	public function action_index()
 	{
 		$this->view->title = 'Produkty';
-		$this->content->products = Jelly::select('product')->with('unit')->execute();
+		$this->content->products = Jelly::select('product')->with('unit')->with('category')->execute();
 	}
 	
 	public function action_details()

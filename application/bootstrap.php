@@ -116,7 +116,7 @@ if(class_exists('FirePHP_Log_Console'))
  
  	Route::set('admin', 'admin(/<controller>(/<action>(.<id>)))', 
 		array(
-			'id'			=> '\d+',
+			'id'			=> '\d++',
 		))
 		->defaults(array(
 			'directory'		=> 'protected',
@@ -127,14 +127,15 @@ if(class_exists('FirePHP_Log_Console'))
 
 	Route::set('default', '(<controller>(/<action>(.<id>)))(/from:<from>)', 
 		array(
-			'id'			=> '\d+',
-			'from'			=> '.+',
+			'id'			=> '\d++',
+			'from'			=> '.++',
 		))
 		->defaults(array(
 			'directory'		=> 'public',
 			'controller'	=> 'products',
 			'action' 		=> 'index',
 			'id'			=> NULL,
+			'from'			=> NULL,
 		));
 /**
  * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].

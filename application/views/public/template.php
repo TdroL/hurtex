@@ -71,7 +71,7 @@
 						<?php echo form::open('products/search') ?>
 						 	<dl>
 						 		<dt>Szukaj:</dt>
-						 		<dd><?php echo form::input('query', !empty($query) ? html::chars($query) : NULL) ?></dd>
+						 		<dd><?php echo form::input('query', !empty($query) ? html::chars($query) : NULL, array('placeholder' => 'Szukaj&hellip;')) ?></dd>
 						 		<dd><?php echo form::submit('search', 'Szukaj', array('class' => 'art-button')) ?></dd>
 						 	</dl>
 						<?php echo form::close() ?>

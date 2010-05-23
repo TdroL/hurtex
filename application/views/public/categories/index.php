@@ -1,7 +1,7 @@
 <?php if(!empty($tree[$parent])): ?>
 <ul>
 <?php foreach($tree[$parent] as $v): ?>
-<?php if(!$v->category->loaded()) continue ?>
+<?php if(!$v->loaded()) continue ?>
 	<li>
 		<?php echo html::anchor('products/category.'.$v->id, $v->title) ?>
 <?php if(!empty($tree[$v->id])): ?>

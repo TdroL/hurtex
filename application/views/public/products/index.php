@@ -1,5 +1,4 @@
 ﻿<?php defined('SYSPATH') or die('No direct script access.'); ?>
-<h4>Lista produktów w tej kategorii:</h4>
 <table class="art-article">
 <thead>
 	<tr>
@@ -20,6 +19,9 @@
 		<td>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>" title="Szczegóły"><b><?php echo $v->name ?></b></a>
 			<p class="description"><?php echo text::limit_words($v->description, 10) ?></p>
+<?php if($v->category->loaded()): ?>
+			<small>Kategoria: <?php echo html::anchor('products/category.'.$v->category->id, $v->category->title) ?></small>
+<?php endif ?>
 		</td>
 		<td><p class="product_name"><?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2)?> <?php echo $v->unit->name ?></p></td>
 		<td><p class="product_name"><?php echo number_format($v->price->value, 2) ?> zł</p></td>

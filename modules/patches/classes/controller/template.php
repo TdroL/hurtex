@@ -78,14 +78,9 @@ abstract class Controller_Template extends Controller {
 		{
 			// Assign the template as the request response and render it
 			$this->view->set_global('request', $this->request);
-			$this->view->bind_global('obj', $this);
+			$this->view->bind_global('controller', $this);
 			$this->request->response = $this->view;
 		}
-	}
-	
-	public function param($name, $default = NULL)
-	{
-		return $this->request->param($name, $default);
 	}
 	
 	public function site(array $params = array())

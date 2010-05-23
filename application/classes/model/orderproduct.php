@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Model_ProductOrder extends Jelly_Model
+class Model_OrderProduct extends Jelly_Model
 {
 
 	public static function initialize(Jelly_Meta $meta)
 	{
-		$meta->table('products_orders')
+		$meta->table('orders_products')
 			->fields(array(
 				'id' => new Field_Primary,
 				'product' => new Field_BelongsTo(array(

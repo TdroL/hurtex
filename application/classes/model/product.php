@@ -54,7 +54,7 @@ class Model_Product extends Jelly_Model
 				'supplies' => new Field_ManyToMany(array(
 				)),
 			))
-			->load_with(array('price'))
+			->load_with(array('price', 'unit'))
 			->sorting(array(':name_key' => 'ASC'));
 	}
 	

@@ -5,7 +5,7 @@ class Model_Builder_Product extends Jelly_Builder
 	public function belongs_to_category($id)
 	{
 		$ids = Jelly::select('category')->load_childs_ids((int) $id);
-		return $this->where('category', 'IN', $ids);
+		return $this->with('category')->where('category', 'IN', $ids);
 	}
 	
 	public function load_search($query)

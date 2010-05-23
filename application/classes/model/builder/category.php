@@ -4,7 +4,7 @@ class Model_Builder_Category extends Jelly_Builder
 {
 	public function load_as_tree()
 	{
-		$categories = $this->select('*', array('category_id', 'parent'))->order_by('title', 'ASC')->execute();
+		$categories = $this->select('*', array('categories.category_id', 'parent'))->order_by('title', 'ASC')->execute();
 		$tree = array();
 			
 		foreach ($categories as $k => $v)
