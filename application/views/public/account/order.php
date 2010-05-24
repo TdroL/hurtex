@@ -17,18 +17,18 @@
 </tbody>
 <?php else: ?>
 <tbody>
-<?php foreach($order->products as $v):  ?>
-	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
+<?php foreach($products as $v):  ?>
+	<tr id="product_<?php echo !empty($v->product->id) ? $v->product->id : uniqid() ?>">
 		<td>
-			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
+			<a class="product_name" href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
 		</td>
 		<td ><p class="product_name">
-				<?php echo ($v->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
-				<?php echo $v->unit->name ?>
+				<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
+				<?php echo $v->product->unit->name ?>
 		</p></td>
-		<td><p class="product_name"><?php echo number_format($v->price->value*$v->quantity, 2) ?> zł</p></td>
-		<td><p class="product_name"><?php echo $v->price->vat->name ?></p></td>
-		<td><p class="product_name"><?php echo number_format(($v->price->value*$v->quantity) * (1 + $v->price->vat->value), 2) ?> zł</p></td>
+		<td><p class="product_name"><?php echo number_format($v->product->price->value*$v->quantity, 2) ?> zł</p></td>
+		<td><p class="product_name"><?php echo $v->product->price->vat->name ?></p></td>
+		<td><p class="product_name"><?php echo number_format(($v->product->price->value*$v->quantity) * (1 + $v->product->price->vat->value), 2) ?> zł</p></td>
 	</tr>
 <?php endforeach ?>
 	<tr>
@@ -63,7 +63,22 @@
 			Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b>
 		</td>
 	</tr>
+	<tr>
+		<td class="align-right"><b>Status</b></td>
+		<td colspan="4"><?php echo $order->meta()->fields('status')->choices[$order->status] ?></td>
+	</tr>
 </tbody>
-
+<?php if(in_array($order->status, array('added'))): ?>
+<tfoot>
+	<tr>
+		<td class="align-right"><b>Operacje</b></td>
+		<td colspan="4">
+			<ul class="discreet">
+				<li><?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będzie można cofnąć.') ?></li>
+			</ul>
+		</td>
+	</tr>
+</tfoot>
+<?php endif ?>
 <?php endif ?>
 </table>

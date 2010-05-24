@@ -150,7 +150,7 @@ class Controller_Public_Cart extends Controller_Frontend
 						$relation->quantity = $v;
 						
 						$relation->save();
-						$product->decrease_quantity($v);
+						//$product->decrease_quantity($v);
 					}
 					
 					DB::commit();

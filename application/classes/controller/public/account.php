@@ -123,6 +123,11 @@ class Controller_Public_Account extends Controller_Frontend
 	
 	public function action_order()
 	{
+		$this->content->bind('sum_netto', $sum_netto);
+		$this->content->bind('sum_brutto', $sum_brutto);
+		$this->content->bind('sum_netto_plus', $sum_netto_plus);
+		$this->content->bind('sum_brutto_plus', $sum_brutto_plus);
+
 		if(!$this->user)
 		{
 			$this->request->redirect($this->_base);
@@ -133,12 +138,25 @@ class Controller_Public_Account extends Controller_Frontend
 		$order = Jelly::select('order')
 						->with('client')
 						->load($id);
+						
 		
-		if(!$order->loaded() or $order->client->id == $this->user->id)
+		if(!$order->loaded() or $order->client->id != $this->user->id)
 		{
 			$this->request->redirect($this->_base);
 		}
 		
 		$this->content->order = $order;
+		
+		$products = Jelly::select('orderproduct')->load_products_orders($order->id);
+		$this->content->products = $products;
+		
+		foreach($products as $v)
+		{
+			$sum_netto += round($v->product->price->value * $v->quantity, 2);
+			$sum_brutto += round($v->product->price->value * $v->quantity * (1 + $v->product->price->vat->value), 2);
+		}
+		
+		$sum_netto_plus = $sum_netto + $order->sendform->value;
+		$sum_brutto_plus = $sum_brutto + $order->sendform->value;
 	}
 }
