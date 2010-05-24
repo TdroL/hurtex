@@ -53,6 +53,12 @@
 		</td>
 	</tr>
 	<tr>
+		<td class="align-right">Faktura</td>
+		<td colspan="4">
+			<?php echo $order->invoice ? 'Tak' : 'Nie' ?>
+		</td>
+	</tr>
+	<tr>
 		<td class="align-right">Adres dostawy</td>
 		<td colspan="4">
 			<?php echo nl2br(html::chars($order->address)) ?>

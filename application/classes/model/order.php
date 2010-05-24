@@ -35,6 +35,7 @@ class Model_Order extends Jelly_Model
 				)),
 				'invoice' => new Field_String(array(
 					'label' => 'Numer faktury',
+					'null' => TRUE,
 					'unique' => TRUE,
 				)),
 				'payment' => new Field_Enum(array(

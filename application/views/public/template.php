@@ -42,12 +42,12 @@
 						<?php echo form::open('account/login') ?>
 							<dl>
 								<dt><label for="field-header-email">Email:</label></dt>
-								<dd><input type="text" name="email" id="field-header-email" /></dd>
+								<dd><input type="text" name="email" id="field-header-email" value="marian@mail.com" /></dd>
 							</dl>
 							
 							<dl>
 								<dt><label for="field-header-password">Hasło:</label></dt>
-								<dd><input type="password" name="password" id="field-header-password" /></dd>
+								<dd><input type="password" name="password" id="field-header-password" value="test" /></dd>
 							</dl>
 							
 							<dl>

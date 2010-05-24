@@ -126,7 +126,15 @@ class Controller_Public_Cart extends Controller_Frontend
 					
 					$order->save();
 					
-					$order->generate_invoice();
+					if($order->invoice)
+					{
+						$order->generate_invoice();
+					}
+					else
+					{
+						$order->invoice = NULL;
+					}
+					
 					$order->generate_paragon_number();
 					
 					foreach($cart as $k => $v)

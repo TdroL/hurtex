@@ -1270,4 +1270,11 @@ td.align-center, .align-center {
 	text-align: center;
 }
 
-
+ul.discreet {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul.discreet li {
+	background-image: none;
+}
