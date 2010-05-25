@@ -21,9 +21,9 @@
 <tbody>
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->id) ? $v->id : uniqid() ?>">
-		<td>
+		<td><p>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->id) ?>"><b><?php echo $v->name ?></b></a>
-		</td>
+		</p></td>
 		<td ><p class="product_name">
 				<?php echo ($v->unit->type == 'integer') ? (int) $quantity[$v->id] : number_format($quantity[$v->id], 2) ?>
 				<?php echo $v->unit->name ?>

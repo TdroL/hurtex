@@ -19,9 +19,9 @@
 <tbody>
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->product->id) ? $v->product->id : uniqid() ?>">
-		<td>
+		<td><p>
 			<a class="product_name" href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
-		</td>
+		</p></td>
 		<td ><p class="product_name">
 				<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
 				<?php echo $v->product->unit->name ?>
@@ -73,9 +73,7 @@
 	<tr>
 		<td class="align-right"><b>Operacje</b></td>
 		<td colspan="4">
-			<ul class="discreet">
-				<li><?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będzie można cofnąć.') ?></li>
-			</ul>
+			<?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będzie można cofnąć.') ?>
 		</td>
 	</tr>
 </tfoot>

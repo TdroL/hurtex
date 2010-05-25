@@ -14,7 +14,7 @@
 <tbody>
 <?php if($orders->is_empty()): ?>
 	<tr>
-		<td colspan="5">Brak zamówień</td>
+		<td colspan="6">Brak zamówień</td>
 	</tr>
 <?php else: ?>
 <?php $i = 1; ?>
