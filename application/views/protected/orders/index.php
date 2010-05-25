@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.'); ?>
+﻿<?php defined('SYSPATH') or die('No direct script access.'); ?>
 
 
 <table>
@@ -21,6 +21,7 @@
 		<td><?php echo $order->client->second_name ?> <?php echo $order->client->first_name ?></td>
 		<td><?php echo nl2br(html::chars($order->address)) ?></td>
 		<td>
+			<?php echo html::anchor('admin/orders/details.'.$order->id, 'Pokaż')?>
 			<?php echo html::anchor('admin/orders/update.'.$order->id, 'Edytuj') ?>
 			<?php echo html::anchor('admin/orders/delete.'.$order->id, 'Usuń', array('class' => 'unsafe')) ?>
 		</td>
