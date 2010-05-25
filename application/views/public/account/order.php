@@ -73,7 +73,7 @@
 	<tr>
 		<td class="align-right"><b>Operacje</b></td>
 		<td colspan="4">
-			<?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będzie można cofnąć.') ?>
+			<?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będziesz mógł cofnąć!') ?>
 		</td>
 	</tr>
 </tfoot>

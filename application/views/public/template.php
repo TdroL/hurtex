@@ -59,7 +59,7 @@
 										<?php echo html::anchor('account/create', 'Zarejestruj')?>
 									</div>
 									<div>
-										<?php echo html::anchor('account/recover', 'Przypomnij hasło') ?>
+										<?php echo html::anchor('account/reminder', 'Przypomnij hasło') ?>
 									</div>
 								</dd>
 							</dl>

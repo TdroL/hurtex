@@ -4,8 +4,21 @@ class Controller_Public_Account extends Controller_Frontend
 {
 	protected $_base = 'account';
 	protected $_login = 'account/login';
+	protected $_orders = 'account/history';
 	
-	public $no_view = array('logout');
+	public $no_view = array('logout', 'cancel');
+	
+	public function before()
+	{
+		parent::before();
+		
+		$allowed = array('login', 'create');
+		
+		if(!($this->user instanceof Model_Client) and !in_array($this->request->action, $allowed))
+		{
+			$this->request->redirect($this->_login.'/from:'.$this->request->uri);
+		}
+	}
 	
 	public function action_index()
 	{
@@ -67,11 +80,8 @@ class Controller_Public_Account extends Controller_Frontend
 	
 	public function action_logout()
 	{
-		if($this->user)
-		{
-			$this->user->logout();
-			$this->request->redirect($this->_login);
-		}
+		$this->user->logout();
+		$this->request->redirect($this->_login);
 	}
 	public function action_update()
 	{
@@ -81,11 +91,6 @@ class Controller_Public_Account extends Controller_Frontend
 		$id = 0;
 		
 		$client = $this->user;
-		
-		if(!$client)
-		{
-			$this->request->redirect($this->_login);
-		}
 		
 		unset($client->password);
 		
@@ -114,10 +119,6 @@ class Controller_Public_Account extends Controller_Frontend
 	}
 	public function action_history()
 	{
-		if(!$this->user)
-		{
-			$this->request->redirect($this->_login); //sprawdzanie zalogowania
-		}
 		$this->content->orders = Jelly::select('order')->load_client_orders($this->user->id); // ładowanie zamówien klienta do zmiennej orders
 	}
 	
@@ -127,11 +128,6 @@ class Controller_Public_Account extends Controller_Frontend
 		$this->content->bind('sum_brutto', $sum_brutto);
 		$this->content->bind('sum_netto_plus', $sum_netto_plus);
 		$this->content->bind('sum_brutto_plus', $sum_brutto_plus);
-
-		if(!$this->user)
-		{
-			$this->request->redirect($this->_base);
-		}
 		
 		$id = $this->request->param('id');
 		
@@ -158,5 +154,24 @@ class Controller_Public_Account extends Controller_Frontend
 		
 		$sum_netto_plus = $sum_netto + $order->sendform->value;
 		$sum_brutto_plus = $sum_brutto + $order->sendform->value;
+	}
+	
+	public function action_cancel()
+	{
+		$id = $this->request->param('id');
+		
+		$order = Jelly::select('order')
+						->with('client')
+						->load($id);
+						
+		
+		if(!$order->loaded() or $order->client->id != $this->user->id or !$order->cancelable())
+		{
+			$this->request->redirect($this->_orders);
+		}
+		
+		$order->cancel();
+
+		$this->request->redirect($this->_orders);
 	}
 }

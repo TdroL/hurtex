@@ -65,4 +65,25 @@ class Model_Order extends Jelly_Model
 		$this->save();
 		return $this;
 	}
+	
+	public function cancelable()
+	{
+		return in_array($this->status, array('added'));
+	}
+
+	public function cancel()
+	{
+		try
+		{
+			$this->status = 'canceled';
+			$this->save();
+			
+		}
+		catch (Validate_Exception $e)
+		{
+			var_dump($e->errors());
+			die();
+		}
+		return $this;
+	}
 }

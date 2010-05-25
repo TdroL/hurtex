@@ -163,7 +163,7 @@ class Controller_Public_Cart extends Controller_Frontend
 				catch (Exception $e)
 				{
 					echo Kohana::debug($e);
-					die('blad');
+					die();
 					DB::rollback();
 				}
 				
