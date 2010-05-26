@@ -61,19 +61,24 @@ dl dd { margin-left: 1.618em; }
 table { margin-bottom:1.618em; border: 1px solid ; border-collapse: collapse; }
 th { font-weight:700; font-weight: bold; text-align:left; }
 td, th{border: 1px solid;}
-tr,th,td { margin:0;  padding: 10px 5px ; height:21px; }
+tr,th,td { margin:0;  padding: 10px 5px ; }
 tfoot { font-style: italic; }
 caption { text-align:center; font-weight: bold; font-size: 21px; font-family:Georgia, serif; }
 td.align-right, .align-right {
 	text-align: right;
 	font-weight: bold;
 }
-table.no_border , tr.no_border  td.no_border{border: 0 none;}
-
+table.no_border ,  td.no_border, th.no_border {border: 0 none;}
+.top_border{
+	width: 100%;
+	border: 0 none;
+}
 .price_vat
 {
 	width: 35px;
 }
+th.lp_width{width: 10px;}
+th.product_width{width: 100px;}
 
  /* Quotes */
  
