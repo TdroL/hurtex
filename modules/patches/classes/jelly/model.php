@@ -34,7 +34,7 @@ class Jelly_Model extends Jelly_Model_Core
 				{
 					foreach($related as $key => $r)
 					{
-						if($r->fields($k) !== NULL)
+						if($r->fields($k) !== NULL and $r instanceof Model)
 						{
 							$this->{$key}->set($k, $v);
 							continue;

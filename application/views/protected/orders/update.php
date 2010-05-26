@@ -1,77 +1,72 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/products/update.'.$form->id, array('enctype' => 'multipart/form-data')) ?>
+				<?php echo form::open('admin/orders/update.'.$form->id) ?>
 					<fieldset>
 						
 						<table>
-							<caption>Edytuj produkt</caption>
+							<caption>Edytuj zamówienie</caption>
 							
 							<?php echo html::error_messages($errors) ?>
 
 							<tr>
-								<td><?php echo $form->label('name') ?></td>
+								<td><?php echo $form->label('paragon_number') ?></td>
 								<td>
-									<?php echo $form->input('name') ?>
+									<?php echo $form->paragon_number ?>
+								</td>
+							</tr>
+
+							<tr>
+								<td><?php echo $form->label('invoice') ?></td>
+								<td>
+									<?php echo $form->input('invoice') ?>
 								</td>
 							</tr>
 	
 							<tr>
-								<td><?php echo $form->label('category') ?></td>
+								<td><?php echo $form->label('date') ?></td>
 								<td>
-									<?php echo $form->input('category') ?>
-								</td>
-							</tr>
-	
-							<tr>
-								<td><?php echo $form->label('description') ?></td>
-								<td>
-									<?php echo $form->input('description') ?>
+									<?php echo $form->input('date') ?>
 								</td>
 							</tr>
 							
 							<tr>
-								<td><?php echo $form->label('image') ?></td>
+								<td><?php echo $form->label('address') ?></td>
 								<td>
-									<?php echo $form->input('image') ?>
-<?php if(!empty($form->current_image)): ?>
-									<br />
-									<?php echo html::image($form->meta()->fields('image')->path.$form->current_image) ?>
+									<?php echo $form->input('address') ?>
+								</td>
+							</tr>
+							
+							<tr>
+								<td><?php echo $form->label('status') ?></td>
+								<td>
+<?php if(in_array($form->status, array('canceled', 'added', 'accepted'))): ?>
+									<?php echo $form->input('status') ?>
+<?php else: ?>
+									<?php echo $form->meta()->fields('status')->choices[$form->status] ?>
 <?php endif ?>
 								</td>
 							</tr>
 							
 							<tr>
-								<td><?php echo $form->label('unit') ?></td>
+								<td><?php echo $form->label('sendform') ?></td>
 								<td>
-									<?php echo $form->input('unit') ?>
+									<?php echo $form->input('sendform') ?>
 								</td>
 							</tr>
 							
 							<tr>
-								<td><?php echo $form->label('quantity') ?></td>
+								<td><?php echo $form->label('orderproducts') ?></td>
 								<td>
-									<?php echo $form->input('quantity') ?>
-								</td>
-							</tr>
-							
-							<tr>
-								<td><?php echo $form->label('minimal_quantity') ?></td>
-								<td>
-									<?php echo $form->input('minimal_quantity') ?>
-								</td>
-							</tr>
-							
-							<tr>
-								<td><?php echo $form->price->label('value') ?></td>
-								<td>
-									<?php echo $form->price->input('value') ?>
-								</td>
-							</tr>
-
-							<tr>
-								<td><?php echo $form->price->label('vat') ?></td>
-								<td>
-									<?php echo $form->price->input('vat') ?>
+									<ul>
+<?php foreach($form->orderproducts as $v): ?>
+										<li>
+											<div><b><?php echo $v->product->name ?></b></div>
+											<div>Sztuk: <?php echo $v->quantity ?></div>
+											<div>Netto (<?php echo $v->product->unit->name ?>): <?php echo $v->price->value ?> zł</div>
+											<div>Brutto (VAT <?php echo $v->price->vat->name ?>): <?php echo number_format($v->price->value * (1 + $v->price->vat->value), 2) ?> zł</div>
+										</li>
+<?php endforeach ?>
+									</ul>
 								</td>
 							</tr>
 							

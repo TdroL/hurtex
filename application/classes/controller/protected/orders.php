@@ -48,21 +48,12 @@ class Controller_Protected_orders extends Controller_Template
 		{
 			$this->request->redirect($this->_base);
 		}
-		
-		$order->current_image = $order->image;
 
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
 			try
 			{
-				$order->set($_POST);
-				$order->set($_FILES);
-				
-				if(empty($order->image['name']))
-				{
-					unset($order->image);
-				}
-				
+				$order->set($_POST);				
 				$order->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
@@ -70,7 +61,6 @@ class Controller_Protected_orders extends Controller_Template
 			}
 			catch(Validate_Exception $e)
 			{
-				$order->current_image = $order->image;
 				$errors = $e->errors();
 			}
 		}

@@ -21,7 +21,7 @@ class Model_Order extends Jelly_Model
 					'choices' => array(
 						'added' => 'Dodane',
 						'accepted' => 'Zaakceptowany',
-						'send' => 'Wysłany',
+						'sent' => 'Wysłany',
 						'canceled' => 'Anulowany',
 					),
 				)),
@@ -42,11 +42,16 @@ class Model_Order extends Jelly_Model
 					'choices' => array('cash' => 'Gotówka', 'transfer' => 'Przelew'),
 				)),
 				'sendform' => new Field_Sendform(array(
+					'label' => 'Forma wysyłki',
 				)),
 				'address' => new Field_Text(array(
 					'label' => 'Adres alternatywny',
 				)),
 				'products' => new Field_ManyToMany(array(
+					'label' => 'Produkty',
+					'through' => 'orderproduct',
+				)),
+				'orderproducts' => new Field_HasMany(array(
 					'label' => 'Produkty',
 				)),
 			));
@@ -85,5 +90,19 @@ class Model_Order extends Jelly_Model
 			die();
 		}
 		return $this;
+	}
+	
+	public function save($key = NULL)
+	{
+		$status = $this->_original['status'];
+		parent::save();
+		
+		if($status != $this->status and $this->status == 'sent')
+		{
+			foreach($this->orderproducts as $v)
+			{
+				$v->product->decrease_quantity($v->quantity);
+			}
+		}
 	}
 }
