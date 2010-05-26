@@ -33,18 +33,25 @@ class Text extends Kohana_Text
 		return url::string(preg_replace('/[^a-z0-9-\+\/_ ]/iU', '_', $string));
 	}
 	
-	public static function number_to_text($value)
+	public static function number_to_text($value, $separator = ' ')
 	{
+		$digits = (string) $value;
+		if(utf8::strpos($digits, '.') !== FALSE)
+		{
+			$digits = explode('.', $digits);
+			return static::number_to_text($digits[0]).$separator.static::number_to_text($digits[1]);
+		}
+
 		$jednosci = array( 'zero', 'jeden', 'dwa', 'trzy', 'cztery', 'pięć', 'sześć', 'siedem', 'osiem', 'dziewięć' );
 		$dziesiatki = array( '', 'dziesięć', 'dwadzieścia', 'trzydzieści', 'czterdzieści', 'piećdziesiąt', 'sześćdziesiąt', 'siedemdziesiąt', 'osiemdziesiąt', 'dziewiećdziesiąt' );
 		$setki = array( '', 'sto', 'dwieście', 'trzysta', 'czterysta', 'piećset', 'sześćset', 'siedemset', 'osiemset', 'dziewiećset' );
 		$nastki = array( 'dziesieć', 'jedenaście', 'dwanaście', 'trzynaście', 'czternaście', 'piętnaście', 'szesnaście', 'siedemnaście', 'osiemnaście', 'dzięwietnaście' );
 		$tysiace = array( 'tysiąc', 'tysiące', 'tysięcy' );
-	
+
 		$digits = (string) $value;
-		$digits = strrev($digits);
-		$i = strlen($digits);
-	
+		$digits = utf8::strrev($digits);
+		$i = utf8::strlen($digits);
+
 		$string = '';
 	
 		if( $i > 5 && $digits[5] > 0 )
@@ -56,8 +63,8 @@ class Text extends Kohana_Text
 		if( $i > 3 && $digits[3] > 0 && $digits[4] != 1 )
 			$string .= $jednosci[ $digits[3] ] . ' ';
 	
-		$tmpStr = utf8::substr(utf8::strrev( $digits ), 0, -3);
-		if(utf8::strlen( $tmpStr ) > 0)
+		$tmpStr = utf8::substr(utf8::strrev($digits), 0, -3);
+		if(utf8::strlen($tmpStr) > 0)
 		{
 			$tmpInt = (int) $tmpStr;
 			if( $tmpInt == 1 )
