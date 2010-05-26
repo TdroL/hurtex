@@ -33,7 +33,7 @@ class Text extends Kohana_Text
 		return url::string(preg_replace('/[^a-z0-9-\+\/_ ]/iU', '_', $string));
 	}
 	
-	public function number_to_text($value)
+	public static function number_to_text($value)
 	{
 		$jednosci = Array( 'zero', 'jeden', 'dwa', 'trzy', 'cztery', 'pięć', 'sześć', 'siedem', 'osiem', 'dziewięć' );
 		$dziesiatki = Array( '', 'dziesięć', 'dwadzieścia', 'trzydzieści', 'czterdzieści', 'piećdziesiąt', 'sześćdziesiąt', 'siedemdziesiąt', 'osiemdziesiąt', 'dziewiećdziesiąt' );
