@@ -6,7 +6,7 @@
 		<td class="quantity_width">Ilość</td>
 		<td class="price_width">Cena netto</td>
 		<td class="price_vat">VAT</td>
-		<td class="price_width">Cena brutto</td>
+		<td class="brutto_width">Cena brutto</td>
 	</tr>
 </thead>
 <?php if($products->is_empty()): ?>
@@ -34,7 +34,7 @@
 	<tr>
 		<td colspan="2" class="align-right"><b>Suma</b></td>
 		<td><b><?php echo number_format($sum_netto, 2) ?> zł</b></td>
-		<td>-</td>
+		<td></td>
 		<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 	</tr>
 	<tr>

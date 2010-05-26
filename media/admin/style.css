@@ -258,3 +258,11 @@ td.price_width
 {
 	width: 82px;
 }
+.brutto_width
+{
+	width: 92px;
+}
+.price_vat
+{
+	width: 35px;
+}

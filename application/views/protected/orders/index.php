@@ -17,7 +17,7 @@
 <?php foreach($orders as $order): ?>
 	<tr>
 		<td><?php echo $order->paragon_number ?></td>
-		<td><?php echo $order->invoice ?: 'Brak' ?></td>
+		<td><?php echo $order->invoice ?: 'Brak' ?><br /><?php echo html::anchor('admin/orders/invoice.'.$order->id, 'Faktura' )?></td>
 		<td><?php echo date($order->meta()->fields('date')->pretty_format, $order->date) ?></td>
 		<td><?php echo $order->client->second_name ?> <?php echo $order->client->first_name ?></td>
 		<td><?php echo nl2br(html::chars($order->address)) ?></td>

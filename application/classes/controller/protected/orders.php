@@ -3,6 +3,7 @@
 class Controller_Protected_orders extends Controller_Template
 {
 	protected $_base = 'admin/orders';
+	public $no_template = array('invoice');
 
 	public function action_index()
 	{
@@ -105,6 +106,39 @@ class Controller_Protected_orders extends Controller_Template
 		{
 			$this->request->redirect($this->_base);
 		}*/
+		
+		$id = $this->request->param('id');
+		
+		$order = Jelly::select('order')
+						->with('client')
+						->load($id);
+						
+		
+		/*if(!$order->loaded() or $order->client->id != $this->user->id)
+		{
+			$this->request->redirect($this->_base);
+		}*/
+		
+		$this->content->order = $order;
+		
+		$products = Jelly::select('orderproduct')->load_products_orders($order->id);
+		$this->content->products = $products;
+		
+		foreach($products as $v)
+		{
+			$sum_netto += round($v->product->price->value * $v->quantity, 2);
+			$sum_brutto += round($v->product->price->value * $v->quantity * (1 + $v->product->price->vat->value), 2);
+		}
+		
+		$sum_netto_plus = $sum_netto + $order->sendform->value;
+		$sum_brutto_plus = $sum_brutto + $order->sendform->value;
+	}
+	public function action_invoice()  //przeniesione z account
+	{
+		$this->content->bind('sum_netto', $sum_netto);
+		$this->content->bind('sum_brutto', $sum_brutto);
+		$this->content->bind('sum_netto_plus', $sum_netto_plus);
+		$this->content->bind('sum_brutto_plus', $sum_brutto_plus);
 		
 		$id = $this->request->param('id');
 		
