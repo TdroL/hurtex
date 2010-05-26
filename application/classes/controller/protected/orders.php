@@ -135,6 +135,7 @@ class Controller_Protected_orders extends Controller_Template
 	}
 	public function action_invoice()  //przeniesione z account
 	{
+		$this->content->bind('sum_vat',$sum_vat);//dopisane
 		$this->content->bind('sum_netto', $sum_netto);
 		$this->content->bind('sum_brutto', $sum_brutto);
 		$this->content->bind('sum_netto_plus', $sum_netto_plus);
@@ -159,6 +160,7 @@ class Controller_Protected_orders extends Controller_Template
 		
 		foreach($products as $v)
 		{
+			$sum_vat += round($v->product->price->value * $v->quantity * ($v->product->price->vat->value), 2);
 			$sum_netto += round($v->product->price->value * $v->quantity, 2);
 			$sum_brutto += round($v->product->price->value * $v->quantity * (1 + $v->product->price->vat->value), 2);
 		}

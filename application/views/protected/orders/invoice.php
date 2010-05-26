@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Faktura <?php echo $order->invoice ?></title>
-	<?php echo html::style('media/admin/printable.css').PHP_EOL ?>
+	<?php echo html::style('media/admin/invoice.css').PHP_EOL ?>
 </head>
 <body>
 <div>
@@ -37,15 +37,17 @@ Faktura VAT NR <?php echo $order->invoice ?>
 			<th>Nazwa produktu</th>
 			<th>J.m.</th>
 			<th>Ilość</th>
-			<th>Cena netto</th>
-			<th class="price_vat">VAT</th>
+			<th>Cena jedn. <br/>brutto</th>
 			<th>Cena brutto</th>
+			<th class="price_vat">VAT</th>
+			<th>Wartość VAT</th>
+			<th>Cena netto</th>
 		</tr>
 	</thead>
 <?php if($products->is_empty()): ?>
 	<tbody>
 		<tr>
-			<td colspan="6">Brak produktów</td>
+			<td colspan="9">Brak produktów</td>
 		</tr>
 	</tbody>
 <?php else: ?>
@@ -56,20 +58,22 @@ Faktura VAT NR <?php echo $order->invoice ?>
 			<td><?php echo $i++ ?></td>
 			<td><p class="product_name"><b><?php echo $v->product->name ?></b>
 			</p></td>
-			<td ><p class="product_name">
-					<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
-					<?php echo $v->product->unit->name ?>
-			</p></td>
-			<td><p class="product_name"><?php echo number_format($v->product->price->value*$v->quantity, 2) ?> zł</p></td>
-			<td><p class="product_name"><?php echo $v->product->price->vat->name ?></p></td>
+			<td><?php echo $v->product->unit->name ?></td>
+			<td><p class="product_name"><?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?></p></td>
+			<td><p class="product_name"><?php echo number_format(($v->product->price->value) *(1 + $v->product->price->vat->value),2) ?> zł</p></td>
 			<td><p class="product_name"><?php echo number_format(($v->product->price->value*$v->quantity) * (1 + $v->product->price->vat->value), 2) ?> zł</p></td>
+			<td><p class="product_name"><?php echo $v->product->price->vat->name ?></p></td>
+			<td><p class="product_name"><?php echo number_format(($v->product->price->value*$v->quantity) * ($v->product->price->vat->value), 2) ?> zł</p></td>
+			<td><p class="product_name"><?php echo number_format($v->product->price->value*$v->quantity, 2) ?> zł</p></td>
+		
 		</tr>
 <?php endforeach ?>
 		<tr>
-			<td colspan="2" class="align-right">Suma</td>
-			<td><b><?php echo number_format($sum_netto, 2) ?> zł</b></td>
-			<td class="price_vat"></td>
+			<td colspan="5" class="align-right">Suma</td>
 			<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
+			<td class="price_vat"></td>
+			<td><b><?php echo number_format($sum_vat, 2) ?> zł</b></td>
+			<td><b><?php echo number_format($sum_netto, 2) ?> zł</b></td>
 		</tr>
 		<tr>
 			<td class="align-right">Forma dostawy</td>
@@ -93,14 +97,12 @@ Faktura VAT NR <?php echo $order->invoice ?>
 		<tr>
 			<td class="align-right">Do zapłaty</td>
 			<td colspan="4">
-				Netto: <b><?php echo number_format($sum_netto_plus, 2) ?> zł</b><br />
-				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b>
+				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b><br/>
+				Słownie: <?php text::number_to_text($sum_brutto_plus)?>
+				
 			</td>
 		</tr>
-		<tr>
-			<td class="align-right"><b>Status</b></td>
-			<td colspan="4"><?php echo $order->meta()->fields('status')->choices[$order->status] ?></td>
-		</tr>
+		
 	</tbody>
 
 <?php endif ?>
