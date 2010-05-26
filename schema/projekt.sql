@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) unsigned NOT NULL,
   `client_id` int(11) unsigned NOT NULL,
-  `status` enum('added','accepted','send','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'accepted',
+  `status` enum('added','accepted','sent','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'accepted',
   `printed` tinyint(1) NOT NULL DEFAULT '0',
   `address` text COLLATE utf8_unicode_ci,
   `paragon_number` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
