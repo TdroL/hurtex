@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, code,
 del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
 table, caption, tbody, tfoot, thead, tr, th, td ,hr{
-  margin: 0;
+  margin: 5px;
   padding: 0;
   border: 0;
   font-weight: inherit;
@@ -59,11 +59,18 @@ dl dd { margin-left: 1.618em; }
  /* Tables */
  
 table { margin-bottom:1.618em; border-collapse: collapse; }
-th { font-weight:700;text-align:left; }
-tr,th,td { margin:0; padding:0 1.618em 0 1em; height:21px; }
+th { font-weight:700; font-weight: bold; text-align:left; }
+tr,th,td { margin:0; padding: 10px 5px ; height:21px; }
 tfoot { font-style: italic; }
-caption { text-align:center; font-family:Georgia, serif; }
-
+caption { text-align:center; font-weight: bold; font-size: 21px; font-family:Georgia, serif; }
+td.align-right, .align-right {
+	text-align: right;
+	font-weight: bold;
+}
+.price_vat
+{
+	width: 35px;
+}
 
  /* Quotes */
  

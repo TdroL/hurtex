@@ -7,15 +7,15 @@
 	<?php echo html::style('media/printable.css').PHP_EOL ?>
 </head>
 <body>
-	
 	<table class="art-article">
+	<caption>Zamówienie ID.<?php echo $order->paragon_number ?> - szczegóły</caption>
 	<thead>
 		<tr>
-			<td>Nazwa produktu</td>
-			<td class="quantity_width">Ilość</td>
-			<td class="price_width">Cena netto</td>
-			<td class="price_vat">VAT</td>
-			<td class="price_width">Cena brutto</td>
+			<th>Nazwa produktu</th>
+			<th>Ilość</th>
+			<th>Cena netto</th>
+			<th class="price_vat">VAT</th>
+			<th>Cena brutto</th>
 		</tr>
 	</thead>
 <?php if($products->is_empty()): ?>
@@ -28,8 +28,7 @@
 	<tbody>
 <?php foreach($products as $v):  ?>
 		<tr id="product_<?php echo !empty($v->product->id) ? $v->product->id : uniqid() ?>">
-			<td><p>
-				<a class="product_name" href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
+			<td><p class="product_name"><b><?php echo $v->product->name ?></b>
 			</p></td>
 			<td ><p class="product_name">
 					<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
@@ -41,9 +40,9 @@
 		</tr>
 <?php endforeach ?>
 		<tr>
-			<td colspan="2" class="align-right"><b>Suma</b></td>
+			<td colspan="2" class="align-right">Suma</td>
 			<td><b><?php echo number_format($sum_netto, 2) ?> zł</b></td>
-			<td>-</td>
+			<td class="price_vat"></td>
 			<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 		</tr>
 		<tr>
@@ -66,7 +65,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="align-right"><b>Do zapłaty</b></td>
+			<td class="align-right">Do zapłaty</td>
 			<td colspan="4">
 				Netto: <b><?php echo number_format($sum_netto_plus, 2) ?> zł</b><br />
 				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b>
@@ -77,16 +76,7 @@
 			<td colspan="4"><?php echo $order->meta()->fields('status')->choices[$order->status] ?></td>
 		</tr>
 	</tbody>
-<?php if(in_array($order->status, array('added'))): ?>
-	<tfoot>
-		<tr>
-			<td class="align-right"><b>Operacje</b></td>
-			<td colspan="4">
-				<?php echo html::anchor_confirm('account/cancel.'.$order->id, 'Anuluj zamówienie', 'Czy jesteś pewien? Tej operacji nie będziesz mógł cofnąć!') ?>
-			</td>
-		</tr>
-	</tfoot>
-<?php endif ?>
+
 <?php endif ?>
 	</table>
 </body>
