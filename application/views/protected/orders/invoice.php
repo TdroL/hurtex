@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-Faktura VAT NR <?php echo $order->invoice ?>
+<h2>Faktura VAT NR <?php echo $order->invoice ?></h2>
 </div>
 <div>
 <dl>Sprzedawca:
@@ -29,6 +29,9 @@ Faktura VAT NR <?php echo $order->invoice ?>
 <dd>NIP <?php echo $order->client->NIP?></dd>
 <?php endif ?>
 </dl>
+</div>
+<div>
+Data wystawienia:<?php echo date($order->meta()->fields('date')->pretty_format, $order->date) ?>
 </div>
 	<table>
 	<thead>
@@ -75,30 +78,27 @@ Faktura VAT NR <?php echo $order->invoice ?>
 			<td><b><?php echo number_format($sum_vat, 2) ?> zł</b></td>
 			<td><b><?php echo number_format($sum_netto, 2) ?> zł</b></td>
 		</tr>
-		<tr>
-			<td class="align-right">Forma dostawy</td>
-			<td colspan="4">
+		</table>
+		<table class="no_border">
+		<tr class="no_border">
+			<td class="no_border">Forma dostawy:</td>
+			<td class="no_border">
 				<?php echo $order->sendform->name ?>
 				 - <?php echo number_format($order->sendform->value, 2) ?> zł
 			</td>
 		</tr>
-		<tr>
-			<td class="align-right">Forma płatności</td>
-			<td colspan="4">
+		<tr class="no_border">
+			<td class="no_border">Forma płatności:</td>
+			<td class="no_border">
 				<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 			</td>
 		</tr>
-		<tr>
-			<td class="align-right">Adres dostawy</td>
-			<td colspan="4">
-				<?php echo nl2br(html::chars($order->address)) ?>
-			</td>
-		</tr>
-		<tr>
-			<td class="align-right">Do zapłaty</td>
-			<td colspan="4">
+		
+		<tr class="no_border">
+			<td class="no_border">Do zapłaty:</td>
+			<td class="no_border">
 				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b><br/>
-				Słownie: <?php text::number_to_text($sum_brutto_plus)?>
+				Słownie: <?php echo text::number_to_text($sum_brutto_plus)?>
 				
 			</td>
 		</tr>
