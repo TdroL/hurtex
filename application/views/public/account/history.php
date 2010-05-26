@@ -25,7 +25,10 @@
 		<td class="align-center"><?php echo $v->get('count_products') ?></td>
 		<td><?php echo $v->address ?></td>
 		<td><?php echo $v->meta()->fields('status')->choices[$v->status] ?></td>
-		<td><?php echo html::anchor('account/order.'.$v->id, 'Szczegóły') ?></td>
+		<td>
+			<?php echo html::anchor('account/order.'.$v->id, 'Szczegóły') ?><br />
+			<small><?php echo html::anchor('account/printable.'.$v->id, 'Wersja do wydruku') ?></small>
+		</td>
 	</tr>
 <?php endforeach ?>
 <?php endif ?>
