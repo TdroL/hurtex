@@ -20,15 +20,15 @@
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->product->id) ? $v->product->id : uniqid() ?>">
 		<td><p>
-			<a class="product_name" href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
+			<a href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
 		</p></td>
-		<td ><p class="product_name">
+		<td ><p >
 				<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
 				<?php echo $v->product->unit->name ?>
 		</p></td>
-		<td><p class="product_name"><?php echo number_format($v->product->price->value*$v->quantity, 2) ?> zł</p></td>
-		<td><p class="product_name"><?php echo $v->product->price->vat->name ?></p></td>
-		<td><p class="product_name"><?php echo number_format(($v->product->price->value*$v->quantity) * (1 + $v->product->price->vat->value), 2) ?> zł/p></td>
+		<td><p><?php echo number_format($v->product->price->value*$v->quantity, 2) ?> zł</p></td>
+		<td><p><?php echo $v->product->price->vat->name ?></p></td>
+		<td><p><?php echo number_format(($v->product->price->value*$v->quantity) * (1 + $v->product->price->vat->value), 2) ?> zł</p></td>
 	</tr>
 <?php endforeach ?>
 	<tr>

@@ -232,3 +232,8 @@ a.unsafe {
 small {
 	font-size: 0.8em; 
 }
+
+td.align-right, .align-right {
+	text-align: right;
+	font-weight: bold;
+}
