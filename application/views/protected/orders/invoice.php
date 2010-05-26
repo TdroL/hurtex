@@ -11,14 +11,14 @@
 <h2>Faktura VAT NR <?php echo $order->invoice ?></h2>
 </div>
 <div>
-<dl>Sprzedawca:
+<dl><b>Sprzedawca:</b>
 <dd>Hurtex</dd>
 <dd>20-501 Lublin ul. Nadbystrzycka 48</dd>
 <dd>NIP 324-21-32-123</dd>
 </dl>
 </div>
 <div>
-<dl>Nabywca:
+<dl><b>Nabywca:</b>
 <?php if (!empty($order->client->company_name)):?>
 <dd><?php echo $order->client->company_name ?></dd>
 <?php else: ?>
@@ -31,19 +31,21 @@
 </dl>
 </div>
 <div>
-Data wystawienia:<?php echo date($order->meta()->fields('date')->pretty_format, $order->date) ?>
+Data sprzedaży:  <?php echo date('Y-m-d', $order->date) ?><br/>
+Data wystawienia:  <?php echo date('Y-m-d', $order->date) ?>
 </div>
+<div>
 	<table>
 	<thead>
 		<tr>
-			<th>Lp.</th>
-			<th>Nazwa produktu</th>
-			<th>J.m.</th>
+			<th class="lp_width">Lp.</th>
+			<th class="product_width">Nazwa produktu</th>
+			<th class="lp_width">J.m.</th>
 			<th>Ilość</th>
 			<th>Cena jedn. <br/>brutto</th>
 			<th>Cena brutto</th>
 			<th class="price_vat">VAT</th>
-			<th>Wartość VAT</th>
+			<th>Wartość <br/>VAT</th>
 			<th>Cena netto</th>
 		</tr>
 	</thead>
@@ -81,21 +83,21 @@ Data wystawienia:<?php echo date($order->meta()->fields('date')->pretty_format, 
 		</table>
 		<table class="no_border">
 		<tr class="no_border">
-			<td class="no_border">Forma dostawy:</td>
+			<th class="no_border">Forma dostawy:</th>
 			<td class="no_border">
 				<?php echo $order->sendform->name ?>
 				 - <?php echo number_format($order->sendform->value, 2) ?> zł
 			</td>
 		</tr>
 		<tr class="no_border">
-			<td class="no_border">Forma płatności:</td>
+			<th class="no_border">Forma płatności:</th>
 			<td class="no_border">
 				<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 			</td>
 		</tr>
 		
 		<tr class="no_border">
-			<td class="no_border">Do zapłaty:</td>
+			<th class="no_border">Do zapłaty:</th>
 			<td class="no_border">
 				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b><br/>
 				Słownie: <?php echo text::number_to_text($sum_brutto_plus)?>
@@ -103,9 +105,13 @@ Data wystawienia:<?php echo date($order->meta()->fields('date')->pretty_format, 
 			</td>
 		</tr>
 		
-	</tbody>
+		</tbody>
 
 <?php endif ?>
-	</table>
+	</table></div>
+	<div>
+	<table class="top_border"><tr>
+	<td class="no_border"><small>Podpis osoby <br/>upoważnionej do wystawienia faktury</small></td><td class="no_border"><small> Podpis osoby <br/>upoważnionej do otrzymania faktury</small></td>
+	</tr></table>
 </body>
 </html>
