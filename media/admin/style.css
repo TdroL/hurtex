@@ -50,6 +50,13 @@ tbody td {
 	font-size: 0.9em;
 }
 
+tbody a {
+	text-decoration: none;
+}
+tbody a:hover {
+	text-decoration: underline;
+}
+
 td ul, td ol {
 	list-style: disc outside none;
 }
