@@ -254,3 +254,7 @@ td.align-right, .align-right {
 	text-align: right;
 	font-weight: bold;
 }
+td.price_width
+{
+	width: 82px;
+}

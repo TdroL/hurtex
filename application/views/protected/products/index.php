@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-
 <table>
 <caption><?php echo html::anchor('admin/products/create', 'Dodaj nowy produkt') ?></caption>
 <thead>
@@ -8,7 +7,7 @@
 		<td>Nazwa</td>
 		<td>Kategoria</td>
 		<td>Ilość</td>
-		<td>Cena</td>
+		<td class ="price_width">Cena netto</td>
 		<td>Vat</td>
 		<td>Operacje</td>
 	</tr>
