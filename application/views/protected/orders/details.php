@@ -38,6 +38,12 @@
 		<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 	</tr>
 	<tr>
+		<td class="align-right">Klient</td>
+		<td colspan="4">
+			<?php echo $order->client->second_name ?> <?php echo $order->client->first_name ?>
+		</td>
+	</tr>
+	<tr>
 		<td class="align-right">Forma dostawy</td>
 		<td colspan="4">
 			<?php echo $order->sendform->name ?>
