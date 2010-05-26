@@ -23,6 +23,13 @@
 							</tr>
 
 							<tr>
+								<td><?php echo $form->label('products') ?></td>
+								<td>
+									<?php echo $form->input('products') ?>
+								</td>
+							</tr>
+
+							<tr>
 								<td></td>
 								<td>
 									<?php echo form::submit('send', 'Wyślij') ?>

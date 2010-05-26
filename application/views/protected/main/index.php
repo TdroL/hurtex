@@ -1,3 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-<p>Plik wygl¹du admin/main/index</p>
+<h1>Braki produktÃ³w</h1>
+<?php echo Request::load('admin/warehouse/deficient') ?>

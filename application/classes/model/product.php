@@ -48,10 +48,13 @@ class Model_Product extends Jelly_Model
 					'label' => 'Cena',
 				)),
 				'orders' => new Field_ManyToMany(array(
+					'label' => 'Zamówienia',
 				)),
 				'suppliers' => new Field_ManyToMany(array(
+					'label' => 'Dostawcy',
 				)),
 				'supplies' => new Field_ManyToMany(array(
+					'label' => 'Zapotrzebowanie',
 				)),
 			))
 			->load_with(array('unit', 'price'))

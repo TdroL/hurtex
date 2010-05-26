@@ -144,10 +144,9 @@ class Controller_Public_Account extends Controller_Frontend
 		
 		$this->content->order = $order;
 		
-		$products = Jelly::select('orderproduct')->load_products_orders($order->id);
-		$this->content->products = $products;
+		$this->content->products = $order->orderproducts;
 		
-		foreach($products as $v)
+		foreach($order->orderproducts as $v)
 		{
 			$sum_netto += round($v->product->price->value * $v->quantity, 2);
 			$sum_brutto += round($v->product->price->value * $v->quantity * (1 + $v->product->price->vat->value), 2);

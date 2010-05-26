@@ -3,7 +3,10 @@
 <head>
 	<title>Formatki - szkielet</title>
 	<meta charset="utf-8" />
-	<?php echo html::style('media/admin/style.css') ?>
+	<style type="text/css">
+		@import url("<?php echo url::site('media/admin/style.css') ?>");
+	</style>
+
 </head>
 <body>
 	<div id="root">
@@ -17,6 +20,7 @@
 					<!-- class="active" -->
 					<li><a href="<?php echo url::site('admin/main') ?>">Home</a></li>
 					<li><a href="<?php echo url::site('admin/products') ?>">Produkty</a></li>
+					<li><a href="<?php echo url::site('admin/warehouse') ?>">Magazyn</a></li>
 					<li><a href="<?php echo url::site('admin/categories') ?>">Kategorie</a></li>
 					<li><a href="<?php echo url::site('admin/clients') ?>">Klienci</a></li>
 					<li><a href="<?php echo url::site('admin/orders') ?>">Zamówienia</a></li>

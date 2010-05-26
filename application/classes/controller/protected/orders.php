@@ -95,17 +95,13 @@ class Controller_Protected_orders extends Controller_Template
 			}
 		}
 	}
+	
 	public function action_details() // przeniesione z kontrolera szczegolow zamowienia dzialu historii zamowien
 	{
 		$this->content->bind('sum_netto', $sum_netto);
 		$this->content->bind('sum_brutto', $sum_brutto);
 		$this->content->bind('sum_netto_plus', $sum_netto_plus);
 		$this->content->bind('sum_brutto_plus', $sum_brutto_plus);
-
-		/*if(!$this->user)
-		{
-			$this->request->redirect($this->_base);
-		}*/
 		
 		$id = $this->request->param('id');
 		
@@ -113,11 +109,6 @@ class Controller_Protected_orders extends Controller_Template
 						->with('client')
 						->load($id);
 						
-		
-		/*if(!$order->loaded() or $order->client->id != $this->user->id)
-		{
-			$this->request->redirect($this->_base);
-		}*/
 		
 		$this->content->order = $order;
 		
@@ -133,6 +124,7 @@ class Controller_Protected_orders extends Controller_Template
 		$sum_netto_plus = $sum_netto + $order->sendform->value;
 		$sum_brutto_plus = $sum_brutto + $order->sendform->value;
 	}
+	
 	public function action_invoice()  //przeniesione z account
 	{
 		$this->content->bind('sum_vat',$sum_vat);//dopisane
@@ -148,17 +140,10 @@ class Controller_Protected_orders extends Controller_Template
 						->load($id);
 						
 		
-		/*if(!$order->loaded() or $order->client->id != $this->user->id)
-		{
-			$this->request->redirect($this->_base);
-		}*/
-		
 		$this->content->order = $order;
+		$this->content->products = $order->orderproducts;
 		
-		$products = Jelly::select('orderproduct')->load_products_orders($order->id);
-		$this->content->products = $products;
-		
-		foreach($products as $v)
+		foreach($order->orderproducts as $v)
 		{
 			$sum_vat += round($v->product->price->value * $v->quantity * ($v->product->price->vat->value), 2);
 			$sum_netto += round($v->product->price->value * $v->quantity, 2);

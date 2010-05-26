@@ -26,4 +26,17 @@ class Model_Builder_Product extends Jelly_Builder
 		}
 		return $this->where(':primary_key', 'IN', $ids)->execute();
 	}
+	
+	public function sort_by_quantity()
+	{
+		return $this->select('*', array(DB::expr('(quantity/minimal_quantity)'), 'sorting_row'))->order_by('sorting_row', 'asc');
+	}
+	
+	public function get_deficient()
+	{
+		return $this->and_where_open()
+						->where(DB::expr('(products.quantity - products.minimal_quantity)'), '<=', 0)
+						->or_where('products.quantity', '=', 0)
+					->and_where_close();
+	}
 }
