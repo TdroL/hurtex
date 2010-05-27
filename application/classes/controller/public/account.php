@@ -27,7 +27,7 @@ class Controller_Public_Account extends Controller_Frontend
 			'name' => 'Hurtex',
 			'nip' => '123-456-32-18',
 			'address' => 'ul. Hurtowa 1',
-			'account' => 'CC AAAA AAAA BBBB BBBB BBBB BBBB',
+			'account' => '44114020040000350230424080',
 		);
 		
 		foreach($defaults as $k => $v)

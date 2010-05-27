@@ -12,9 +12,9 @@
 </div>
 <div>
 <dl><b>Sprzedawca:</b>
-<dd>Hurtex</dd>
-<dd>20-501 Lublin ul. Nadbystrzycka 48</dd>
-<dd>NIP 324-21-32-123</dd>
+<dd><?php echo $company->name ?></dd>
+<dd><?php echo $company->address ?></dd>
+<dd><?php echo $company->nip ?></dd>
 </dl>
 </div>
 <div>
@@ -95,7 +95,14 @@ Data wystawienia:  <?php echo date('Y-m-d', $order->date) ?>
 				<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 			</td>
 		</tr>
-		
+		<?php if ($order->payment=='transfer'): ?> // jeśli przelew pokaż numer konta
+		<tr>
+			<th class="no_border">Numer konta:</th>
+			<td class="no_border">
+				<?php echo $company->account ?>
+			</td>
+		</tr>
+		<?php endif?>
 		<tr class="no_border">
 			<th class="no_border">Do zapłaty:</th>
 			<td class="no_border">
