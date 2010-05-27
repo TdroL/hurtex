@@ -25,9 +25,11 @@
 		<td class="align-center"><?php echo $v->get('count_products') ?></td>
 		<td><?php echo $v->address ?></td>
 		<td><?php echo $v->meta()->fields('status')->choices[$v->status] ?></td>
-		<td>
-			<?php echo html::anchor('account/order.'.$v->id, 'Szczegóły') ?><br />
-			<small><?php echo html::anchor('account/printable.'.$v->id, 'Wersja do wydruku') ?></small>
+		<td><?php echo html::anchor('account/order.'.$v->id, 'Szczegóły') ?><br />
+			<?php if($v->status =='accepted'): ?>
+			<small><?php echo html::anchor('account/payform.'.$v->id, 'Druk wpłaty') ?><br />
+			<p title='Wersja do wydruku'><?php echo html::anchor('account/printable.'.$v->id, 'Wydruk') ?></p></small>
+			<?php endif ?>
 		</td>
 	</tr>
 <?php endforeach ?>

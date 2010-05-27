@@ -7,7 +7,7 @@ class Controller_Public_Account extends Controller_Frontend
 	protected $_orders = 'account/history';
 	
 	public $no_view = array('logout', 'cancel');
-	public $no_template = array('printable');
+	public $no_template = array('printable','payform');
 	
 	public function before()
 	{
@@ -178,5 +178,9 @@ class Controller_Public_Account extends Controller_Frontend
 	public function action_printable()
 	{
 		$this->action_order();
+	}
+	public function action_payform()
+	{
+	
 	}
 }
