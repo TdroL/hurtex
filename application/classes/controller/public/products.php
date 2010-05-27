@@ -46,7 +46,12 @@ class Controller_Public_Products extends Controller_Frontend
 	public function action_category()
 	{
 		$id = $this->request->param('id');
+		$page = $this->request->param('page') - 1;
+		
 		$this->view->title = Jelly::select('category', $id)->title;
-		$this->content->products = Jelly::select('product')->belongs_to_category($id)->execute();
+		$this->content->products = Jelly::select('product')->belongs_to_category($id)->page($page)->execute();
+		$this->content->pagination = new Pagination(array(
+				'total_items' => Jelly::select('product')->belongs_to_category($id)->count(),
+		));
 	}
 }
