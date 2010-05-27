@@ -100,15 +100,19 @@ Kohana::modules(array(
 	 'pagination'	=> MODPATH.'pagination', // Paging of results
 	));
 
-if(is_file(APPPATH.'base.php'))
-{
-	require APPPATH.'base.php';
-}
-
+/**
+ * Attach the FirePHP to logging
+ */
 if(class_exists('FirePHP_Log_Console'))
 {
-	Kohana::$log->attach(new FirePHP_Log_Console());
+	Kohana::$log->attach(new FirePHP_Log_Console);
 }
+
+/**
+ * Attach a database reader to config.
+ */
+Kohana::$config->attach(new Kohana_Config_Database);
+
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
@@ -143,14 +147,9 @@ if(class_exists('FirePHP_Log_Console'))
  * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
  * If no source is specified, the URI will be automatically detected.
  */
- 
 
-if(!isset($force_uri))
-{
-	$force_uri = TRUE;
-}
 
-$request = Request::instance($force_uri);
+$request = Request::instance();
 
 if(IN_PRODUCTION === TRUE)
 {

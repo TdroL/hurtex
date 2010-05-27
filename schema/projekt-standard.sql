@@ -7,7 +7,6 @@
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT=0;
 START TRANSACTION;
@@ -28,7 +27,6 @@ START TRANSACTION;
 -- Struktura tabeli dla  `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -79,7 +77,6 @@ INSERT INTO `categories` (`id`, `title`, `category_id`) VALUES
 -- Struktura tabeli dla  `clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -109,7 +106,6 @@ INSERT INTO `clients` (`id`, `first_name`, `second_name`, `email`, `password`, `
 -- Struktura tabeli dla  `config`
 --
 
-DROP TABLE IF EXISTS `config`;
 CREATE TABLE IF NOT EXISTS `config` (
   `group_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `config_key` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -131,7 +127,6 @@ INSERT INTO `config` (`group_name`, `config_key`, `config_value`) VALUES
 -- Struktura tabeli dla  `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) unsigned NOT NULL,
@@ -165,7 +160,6 @@ INSERT INTO `orders` (`id`, `date`, `client_id`, `status`, `printed`, `address`,
 -- Struktura tabeli dla  `orders_products`
 --
 
-DROP TABLE IF EXISTS `orders_products`;
 CREATE TABLE IF NOT EXISTS `orders_products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) unsigned NOT NULL,
@@ -199,7 +193,6 @@ INSERT INTO `orders_products` (`id`, `product_id`, `quantity`, `order_id`, `pric
 -- Struktura tabeli dla  `prices`
 --
 
-DROP TABLE IF EXISTS `prices`;
 CREATE TABLE IF NOT EXISTS `prices` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) unsigned DEFAULT NULL,
@@ -282,7 +275,6 @@ INSERT INTO `prices` (`id`, `product_id`, `price`, `date`, `vat_id`) VALUES
 -- Struktura tabeli dla  `products`
 --
 
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -360,7 +352,6 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `category_id`, `un
 -- Struktura tabeli dla  `products_suppliers`
 --
 
-DROP TABLE IF EXISTS `products_suppliers`;
 CREATE TABLE IF NOT EXISTS `products_suppliers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `supplier_id` int(11) unsigned NOT NULL,
@@ -381,7 +372,6 @@ CREATE TABLE IF NOT EXISTS `products_suppliers` (
 -- Struktura tabeli dla  `products_supplies`
 --
 
-DROP TABLE IF EXISTS `products_supplies`;
 CREATE TABLE IF NOT EXISTS `products_supplies` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `quantity` float NOT NULL,
@@ -405,7 +395,6 @@ CREATE TABLE IF NOT EXISTS `products_supplies` (
 -- Struktura tabeli dla  `product_search`
 --
 
-DROP TABLE IF EXISTS `product_search`;
 CREATE TABLE IF NOT EXISTS `product_search` (
   `product_id` int(11) unsigned NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -475,7 +464,6 @@ INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
 -- Struktura tabeli dla  `sendforms`
 --
 
-DROP TABLE IF EXISTS `sendforms`;
 CREATE TABLE IF NOT EXISTS `sendforms` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `price` float unsigned NOT NULL DEFAULT '0',
@@ -499,7 +487,6 @@ INSERT INTO `sendforms` (`id`, `price`, `name`) VALUES
 -- Struktura tabeli dla  `suppliers`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
 CREATE TABLE IF NOT EXISTS `suppliers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -518,7 +505,6 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
 -- Struktura tabeli dla  `supplies`
 --
 
-DROP TABLE IF EXISTS `supplies`;
 CREATE TABLE IF NOT EXISTS `supplies` (
   `id` int(11) unsigned NOT NULL,
   `date` int(11) unsigned NOT NULL,
@@ -537,7 +523,6 @@ CREATE TABLE IF NOT EXISTS `supplies` (
 -- Struktura tabeli dla  `units`
 --
 
-DROP TABLE IF EXISTS `units`;
 CREATE TABLE IF NOT EXISTS `units` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -559,7 +544,6 @@ INSERT INTO `units` (`id`, `name`, `type`) VALUES
 -- Struktura tabeli dla  `vats`
 --
 
-DROP TABLE IF EXISTS `vats`;
 CREATE TABLE IF NOT EXISTS `vats` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `value` float NOT NULL,
@@ -632,5 +616,4 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
