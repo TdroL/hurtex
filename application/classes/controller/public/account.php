@@ -181,6 +181,6 @@ class Controller_Public_Account extends Controller_Frontend
 	}
 	public function action_payform()
 	{
-	
+		$this->action_order();
 	}
 }
