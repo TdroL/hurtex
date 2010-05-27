@@ -3,11 +3,16 @@
 class Controller_Protected_orders extends Controller_Template
 {
 	protected $_base = 'admin/orders';
-	public $no_template = array('invoice');
+	public $no_template = array('invoice', 'added');
 
 	public function action_index()
 	{
 		$this->content->orders = Jelly::select('order')->with('client')->execute();
+	}
+	
+	public function action_added()
+	{
+		$this->content->orders = Jelly::select('order')->with('client')->get_added()->execute();
 	}
 	
 	public function action_create()
@@ -58,35 +63,6 @@ class Controller_Protected_orders extends Controller_Template
 				$order->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
-				$this->request->redirect($this->_base);
-			}
-			catch(Validate_Exception $e)
-			{
-				$errors = $e->errors();
-			}
-		}
-	}
-	
-	public function action_delete()
-	{
-		$this->content->bind('form', $order);
-		$this->content->bind('errors', $errors);
-
-		$id = $this->request->param('id');
-		$order = Jelly::select('order', $id);
-
-		if(!$order->loaded()) // jesli ine istnieje to przekieruj do listy produktow
-		{
-			$this->request->redirect($this->_base);
-		}
-
-		if($_POST and !$this->session->get($_POST['seed'], FALSE))
-		{
-			try
-			{
-				$order->delete();
-
-				$this->session->set($_POST['seed'], TRUE);
 				$this->request->redirect($this->_base);
 			}
 			catch(Validate_Exception $e)

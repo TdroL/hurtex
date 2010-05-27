@@ -11,14 +11,12 @@ class Model_Client extends Jelly_Model
 					'label' => 'Imię',
 					'rules' => array(
 						'not_empty' => NULL,
-						'alpha' => NULL,
 					),
 				)),
 				'second_name' => new Field_String(array(
 					'label' => 'Nazwisko',
 					'rules' => array(
 						'not_empty' => NULL,
-						'alpha' => NULL,
 					),
 				)),
 				'email' => new Field_Email(array(

@@ -250,6 +250,11 @@ small {
 	font-size: 0.8em; 
 }
 
+h1 {
+	font-size: 2em;
+	margin: 20px 0;
+}
+
 td.align-right, .align-right {
 	text-align: right;
 	font-weight: bold;

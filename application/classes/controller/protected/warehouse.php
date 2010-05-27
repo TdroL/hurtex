@@ -2,8 +2,8 @@
 
 class Controller_Protected_Warehouse extends Controller_Frontend
 {
-	protected $_base = 'warehouse';
-	protected $_home = '';
+	protected $_base = 'admin/warehouse';
+	protected $_home = 'admin';
 
 	public $no_template = array('deficient', 'supply');
 

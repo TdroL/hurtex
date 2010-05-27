@@ -18,7 +18,7 @@
 			<nav>
 				<ul>
 					<!-- class="active" -->
-					<li><a href="<?php echo url::site('admin/main') ?>">Home</a></li>
+					<li><a href="<?php echo url::site('admin/main') ?>">Powiadomienia</a></li>
 					<li><a href="<?php echo url::site('admin/products') ?>">Produkty</a></li>
 					<li><a href="<?php echo url::site('admin/warehouse') ?>">Magazyn</a></li>
 					<li><a href="<?php echo url::site('admin/categories') ?>">Kategorie</a></li>
