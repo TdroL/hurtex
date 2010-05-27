@@ -19,8 +19,7 @@
 		<td><?php echo $product->minimal_quantity ?></td>
 		<td><?php echo $product->unit->name ?></td>
 		<td>
-			<?php echo html::anchor('admin/products/update.'.$product->id, 'Edytuj').PHP_EOL ?>
-			<?php echo html::anchor('admin/products/delete.'.$product->id, 'Usuń', array('class' => 'unsafe')).PHP_EOL ?>
+			<?php echo html::anchor('admin/warehouse/update.'.$product->id, 'Edytuj') ?>
 		</td>
 	</tr>
 <?php endforeach ?>
