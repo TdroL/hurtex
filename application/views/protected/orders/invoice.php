@@ -110,8 +110,8 @@ Data wystawienia:  <?php echo date('Y-m-d', $order->date) ?>
 <?php endif ?>
 	</table></div>
 	<div>
-	<table class="top_border"><tr>
-	<td class="no_border"><small>Podpis osoby <br/>upoważnionej do wystawienia faktury</small></td><td class="no_border"><small> Podpis osoby <br/>upoważnionej do otrzymania faktury</small></td>
-	</tr></table>
+	<table class="sign_border"><tr>
+	<td class="no_border"><small>Podpis osoby <br/>upoważnionej do wystawienia faktury</small></td><td class="no_border" align="right"><small> Podpis osoby <br/>upoważnionej do otrzymania faktury</small></td>
+	</tr></table></div>
 </body>
 </html>
