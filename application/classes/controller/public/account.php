@@ -23,7 +23,20 @@ class Controller_Public_Account extends Controller_Frontend
 	
 	public function action_index()
 	{
+		$defaults = array(
+			'name' => 'Hurtex',
+			'nip' => '123-456-32-18',
+			'address' => 'ul. Hurtowa 1',
+			'account' => 'CC AAAA AAAA BBBB BBBB BBBB BBBB',
+		);
 		
+		foreach($defaults as $k => $v)
+		{
+			if(!$this->company->offsetExists($k))
+			{
+				$this->company->set($k, $v);
+			}
+		}
 	}
 	
 	public function action_create()
