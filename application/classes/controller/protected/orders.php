@@ -111,11 +111,9 @@ class Controller_Protected_orders extends Controller_Template
 						
 		
 		$this->content->order = $order;
+		$this->content->products = $order->orderproducts;
 		
-		$products = Jelly::select('orderproduct')->load_products_orders($order->id);
-		$this->content->products = $products;
-		
-		foreach($products as $v)
+		foreach($order->orderproducts as $v)
 		{
 			$sum_netto += round($v->product->price->value * $v->quantity, 2);
 			$sum_brutto += round($v->product->price->value * $v->quantity * (1 + $v->product->price->vat->value), 2);

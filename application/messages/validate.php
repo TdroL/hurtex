@@ -25,8 +25,8 @@ return array(
 	'phone'				=> ':field must be a phone number',
 	'alpha_dash'		=> ':field must contain only letters, digits, dashes and underscores characters',
 	'username_available'	=> ':field must be unique',
-	'email_available'		=> ':field must be unique',
-	'validate::email'		=> ':field must be a valid email',
-	'internal_error'		=> 'Internal error: :param1',
+	'email_available'	=> ':field must be unique',
+	'email'				=> ':field must be a valid email',
+	'internal_error'	=> 'Internal error: :param1',
 	'nip'				=> ':field must be a valid NIP',
 );
