@@ -5,7 +5,7 @@ class Controller_Protected_Warehouse extends Controller_Frontend
 	protected $_base = 'warehouse';
 	protected $_home = '';
 
-	public $no_template = array('deficient');
+	public $no_template = array('deficient', 'supply');
 
 	public function action_index()
 	{

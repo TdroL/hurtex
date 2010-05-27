@@ -125,9 +125,10 @@ if(class_exists('FirePHP_Log_Console'))
 			'id'			=> NULL,
 		));
 
-	Route::set('default', '(<controller>(/<action>(.<id>)))(/from:<from>)', 
+	Route::set('default', '(<controller>(/<action>(.<id>)))(/from:<from>)(/page-<page>)', 
 		array(
 			'id'			=> '\d++',
+			'page'			=> '\d++',
 			'from'			=> '.++',
 		))
 		->defaults(array(
@@ -136,6 +137,7 @@ if(class_exists('FirePHP_Log_Console'))
 			'action' 		=> 'index',
 			'id'			=> NULL,
 			'from'			=> NULL,
+			'page'			=> 1,
 		));
 /**
  * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].

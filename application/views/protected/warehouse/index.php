@@ -19,6 +19,7 @@
 		<td><?php echo $product->minimal_quantity ?></td>
 		<td><?php echo $product->unit->name ?></td>
 		<td>
+			<?php echo html::anchor('admin/warehouse/demand.'.$product->id, 'Zgłoś') ?>
 			<?php echo html::anchor('admin/warehouse/update.'.$product->id, 'Edytuj') ?>
 		</td>
 	</tr>
