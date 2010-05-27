@@ -104,4 +104,19 @@ class Controller_Protected_Products extends Controller_Template
 			}
 		}
 	}
+	public function action_details() //przeniesione z public products controler 
+	{
+		$id = $this->request->param('id');
+		
+		$product = Jelly::select('product')->load($id);
+
+		if(!$product->loaded())
+		{
+			$this->request->redirect($this->_base);
+			// mozna albo to albo jakas strone z informacja "Brak takiego produktu"
+		}
+		
+		$this->view->title = $product->name;
+		$this->content->product = $product;
+	}
 }
