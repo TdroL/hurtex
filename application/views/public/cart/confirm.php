@@ -56,6 +56,9 @@
 		<td class="align-right">Faktura</td>
 		<td colspan="4">
 			<?php echo $order->invoice ? 'Tak' : 'Nie' ?>
+<?php if(empty($controller->user->nip)): ?>
+			<small>Pamiętaj aby uzupełnić NIP w profilu.</small>
+<?php endif ?>
 		</td>
 	</tr>
 	<tr>

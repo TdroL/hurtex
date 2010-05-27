@@ -37,9 +37,6 @@ class Model_Order extends Jelly_Model
 					'label' => 'Numer faktury',
 					'null' => TRUE,
 					'unique' => TRUE,
-					'callbacks' => array(
-						'Model_Order::check_invoice',
-					)
 				)),
 				'payment' => new Field_Enum(array(
 					'choices' => array('cash' => 'Gotówka', 'transfer' => 'Przelew'),
@@ -107,10 +104,5 @@ class Model_Order extends Jelly_Model
 				$v->product->decrease_quantity($v->quantity);
 			}
 		}
-	}
-	
-	public function check_invoice(Validate $array, $field)
-	{
-		var_dump($array, $field);die;
 	}
 }

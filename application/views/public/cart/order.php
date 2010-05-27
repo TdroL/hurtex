@@ -58,6 +58,9 @@
 				<li><label><?php echo form::radio('invoice', '0', $order->invoice == '0' or empty($order->invoice)) ?> Nie</label></li>
 				<li><label><?php echo form::radio('invoice', '1', $order->invoice == '1') ?> Tak</label></li>
 			</ul>
+<?php if(empty($controller->user->nip)): ?>
+			<small>Pamiętaj aby uzupełnić NIP w profilu.</small>
+<?php endif ?>
 		</td>
 	</tr>
 	<tr>
