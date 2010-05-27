@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
 <table>
-<caption><?php echo html::anchor('admin/warehouse/supply', 'Zapotrzebowanie') ?></caption>
 <thead>
 	<tr>
 		<td>Nazwa</td>
@@ -14,12 +13,11 @@
 <tbody>
 <?php foreach($products as $product): ?>
 	<tr>
-		<td><?php echo $product->name ?></td>
+		<td><?php echo html::anchor('admin/products/details.'.$product->id, $product->name) ?></td>
 		<td><?php echo $product->quantity ?></td>
 		<td><?php echo $product->minimal_quantity ?></td>
 		<td><?php echo $product->unit->name ?></td>
 		<td>
-			<?php echo html::anchor('admin/warehouse/demand.'.$product->id, 'Zgłoś') ?>
 			<?php echo html::anchor('admin/warehouse/update.'.$product->id, 'Edytuj') ?>
 		</td>
 	</tr>

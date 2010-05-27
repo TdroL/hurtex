@@ -31,6 +31,8 @@
 <?php endif ?>
 </tbody>
 </table>
+<?php if (!empty($pagination)): ?>
 <p class="align-center">
 	<?php echo $pagination ?>
-</p>
+</p>	
+<?php endif ?>
