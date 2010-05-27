@@ -28,6 +28,7 @@
 					<li><a href="<?php echo url::site('admin/vats') ?>">Stawki VAT</a></li>
 					<li><a href="<?php echo url::site('admin/units') ?>">Jednostki miary</a></li>
 					<li><a href="<?php echo url::site('admin/sendforms') ?>">Formy wysyłki</a></li>
+					<li><a href="<?php echo url::site('admin/reports') ?>">Raporty</a></li>
 				</ul>
 			</nav>
 

@@ -20,7 +20,7 @@
 <?php foreach($products as $v):  ?>
 	<tr id="product_<?php echo !empty($v->product->id) ? $v->product->id : uniqid() ?>">
 		<td><p>
-			<a href="<?php echo url::site('products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
+			<a href="<?php echo url::site('admin/products/details.'.$v->product->id) ?>"><b><?php echo $v->product->name ?></b></a>
 		</p></td>
 		<td ><p >
 				<?php echo ($v->product->unit->type == 'integer') ? (int) $v->quantity : number_format($v->quantity, 2) ?>
