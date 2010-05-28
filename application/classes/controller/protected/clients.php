@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Clients extends Controller_Template
+class Controller_Protected_Clients extends Controller_Frontend
 {
 	protected $_base = 'admin/clients';
 
