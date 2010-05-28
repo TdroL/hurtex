@@ -5,43 +5,46 @@ table{
 	font-variant: small-caps;
 	letter-spacing: 2pt;
 	width: 443.25pt;
-	height: 313.5pt;
+	/*height: 313.5pt;*/
 	margin: 5px;
 	border: 2px dashed;
 	background-image: url(images/druk.jpeg)
 	
 }
  td{
-	border: 1px none;
+	border: 1pt solid;
 	padding-left: 2pt;
 	padding-top: 2pt;
 	padding-right: 0pt;
 	padding-bottom: 0pt;
 	margin: 0pt;
-	height: 20pt;
+	height: 21pt;
 }
 td.spacing{
 	letter-spacing: 9pt;
 }
 td.type{
-	width: 65pt;
-	padding-left: 135pt;
+	height: 22pt;
+	width: 64pt;
+	padding-top: 0pt;
+	padding-left: 136pt;
 }
 
 td.price{
 	letter-spacing: 6pt;
 	width: 159pt;
+	padding-top: 0pt;
 	padding-left: 21pt;
 }
 td.row{
 	width: 23pt;
 }
 td.smal{
-	height: 3pt;
+	height: 4pt;
 }
 td.head{
-	height: 6pt;
+	height: 9pt;
 }
 td.foot{
-	height: 70pt;
+	height: 85pt;
 }
