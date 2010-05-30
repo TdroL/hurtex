@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 27 Maj 2010, 15:20
+-- Czas wygenerowania: 30 Maj 2010, 22:49
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -100,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `clients` (
 
 INSERT INTO `clients` (`id`, `first_name`, `second_name`, `email`, `password`, `address`, `phone_number`, `company_name`, `nip`) VALUES
 (1, 'Jan', 'Kowalski', 'dupa2@o2.pl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. ajrzynowA 32/6', '9876543219', '', '0'),
-(3, 'Alina', 'Krawczyk', 'dupa1@o2.pl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. Wolska 4', '0815015781', 'Dupa', '2147483647'),
 (4, 'Marian', 'Marian', 'marian@mail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. Lipowa 1/2\n20-600 Lublin', '512 689 987', '', '768-000-24-66');
 
 -- --------------------------------------------------------
@@ -122,6 +121,8 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`group_name`, `config_key`, `config_value`) VALUES
+('company', 'account', 's:32:"CC AAAA AAAA BBBB BBBB BBBB BBBB";'),
+('company', 'address', 's:13:"ul. Hurtowa 1";'),
 ('company', 'name', 's:6:"Hurtex";'),
 ('company', 'nip', 's:13:"123-456-32-18";');
 
@@ -154,8 +155,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 INSERT INTO `orders` (`id`, `date`, `client_id`, `status`, `printed`, `address`, `paragon_number`, `invoice`, `payment`, `sendform_id`) VALUES
-(1, 1274649074, 3, 'sent', 0, 'ul. Wolska 4', '0000000001', '2010/05/23-1', 'cash', 3),
-(2, 1274797117, 4, 'added', 0, 'test', '0000000002', '2010/05/25-2', 'cash', 1),
+(2, 1274797117, 4, 'accepted', 0, 'test', '0000000002', '2010/05/25-2', 'cash', 1),
 (3, 1274797220, 4, 'sent', 0, 'ul. Edytowana 1\n00-001 Binanowo', '0000000003', '2010/05/25-3', 'cash', 1),
 (4, 1274797390, 4, 'canceled', 0, 'test', '0000000004', NULL, 'cash', 2);
 
@@ -176,15 +176,13 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`),
   KEY `price_id` (`price_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Zrzut danych tabeli `orders_products`
 --
 
 INSERT INTO `orders_products` (`id`, `product_id`, `quantity`, `order_id`, `price_id`) VALUES
-(1, 1, 1, 1, 1),
-(2, 2, 1, 1, 2),
 (3, 3, 1, 2, 3),
 (4, 1, 1, 3, 13),
 (5, 20, 1, 3, 30),
@@ -472,6 +470,114 @@ INSERT INTO `product_search` (`product_id`, `name`, `full_data`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla  `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=76 ;
+
+--
+-- Zrzut danych tabeli `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+(1, 'login', 'Możliwość logowania'),
+(2, 'admin', 'Pełny dostęp'),
+(3, 'products', ''),
+(4, 'products.index', ''),
+(5, 'products.create', ''),
+(6, 'products.update', ''),
+(7, 'products.delete', ''),
+(8, 'warehouse', ''),
+(9, 'warehouse.index', ''),
+(10, 'warehouse.update', ''),
+(11, 'warehouse.deficient', ''),
+(12, 'categories', ''),
+(13, 'categories.index', ''),
+(14, 'categories.create', ''),
+(15, 'categories.update', ''),
+(16, 'categories.delete', ''),
+(17, 'clients', ''),
+(18, 'clients.index', ''),
+(19, 'clients.create', ''),
+(20, 'clients.update', ''),
+(21, 'clients.delete', ''),
+(22, 'clients.details', ''),
+(23, 'orders', ''),
+(24, 'orders.index', ''),
+(25, 'orders.added', ''),
+(26, 'orders.update', ''),
+(27, 'orders.details', ''),
+(28, 'suppliers', ''),
+(29, 'suppliers.index', ''),
+(30, 'suppliers.create', ''),
+(31, 'suppliers.update', ''),
+(32, 'suppliers.delete', ''),
+(55, 'vats', ''),
+(56, 'vats.index', ''),
+(57, 'vats.create', ''),
+(58, 'vats.update', ''),
+(59, 'vats.delete', ''),
+(60, 'units', ''),
+(61, 'units.index', ''),
+(62, 'units.create', ''),
+(63, 'units.update', ''),
+(64, 'units.delete', ''),
+(65, 'sendforms', ''),
+(66, 'sendforms.index', ''),
+(67, 'sendforms.create', ''),
+(68, 'sendforms.update', ''),
+(69, 'sendforms.delete', ''),
+(70, 'reports', ''),
+(71, 'users', ''),
+(72, 'users.index', ''),
+(73, 'users.create', ''),
+(74, 'users.update', ''),
+(75, 'users.delete', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `roles_users`
+--
+
+DROP TABLE IF EXISTS `roles_users`;
+CREATE TABLE IF NOT EXISTS `roles_users` (
+  `user_id` int(11) unsigned NOT NULL,
+  `role_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `fk_role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `roles_users`
+--
+
+INSERT INTO `roles_users` (`user_id`, `role_id`) VALUES
+(1, 1),
+(3, 1),
+(1, 2),
+(3, 4),
+(3, 9),
+(3, 13),
+(3, 18),
+(3, 24),
+(3, 29),
+(3, 56),
+(3, 61),
+(3, 66),
+(3, 70),
+(3, 72);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla  `sendforms`
 --
 
@@ -556,6 +662,55 @@ INSERT INTO `units` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla  `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL DEFAULT '',
+  `password` char(50) NOT NULL,
+  `logins` int(10) unsigned NOT NULL DEFAULT '0',
+  `last_login` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `logins`, `last_login`) VALUES
+(1, 'admin', 'f014ed627136059525f6cd2e6c0519b4bd3b796ead9f58711a', 4, 1275248651),
+(3, 'test', 'f7630f1d01fbeb85cdeca3c5f18bf0755d3a12b0cb17a22a64', 3, 1275249302);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `user_tokens`
+--
+
+DROP TABLE IF EXISTS `user_tokens`;
+CREATE TABLE IF NOT EXISTS `user_tokens` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `user_agent` varchar(40) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `created` int(10) unsigned NOT NULL,
+  `expires` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_token` (`token`),
+  KEY `fk_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `user_tokens`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla  `vats`
 --
 
@@ -592,8 +747,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`sendform_id`) REFERENCES `sendforms` (`id`);
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`sendform_id`) REFERENCES `sendforms` (`id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `orders_products`
@@ -622,8 +777,8 @@ ALTER TABLE `products`
 -- Ograniczenia dla tabeli `products_suppliers`
 --
 ALTER TABLE `products_suppliers`
-  ADD CONSTRAINT `products_suppliers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_suppliers_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_suppliers_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_suppliers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `products_supplies`
@@ -632,5 +787,18 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
+
+--
+-- Ograniczenia dla tabeli `roles_users`
+--
+ALTER TABLE `roles_users`
+  ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
