@@ -14,15 +14,20 @@ class HTML extends Kohana_HTML
 	
 	public static function anchor($uri, $title = NULL, array $attributes = NULL, $protocol = NULL)
 	{
-		$match = preg_match('/^admin\/(?P<controller>[^\/]+)(?:\/(?P<action>[^\/]+))?/i', $uri, $matches);
-		$matches['action'] = isset($matches['action']) ? $matches['action'] : 'index';
-		
-		if($match and !Auth::instance()->has_role($matches['controller'].'.'.$matches['action']))
+		if(preg_match('/^admin\/(?<controller>[^\/]++)(?:\/(?<action>[^\/\.]++))?/i', $uri, $matches))
 		{
-			return NULL;
+			if(isset($matches['action']) and $matches['action'] == 'details')
+			{
+				$matches['action'] = 'index';
+			}
+			
+			if(!Auth::instance()->has_role(rtrim($matches['controller'].'.'.$matches['action'], '.')))
+			{
+				return '';
+			}
 		}
 		
-		return static::anchor($uri, $title, $attributes, $protocol);
+		return parent::anchor($uri, $title, $attributes, $protocol);
 	}
 	
 	public static function anchor_confirm($uri, $title = NULL, $message = NULL, array $attributes = NULL, $protocol = NULL)
