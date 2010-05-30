@@ -29,21 +29,26 @@ dd:last-of-type {
 	text-align: center;
 }
 
-input[type=text], input[type=password] {
-	width: 190px;
+input {
 	border: 1px solid #ccc;
 	padding: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	background: -moz-linear-gradient(center top , #eee, #fff);
+}
+
+input[type=text], input[type=password] {
+	width: 190px;
 
 }
 
 input[type=submit] {
 	width: 100px;
-	border: 1px solid #ccc;
-	padding: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+}
+input[type=submit]:hover,
+input[type=submit]:focus
+{
+	background: -moz-linear-gradient(center top , #fff, #eee);
 }
 
 .hidden {
