@@ -1,9 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_orders extends Controller_Frontend
+class Controller_Protected_orders extends Controller_Admin
 {
 	protected $_base = 'admin/orders';
 	public $no_template = array('invoice', 'added');
+	
+	public $access = array('invoice' => ':controller.index');
 
 	public function action_index()
 	{
@@ -14,34 +16,7 @@ class Controller_Protected_orders extends Controller_Frontend
 	{
 		$this->content->orders = Jelly::select('order')->with('client')->get_added()->execute();
 	}
-	
-	public function action_create()
-	{
-		$this->content->bind('form', $order); // uzywajac bind() widok zapamieta referencje a nie wartosc
-		$this->content->bind('errors', $errors); // czyli: jesli zmienimy tutaj wartosc zmiennych $order 
-													// lub $error to bedzie to w widoku te zmienne tez beda zmienione
-
-		$order = Jelly::factory('order');
 		
-		if($_POST and !$this->session->get($_POST['seed'], FALSE))
-		{
-			try
-			{
-				$order->set($_POST);
-				$order->set($_FILES);
-				$order->save();
-
-				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
-				$this->request->redirect($this->_base);
-			}
-			catch(Validate_Exception $e)
-			{
-				$order->current_image = $order->image;
-				$errors = $e->errors();
-			}
-		}
-	}
-	
 	public function action_update()
 	{
 		$this->content->bind('form', $order);

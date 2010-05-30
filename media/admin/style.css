@@ -81,8 +81,8 @@ a {
 }
 
 #root {
-	width: 90%;
-	margin: 0 5%;
+	width: 95%;
+	margin: 0 2.5%;
 	background-color: #FFF;
 }
 
@@ -134,6 +134,17 @@ nav li>a {
 nav li:hover>a, nav li.active>a {
 	color: #FFDC73;
 	background-color: #A67C00;
+}
+
+
+nav li.logout-link>a {
+	background-color: #FF4900;
+	color: #FFF;
+}
+
+nav li.logout-link:hover>a {
+	background-color: #FFF;
+	color: #FF4900;
 }
 
 #contents {

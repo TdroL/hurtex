@@ -29,6 +29,8 @@
 					<li><a href="<?php echo url::site('admin/units') ?>">Jednostki miary</a></li>
 					<li><a href="<?php echo url::site('admin/sendforms') ?>">Formy wysyłki</a></li>
 					<li><a href="<?php echo url::site('admin/reports') ?>">Raporty</a></li>
+					<li><a href="<?php echo url::site('admin/users') ?>">Użytkownicy</a></li>
+					<li class="logout-link"><a href="<?php echo url::site('admin/users/logout') ?>">Wyloguj</a></li>
 				</ul>
 			</nav>
 

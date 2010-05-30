@@ -1,7 +1,11 @@
 <?php
 class Controller_Admin extends Controller_Auth
 {
-	public function before()
+	public $redirect_url = 'admin/users/restricted';
+	public $login_url = 'admin/users/login';
+	public $company;
+	
+	function before()
 	{
 		parent::before();
 		
@@ -9,7 +13,6 @@ class Controller_Admin extends Controller_Auth
 		
 		if($this->view instanceof View)
 		{
-			$this->view->set_global('user', $this->user);
 			$this->view->bind_global('company', $this->company);
 		}
 	}

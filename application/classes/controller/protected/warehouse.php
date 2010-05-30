@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Warehouse extends Controller_Frontend
+class Controller_Protected_Warehouse extends Controller_Admin
 {
 	protected $_base = 'admin/warehouse';
 	protected $_home = 'admin';
@@ -45,11 +45,6 @@ class Controller_Protected_Warehouse extends Controller_Frontend
 	public function action_deficient()
 	{
 		$this->content->products = Jelly::select('product')->get_deficient()->execute();
-	}
-	
-	public function action_supply()
-	{
-		$this->content->products = Jelly::select('supply')->execute();
 	}
 }
 

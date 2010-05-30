@@ -10,7 +10,7 @@ class Kohana extends Kohana_Core
 		}
 		catch(Exception $e)
 		{
-			if(preg_match('/unlink\(\/application\/cache\/[^\)]+\)/i', $e->getMessage()))
+			if(preg_match('/unlink\(\/application\/cache\/.+?\)/i', $e->getMessage()))
 			{
 				!IN_PRODUCTION and Kohana::$log->add('cache', $e.PHP_EOL.'URI: '.$request->uri);
 				return NULL;

@@ -1,8 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Products extends Controller_Frontend
+class Controller_Protected_Products extends Controller_Admin
 {
 	protected $_base = 'admin/products';
+	
+	public $access = array('details' => ':controller.index');
 
 	public function action_index()
 	{

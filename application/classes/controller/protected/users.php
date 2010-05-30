@@ -1,28 +1,65 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Clients extends Controller_Admin
+class Controller_Protected_Users extends Controller_Admin
 {
-	protected $_base = 'admin/clients';
-
+	protected $_base = 'admin/users';
+	protected $_home = 'admin';
+	
+	public $access = array(
+						'login' => NULL,
+						'logout' => NULL,
+						'restricted' => NULL,
+					);
+	public $no_template = array('login');
+	public $no_view = array('logout');
+	
+	public function action_login()
+	{
+		$this->content->bind('error', $error);
+		
+		if($_POST)
+		{
+			if($this->auth->login($_POST['username'], $_POST['password']))
+			{
+				$this->request->redirect($this->_home);
+			}
+			else
+			{
+				$error = TRUE;
+			}
+		}
+	}
+	
+	public function action_restricted()
+	{
+		
+	}
+	
+	public function action_logout()
+	{
+		$this->auth->logout();
+		$this->request->redirect($this->_base);
+	}
+	
 	public function action_index()
 	{
-		$this->content->clients = Jelly::select('client')->execute();
+		$this->content->users = Jelly::select('user')->execute();
 	}
-
+	
 	public function action_create()
 	{
-		$this->content->bind('form', $client); // uzywajac bind() widok zapamieta referencje a nie wartosc
-		$this->content->bind('errors', $errors); // czyli: jesli zmienimy tutaj wartosc zmiennych $client 
+		$this->content->bind('form', $user); // uzywajac bind() widok zapamieta referencje a nie wartosc
+		$this->content->bind('errors', $errors); // czyli: jesli zmienimy tutaj wartosc zmiennych $user 
 													// lub $error to bedzie to w widoku te zmienne tez beda zmienione
 
-		$client = Jelly::factory('client');
+		$user = Jelly::factory('user');
 
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
 			try
 			{
-				$client->set($_POST);
-				$client->save();
+				$user->set($_POST);
+				$user->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
@@ -36,18 +73,18 @@ class Controller_Protected_Clients extends Controller_Admin
 
 	public function action_update()
 	{
-		$this->content->bind('form', $client);
+		$this->content->bind('form', $user);
 		$this->content->bind('errors', $errors);
 
 		$id = $this->request->param('id');
-		$client = Jelly::select('client', $id);
+		$user = Jelly::select('user', $id);
 
-		if(!$client->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		if(!$user->loaded()) // jesli ine istnieje to przekieruj do listy produktow
 		{
 			$this->request->redirect($this->_base);
 		}
 
-		unset($client->password);
+		unset($user->password);
 
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
@@ -56,15 +93,10 @@ class Controller_Protected_Clients extends Controller_Admin
 				unset($_POST['password'], $_POST['password_confirm']);
 			}
 			
-			if(empty($_POST['email_confirm']))
-			{
-				unset($_POST['email'], $_POST['email_confirm']);
-			}
-			
 			try
 			{
-				$client->set($_POST);
-				$client->save();
+				$user->set($_POST);
+				$user->save();
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
@@ -78,13 +110,13 @@ class Controller_Protected_Clients extends Controller_Admin
 
 	public function action_delete()
 	{
-		$this->content->bind('form', $client);
+		$this->content->bind('form', $user);
 		$this->content->bind('errors', $errors);
 
 		$id = $this->request->param('id');
-		$client = Jelly::select('client', $id);
+		$user = Jelly::select('user', $id);
 
-		if(!$client->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		if(!$user->loaded()) // jesli ine istnieje to przekieruj do listy produktow
 		{
 			$this->request->redirect($this->_base);
 		}
@@ -93,7 +125,7 @@ class Controller_Protected_Clients extends Controller_Admin
 		{
 			try
 			{
-				$client->delete();
+				$user->delete();
 
 				$this->session->set($_POST['seed'], TRUE);
 				$this->request->redirect($this->_base);
@@ -102,20 +134,6 @@ class Controller_Protected_Clients extends Controller_Admin
 			{
 				$errors = $e->errors();
 			}
-		}
-	}
-	
-	public function action_details()
-	{
-		$this->content->bind('form', $client);
-		$this->content->bind('errors', $errors);
-
-		$id = $this->request->param('id');
-		$this->content->client = Jelly::select('client', $id);
-
-		if(!$this->content->client->loaded()) // jesli ine istnieje to przekieruj do listy klientów
-		{
-			$this->request->redirect($this->_base);
 		}
 	}
 }

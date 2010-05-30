@@ -17,8 +17,10 @@ abstract class Controller_Auth extends Controller_Template
 			$this->view->bind_global('auth', $this->auth);
 		}
 		
-		$role = $this->request->controller; // default role
+		$controller = $this->request->controller; // default role
 		$action = $this->request->action;
+		
+		$role = $controller.'.'.$action;
 		
 		if(array_key_exists($action, $this->access)) // for only this one action
 		{
@@ -34,9 +36,14 @@ abstract class Controller_Auth extends Controller_Template
 			return; // if $role is NULL, FALSE (empty) allow for all users, even not logged
 		}
 		
+		$role = strtr($role, array(
+									':controller' => $controller,
+									':action' => $action,
+								));
+								
 		if($this->auth->logged_in())
 		{
-			if(!$this->auth->has_role($role.'.'.$action)) // custom method
+			if(!$this->auth->has_role($role)) // custom method
 			{
 				// role required: $role
 				$this->request->redirect($this->redirect_url);

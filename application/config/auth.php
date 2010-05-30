@@ -2,7 +2,7 @@
 
 return array
 (
-	'driver' => 'ORM',
+	'driver' => 'Jelly',
 	'hash_method' => 'sha1',
 	'salt_pattern' => '2, 7, 8, 12, 15, 16, 21, 23, 27, 30',
 	'lifetime' => 1209600,

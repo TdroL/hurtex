@@ -11,6 +11,7 @@ return array(
 	'digit'        => ':field must be a digit',
 	'decimal'      => ':field must be a decimal with :param1 places',
 	'range'        => ':field must be within the range of :param1 to :param2',
+	'date'         => ':field must be a valid date',
 	'Upload::valid'    	=> 'file :field must be valid',
 	'Upload::not_empty'	=> 'file :field must not be empty',
 	'Upload::type'    	=> 'file :field (":param1") has wrong file type',

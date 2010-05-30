@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Protected_Units extends Controller_Frontend
+class Controller_Protected_Units extends Controller_Admin
 {
 	protected $_base = 'admin/units';
 
