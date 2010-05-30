@@ -16,3 +16,6 @@
 [submodule "modules/jelly"]
 	path = modules/jelly
 	url = git://github.com/jonathangeiger/kohana-jelly.git
+[submodule "modules/jelly-auth"]
+	path = modules/jelly-auth
+	url = http://github.com/raeldc/jelly-auth.git
