@@ -12,7 +12,20 @@ class HTML extends Kohana_HTML
 		return View::factory('common/errors')->set('errors', $errors).PHP_EOL;
 	}
 	
-	public static function anchor_confirm($uri, $title = NULL, $message = NULL,array $attributes = NULL, $protocol = NULL)
+	public static function anchor($uri, $title = NULL, array $attributes = NULL, $protocol = NULL)
+	{
+		$match = preg_match('/^admin\/(?P<controller>[^\/]+)(?:\/(?P<action>[^\/]+))?/i', $uri, $matches);
+		$matches['action'] = isset($matches['action']) ? $matches['action'] : 'index';
+		
+		if($match and !Auth::instance()->has_role($matches['controller'].'.'.$matches['action']))
+		{
+			return NULL;
+		}
+		
+		return static::anchor($uri, $title, $attributes, $protocol);
+	}
+	
+	public static function anchor_confirm($uri, $title = NULL, $message = NULL, array $attributes = NULL, $protocol = NULL)
 	{
 		if(!empty($message))
 		{
