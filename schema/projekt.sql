@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 30 Maj 2010, 22:49
+-- Czas wygenerowania: 31 Maj 2010, 22:07
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -121,10 +121,10 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`group_name`, `config_key`, `config_value`) VALUES
-('company', 'account', 's:32:"CC AAAA AAAA BBBB BBBB BBBB BBBB";'),
+('company', 'account', 's:32:"79 8804 0000 0000 0023 9551 0001";'),
 ('company', 'address', 's:13:"ul. Hurtowa 1";'),
 ('company', 'name', 's:6:"Hurtex";'),
-('company', 'nip', 's:13:"123-456-32-18";');
+('company', 'nip', 's:13:"534-194-00-08";');
 
 -- --------------------------------------------------------
 
@@ -544,6 +544,68 @@ INSERT INTO `roles` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla  `rolesgroups`
+--
+
+DROP TABLE IF EXISTS `rolesgroups`;
+CREATE TABLE IF NOT EXISTS `rolesgroups` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `rolesgroups`
+--
+
+INSERT INTO `rolesgroups` (`id`, `name`) VALUES
+(1, 'Administrator'),
+(3, 'Magazynier'),
+(2, 'Sprzedawca');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `roles_rolesgroups`
+--
+
+DROP TABLE IF EXISTS `roles_rolesgroups`;
+CREATE TABLE IF NOT EXISTS `roles_rolesgroups` (
+  `rolesgroup_id` int(11) unsigned NOT NULL,
+  `role_id` int(11) unsigned NOT NULL,
+  KEY `rolesgroup_id` (`rolesgroup_id`,`role_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `roles_rolesgroups`
+--
+
+INSERT INTO `roles_rolesgroups` (`rolesgroup_id`, `role_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 3),
+(2, 12),
+(2, 18),
+(2, 22),
+(2, 23),
+(2, 28),
+(2, 55),
+(2, 60),
+(2, 66),
+(2, 70),
+(3, 1),
+(3, 4),
+(3, 8),
+(3, 28),
+(3, 60),
+(3, 70);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla  `roles_users`
 --
 
@@ -563,17 +625,16 @@ INSERT INTO `roles_users` (`user_id`, `role_id`) VALUES
 (1, 1),
 (3, 1),
 (1, 2),
-(3, 4),
-(3, 9),
-(3, 13),
+(3, 3),
+(3, 12),
 (3, 18),
-(3, 24),
-(3, 29),
-(3, 56),
-(3, 61),
+(3, 22),
+(3, 23),
+(3, 28),
+(3, 55),
+(3, 60),
 (3, 66),
-(3, 70),
-(3, 72);
+(3, 70);
 
 -- --------------------------------------------------------
 
@@ -672,17 +733,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` char(50) NOT NULL,
   `logins` int(10) unsigned NOT NULL DEFAULT '0',
   `last_login` int(10) unsigned DEFAULT NULL,
+  `rolesgroup_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uniq_username` (`username`)
+  UNIQUE KEY `uniq_username` (`username`),
+  KEY `rolesgroup_id` (`rolesgroup_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `logins`, `last_login`) VALUES
-(1, 'admin', 'f014ed627136059525f6cd2e6c0519b4bd3b796ead9f58711a', 4, 1275248651),
-(3, 'test', 'f7630f1d01fbeb85cdeca3c5f18bf0755d3a12b0cb17a22a64', 3, 1275249302);
+INSERT INTO `users` (`id`, `username`, `password`, `logins`, `last_login`, `rolesgroup_id`) VALUES
+(1, 'admin', 'f014ed627136059525f6cd2e6c0519b4bd3b796ead9f58711a', 8, 1275325404, 1),
+(3, 'test', 'f7630f1d01fbeb85cdeca3c5f18bf0755d3a12b0cb17a22a64', 5, 1275336393, 2);
 
 -- --------------------------------------------------------
 
@@ -747,8 +810,8 @@ ALTER TABLE `categories`
 -- Ograniczenia dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`sendform_id`) REFERENCES `sendforms` (`id`),
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`sendform_id`) REFERENCES `sendforms` (`id`);
 
 --
 -- Ograniczenia dla tabeli `orders_products`
@@ -789,11 +852,24 @@ ALTER TABLE `products_supplies`
   ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
 
 --
+-- Ograniczenia dla tabeli `roles_rolesgroups`
+--
+ALTER TABLE `roles_rolesgroups`
+  ADD CONSTRAINT `roles_rolesgroups_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_rolesgroups_ibfk_1` FOREIGN KEY (`rolesgroup_id`) REFERENCES `rolesgroups` (`id`) ON DELETE CASCADE;
+
+--
 -- Ograniczenia dla tabeli `roles_users`
 --
 ALTER TABLE `roles_users`
   ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`rolesgroup_id`) REFERENCES `rolesgroups` (`id`) ON DELETE SET NULL;
 
 --
 -- Ograniczenia dla tabeli `user_tokens`

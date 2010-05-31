@@ -223,6 +223,18 @@ form tr.errors li {
 	list-style-type: circle;
 }
 
+form tr.success div {
+	border: 1px solid #00f;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin: 4px 0;
+	text-align: left;
+	padding: 5px 80px 5px 35px;
+	background: #3399FF url('images/bg_success.png') right top no-repeat;
+	color: #fff;
+}
+
 form td:nth-child(2n - 1) label {
 	display: block;
 }

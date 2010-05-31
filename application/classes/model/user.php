@@ -48,7 +48,10 @@ class Model_User extends Model_Auth_User
 			)),
 			'roles' => new Field_ManyToMany(array(
 				'label' => 'Role',	
-			))
+			)),
+			'rolesgroup' => new Field_BelongsTo(array(
+				'label' => 'Grupa ról',
+			)),
 		));
     }
 }

@@ -10,6 +10,7 @@ class Controller_Protected_Users extends Controller_Admin
 						'logout' => NULL,
 						'restricted' => NULL,
 					);
+					
 	public $no_template = array('login');
 	public $no_view = array('logout');
 	
@@ -60,7 +61,13 @@ class Controller_Protected_Users extends Controller_Admin
 			{
 				$user->set($_POST);
 				$user->save();
-
+				
+				if($user->rolesgroup)
+				{
+					$user->roles = $user->rolesgroup->roles;
+					$user->save();
+				}
+				
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
 			}
@@ -97,6 +104,12 @@ class Controller_Protected_Users extends Controller_Admin
 			{
 				$user->set($_POST);
 				$user->save();
+
+				if($user->rolesgroup)
+				{
+					$user->roles = $user->rolesgroup->roles;
+					$user->save();
+				}
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);

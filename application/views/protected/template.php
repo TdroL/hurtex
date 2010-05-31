@@ -6,7 +6,8 @@
 	<style type="text/css">
 		@import url("<?php echo url::site('media/admin/style.css') ?>");
 	</style>
-
+	<?php echo html::script('media/js/jquery-1.4.2.min.js') ?>
+	<?php echo html::script('media/js/jquery.autohide.js') ?>
 </head>
 <body>
 	<div id="root">
@@ -17,19 +18,26 @@
 		<div id="subroot">
 			<nav>
 				<ul>
-					<!-- class="active" -->
-					<li><a href="<?php echo url::site('admin/main') ?>">Powiadomienia</a></li>
-					<li><a href="<?php echo url::site('admin/products') ?>">Produkty</a></li>
-					<li><a href="<?php echo url::site('admin/warehouse') ?>">Magazyn</a></li>
-					<li><a href="<?php echo url::site('admin/categories') ?>">Kategorie</a></li>
-					<li><a href="<?php echo url::site('admin/clients') ?>">Klienci</a></li>
-					<li><a href="<?php echo url::site('admin/orders') ?>">Zamówienia</a></li>
-					<li><a href="<?php echo url::site('admin/suppliers') ?>">Dostawcy</a></li>
-					<li><a href="<?php echo url::site('admin/vats') ?>">Stawki VAT</a></li>
-					<li><a href="<?php echo url::site('admin/units') ?>">Jednostki miary</a></li>
-					<li><a href="<?php echo url::site('admin/sendforms') ?>">Formy wysyłki</a></li>
-					<li><a href="<?php echo url::site('admin/reports') ?>">Raporty</a></li>
-					<li><a href="<?php echo url::site('admin/users') ?>">Użytkownicy</a></li>
+<?php foreach(array(
+					'main' => 'Powiadomienia',
+					'products' => 'Produkty',
+					'warehouse' => 'Magazyn',
+					'categories' => 'Kategorie',
+					'clients' => 'Klienci',
+					'orders' => 'Zamówienia',
+					'suppliers' => 'Dostawcy',
+					'vats' => 'Stawki VAT',
+					'units' => 'Jednostki miary',
+					'sendforms' => 'Formy wysyłki',
+					'reports' => 'Raporty',
+					'users' => 'Użytkownicy',
+					'settings' => 'Ustawienia',
+					'rolesgroups' => 'Grupy ról',
+			) as $uri => $label): ?>
+	<?php if($auth->has_role($uri.'.index')): ?>
+		<li><a href="<?php echo url::site('admin/'.$uri) ?>"><?php echo $label ?></a></li>
+	<?php endif ?>
+<?php endforeach ?>
 					<li class="logout-link"><a href="<?php echo url::site('admin/users/logout') ?>">Wyloguj</a></li>
 				</ul>
 			</nav>

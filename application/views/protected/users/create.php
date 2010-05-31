@@ -30,9 +30,9 @@
 							</tr>
 
 							<tr>
-								<td><?php echo $form->label('roles') ?></td>
+								<td><?php echo $form->label('rolesgroup') ?></td>
 								<td>
-									<?php echo $form->input('roles') ?>
+									<?php echo $form->input('rolesgroup') ?>
 								</td>
 							</tr>
 

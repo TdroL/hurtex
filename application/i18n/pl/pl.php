@@ -34,6 +34,7 @@ return array(
 	'file :field must be valid'							=> 'Plik ":field" musi być prawidłowy',
 	'file :field must not be empty'						=> 'Pole ":field" nie może być puste',
 	':field must be a valid NIP'						=> 'Pole ":field" musi zawierać poprawny numer NIP',
+	':field must be a valid account number'				=> 'Pole ":field" musi być poprawnym numerem rachunku bankowego',
 	'file :field (":param1") has wrong file type'		=> 'Plik ":field" posiada zły typ pliku',
 	'file :field (":param1") is too big'				=> 'Plik ":field" jest zbyt duży',
 	'file :field (":param1") already exists'			=> 'Plik ":field" (":param1") już istnieje',
