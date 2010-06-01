@@ -14,7 +14,7 @@
 		<tr><td colspan="2" class="smal"></td></tr>
 		<tr><td colspan="2"><?php echo $company->address ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
-		<tr><td colspan="2" class="spacing"><?php echo $company->account ?></td></tr>
+		<tr><td colspan="2" class="spacing"><?php echo preg_replace('/\D/i', '', $company->account) ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
 		<tr><td class="type">X</td><td class="price"><?php echo number_format($sum_brutto_plus, 2) ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
@@ -37,7 +37,7 @@
 		<tr><td colspan="2" class="smal"></td></tr>
 		<tr><td colspan="2"><?php echo $company->address ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
-		<tr><td colspan="2" class="spacing"><?php echo $company->account ?></td></tr>
+		<tr><td colspan="2" class="spacing"><?php echo preg_replace('/\D/i', '', $company->account) ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
 		<tr><td class="type">X</td><td class="price"><?php echo number_format($sum_brutto_plus, 2) ?></td></tr>
 		<tr><td colspan="2" class="smal"></td></tr>
