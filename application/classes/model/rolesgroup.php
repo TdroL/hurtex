@@ -13,6 +13,9 @@ class Model_Rolesgroup extends Jelly_Model
 				'roles' => new Field_ManyToMany(array(
 					'label' => 'Role',
 				)),
+				'users' => new Field_HasMany(array(
+					'label' => 'Użytkownicy',
+				)),
 			));
 	}
 

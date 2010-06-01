@@ -54,15 +54,16 @@ class Controller_Protected_RolesGroups extends Controller_Admin
 
 		if($_POST and !$this->session->get($_POST['seed'], FALSE))
 		{
-			if(empty($_POST['password']))
-			{
-				unset($_POST['password'], $_POST['password_confirm']);
-			}
-			
 			try
 			{
 				$rolesgroup->set($_POST);
 				$rolesgroup->save();
+
+				foreach($rolesgroup->users as $v)
+				{
+					$v->roles = $rolesgroup->roles;
+					$v->save();
+				}
 
 				$this->session->set($_POST['seed'], TRUE); // 'seed' jest zintegrowany w formularz
 				$this->request->redirect($this->_base);
