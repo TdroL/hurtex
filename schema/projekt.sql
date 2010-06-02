@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 02 Cze 2010, 12:35
+-- Czas wygenerowania: 02 Cze 2010, 15:38
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -99,7 +99,6 @@ CREATE TABLE IF NOT EXISTS `clients` (
 --
 
 INSERT INTO `clients` (`id`, `first_name`, `second_name`, `email`, `password`, `address`, `phone_number`, `company_name`, `nip`) VALUES
-(1, 'Jan', 'Kowalski', 'dupa2@o2.pl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. ajrzynowA 32/6', '9876543219', '', '0'),
 (4, 'Marian', 'Marian', 'marian@mail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ul. Lipowa 1/2\n20-600 Lublin', '512 689 987', '', '768-000-24-66');
 
 -- --------------------------------------------------------
@@ -366,12 +365,65 @@ CREATE TABLE IF NOT EXISTS `products_suppliers` (
   PRIMARY KEY (`id`),
   KEY `suppliers_id` (`supplier_id`),
   KEY `products_id` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
 
 --
 -- Zrzut danych tabeli `products_suppliers`
 --
 
+INSERT INTO `products_suppliers` (`id`, `supplier_id`, `product_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(8, 3, 41),
+(9, 4, 41),
+(10, 4, 42),
+(11, 4, 37),
+(12, 4, 44),
+(13, 4, 14),
+(14, 4, 7),
+(15, 4, 47),
+(16, 4, 38),
+(17, 4, 6),
+(18, 4, 15),
+(19, 4, 20),
+(20, 4, 27),
+(21, 4, 12),
+(22, 4, 39),
+(23, 4, 31),
+(24, 4, 48),
+(25, 4, 22),
+(26, 4, 23),
+(27, 4, 21),
+(28, 4, 10),
+(29, 4, 11),
+(30, 4, 13),
+(31, 4, 1),
+(32, 4, 9),
+(33, 4, 4),
+(34, 4, 8),
+(35, 4, 17),
+(36, 4, 36),
+(37, 4, 18),
+(38, 4, 43),
+(39, 4, 19),
+(40, 4, 34),
+(41, 4, 32),
+(42, 4, 33),
+(43, 4, 35),
+(44, 4, 30),
+(45, 4, 28),
+(46, 4, 26),
+(47, 4, 24),
+(48, 4, 49),
+(49, 4, 25),
+(50, 4, 46),
+(51, 4, 5),
+(52, 4, 45),
+(53, 4, 16),
+(54, 4, 3),
+(55, 4, 40),
+(56, 4, 29),
+(57, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -652,12 +704,17 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Zrzut danych tabeli `suppliers`
 --
 
+INSERT INTO `suppliers` (`id`, `name`, `address`) VALUES
+(1, 'Spedex', 'ul. Jakaś 1'),
+(2, 'Airtex', 'ul. Któraś'),
+(3, 'PKPex', 'ul. Innaś'),
+(4, 'Wszystkox', 'ul. Wszędzie');
 
 -- --------------------------------------------------------
 
@@ -667,7 +724,7 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
 
 DROP TABLE IF EXISTS `supplies`;
 CREATE TABLE IF NOT EXISTS `supplies` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) unsigned NOT NULL,
   `status` enum('added','in-progress','done','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'added',
   `quantity` float NOT NULL,
@@ -676,12 +733,16 @@ CREATE TABLE IF NOT EXISTS `supplies` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `supplies`
 --
 
+INSERT INTO `supplies` (`id`, `date`, `status`, `quantity`, `product_id`, `supplier_id`) VALUES
+(1, 1275476832, 'done', 10, 1, 1),
+(2, 1275477338, 'done', 29, 41, 3),
+(3, 1275478635, 'added', 10, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -825,8 +886,8 @@ ALTER TABLE `products`
 -- Ograniczenia dla tabeli `products_suppliers`
 --
 ALTER TABLE `products_suppliers`
-  ADD CONSTRAINT `products_suppliers_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_suppliers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_suppliers_ibfk_6` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `products_suppliers_ibfk_5` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `roles_rolesgroups`
@@ -846,8 +907,8 @@ ALTER TABLE `roles_users`
 -- Ograniczenia dla tabeli `supplies`
 --
 ALTER TABLE `supplies`
-  ADD CONSTRAINT `supplies_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `supplies_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL;
 
 --
 -- Ograniczenia dla tabeli `users`
