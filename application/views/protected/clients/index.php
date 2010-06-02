@@ -5,9 +5,18 @@
 <caption><?php echo html::anchor('admin/clients/create', 'Dodaj nowego klienta') ?></caption>
 <thead>
 	<tr>
-		<td>Imie</td>
-		<td>Nazwisko</td>
-		<td>E-mail</td>
+		<td>Imie<br />
+			<?php echo html::anchor('admin/clients/index/sort-by-first_name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/clients/index/sort-by-first_name-desc', '&or;') ?>
+		</td>
+		<td>Nazwisko<br />
+			<?php echo html::anchor('admin/clients/index/sort-by-second_name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/clients/index/sort-by-second_name-desc', '&or;') ?>
+		</td>
+		<td>E-mail<br />
+			<?php echo html::anchor('admin/clients/index/sort-by-email-asc', '&and;') ?>
+			<?php echo html::anchor('admin/clients/index/sort-by-email-desc', '&or;') ?>
+		</td>
 		<td>Operacje</td>
 	</tr>
 </thead>
@@ -26,3 +35,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

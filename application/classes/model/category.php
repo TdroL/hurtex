@@ -16,7 +16,8 @@ class Model_Category extends Jelly_Model
 				'category' => new Field_Category(array(
 					'label' => 'Kategoria nadrzędna',
 				)),
-			));
+			))
+			->sorting(array('category' => 'asc'));
 	}
 	
 	public function is_empty()

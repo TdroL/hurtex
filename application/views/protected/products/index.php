@@ -4,10 +4,22 @@
 <caption><?php echo html::anchor('admin/products/create', 'Dodaj nowy produkt') ?></caption>
 <thead>
 	<tr>
-		<td>Nazwa</td>
-		<td>Kategoria</td>
-		<td>Ilość</td>
-		<td class ="price_width">Cena netto</td>
+		<td>Nazwa<br />
+			<?php echo html::anchor('admin/products/index/sort-by-name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/products/index/sort-by-name-desc', '&or;') ?>
+		</td>
+		<td>Kategoria<br />
+			<?php echo html::anchor('admin/products/index/sort-by-category-asc', '&and;') ?>
+			<?php echo html::anchor('admin/products/index/sort-by-category-desc', '&or;') ?>
+		</td>
+		<td>Ilość<br />
+			<?php echo html::anchor('admin/products/index/sort-by-quantity-asc', '&and;') ?>
+			<?php echo html::anchor('admin/products/index/sort-by-quantity-desc', '&or;') ?>
+		</td>
+		<td class ="price_width">Cena netto<br />
+			<?php echo html::anchor('admin/products/index/sort-by-price-asc', '&and;') ?>
+			<?php echo html::anchor('admin/products/index/sort-by-price-desc', '&or;') ?>
+		</td>
 		<td>Vat</td>
 		<td>Operacje</td>
 	</tr>
@@ -28,3 +40,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

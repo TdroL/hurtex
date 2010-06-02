@@ -22,6 +22,7 @@
 					'main' => 'Powiadomienia',
 					'products' => 'Produkty',
 					'warehouse' => 'Magazyn',
+					'supplies' => 'Zapotrzebowanie',
 					'categories' => 'Kategorie',
 					'clients' => 'Klienci',
 					'orders' => 'Zamówienia',

@@ -6,7 +6,14 @@ class Controller_Protected_categories extends Controller_Admin
 
 	public function action_index()
 	{
-		$this->content->categories = Jelly::select('category')->execute();
+		$this->content->categories = Jelly::select('category')
+										->page()
+										->sort()
+										->execute();
+		
+		$this->content->paginate = new Pagination(array(
+			'total_items' => Jelly::select('category')->count()
+		));
 	}
 
 	public function action_create()

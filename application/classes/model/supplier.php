@@ -28,7 +28,8 @@ class Model_Supplier extends Jelly_Model
 				'products' => new Field_ManyToMany(array(
 					'label' => 'Produkty',
 				)),
-			));
+			))
+			->sorting(array(':name_key' => 'asc'));
 	}
 
 }

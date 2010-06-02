@@ -27,9 +27,17 @@ class Model_Builder_Product extends Jelly_Builder
 		return $this->where(':primary_key', 'IN', $ids)->execute();
 	}
 	
-	public function sort_by_quantity()
+	public function sort()
 	{
-		return $this->select('*', array(DB::expr('(quantity/minimal_quantity)'), 'sorting_row'))->order_by('sorting_row', 'asc');
+		$sort = Request::instance()->param('sort', 'quantity');
+		$order = Request::instance()->param('order');
+		
+		if($sort == 'quantity')
+		{
+			return $this->select('*', array(DB::expr('(quantity/minimal_quantity)'), 'sorting_row'))->order_by('sorting_row', $order);
+		}
+		
+		return parent::sort();
 	}
 	
 	public function get_deficient()

@@ -1,41 +1,34 @@
 <?php defined('SYSPATH') or die('No direct script access.'); ?>
 
-				<?php echo form::open('admin/warehouse/update.'.$form->id) ?>
+				<?php echo form::open('admin/supplies/create.'.$form->product->id) ?>
 					<fieldset>
 						
 						<table>
-							<caption>Edytuj produkt</caption>
+							<caption>Zgłoś zapotrzebowanie</caption>
 							
 							<?php echo html::error_messages($errors) ?>
 
 							<tr>
-								<td><?php echo $form->label('name') ?></td>
+								<td><?php echo $form->label('product') ?></td>
 								<td>
-									<?php echo $form->input('name') ?>
+									<?php echo $form->product->name ?>
 								</td>
 							</tr>
-							
-							<tr>
-								<td><?php echo $form->label('unit') ?></td>
-								<td>
-									<?php echo $form->input('unit') ?>
-								</td>
-							</tr>
-							
+
 							<tr>
 								<td><?php echo $form->label('quantity') ?></td>
 								<td>
-									<?php echo number_format($form->quantity, $form->unit->type == 'integer' ? 0 : 2) ?>
+									<?php echo $form->input('quantity') ?>
 								</td>
 							</tr>
-							
+
 							<tr>
-								<td><?php echo $form->label('minimal_quantity') ?></td>
+								<td><?php echo $form->label('supplier') ?></td>
 								<td>
-									<?php echo $form->input('minimal_quantity') ?>
+									<?php echo $form->input('supplier') ?>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<td></td>
 								<td>

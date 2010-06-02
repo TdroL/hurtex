@@ -4,11 +4,26 @@
 <table>
 <thead>
 	<tr>
-		<td>Nr paragonu</td>
-		<td>Faktura</td>
-		<td>Data</td>
-		<td>Klient</td>
-		<td>Status</td>
+		<td>Nr paragonu<br />
+			<?php echo html::anchor('admin/orders/index/sort-by-paragon_number-asc', '&and;') ?>
+			<?php echo html::anchor('admin/orders/index/sort-by-paragon_number-desc', '&or;') ?>
+		</td>
+		<td>Faktura<br />
+			<?php echo html::anchor('admin/orders/index/sort-by-invoice-asc', '&and;') ?>
+			<?php echo html::anchor('admin/orders/index/sort-by-invoice-desc', '&or;') ?>
+		</td>
+		<td>Data<br />
+			<?php echo html::anchor('admin/orders/index/sort-by-date-asc', '&and;') ?>
+			<?php echo html::anchor('admin/orders/index/sort-by-date-desc', '&or;') ?>
+		</td>
+		<td>Klient<br />
+			<?php echo html::anchor('admin/orders/index/sort-by-second_name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/orders/index/sort-by-second_name-desc', '&or;') ?>
+		</td>
+		<td>Status<br />
+			<?php echo html::anchor('admin/orders/index/sort-by-status-asc', '&and;') ?>
+			<?php echo html::anchor('admin/orders/index/sort-by-status-desc', '&or;') ?>
+		</td>
 		<td>Operacje</td>
 	</tr>
 </thead>
@@ -29,3 +44,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

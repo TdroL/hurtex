@@ -12,10 +12,23 @@ class Jelly_Builder extends Jelly_Builder_Core
 		return parent::_column($field, $join, $value);
 	}
 	
-	public function page($page, $items = 25)
+	public function page($page = NULL, $items = 25)
 	{
-		$page = $page < 0 ? 0 : $page;
+		$page = Request::instance()->param('page');
+		$page = --$page < 0 ? 0 : $page;
 		return $this->limit($items)->offset($page*$items);
+	}
+	
+	public function sort()
+	{
+		$sort = Request::instance()->param('sort');
+		$order = Request::instance()->param('order');
+		
+		if(empty($sort))
+		{
+			return $this;
+		}
+		return $this->order_by($sort, $order);
 	}
 	
 	public function loaded()

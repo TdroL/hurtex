@@ -52,6 +52,7 @@ class Model_User extends Model_Auth_User
 			'rolesgroup' => new Field_BelongsTo(array(
 				'label' => 'Grupa ról',
 			)),
-		));
+		))
+		->sorting(array('username' => 'asc'));
     }
 }

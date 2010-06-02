@@ -7,7 +7,8 @@ class Model_Product extends Jelly_Model
 
 	public static function initialize(Jelly_Meta $meta)
 	{
-		$meta->fields(array(
+		$meta
+			->fields(array(
 				'id' => new Field_Primary,
 				'name' => new Field_String(array(
 					'label' => 'Nazwa',
@@ -53,7 +54,7 @@ class Model_Product extends Jelly_Model
 				'suppliers' => new Field_ManyToMany(array(
 					'label' => 'Dostawcy',
 				)),
-				'supplies' => new Field_ManyToMany(array(
+				'supplies' => new Field_HasMany(array(
 					'label' => 'Zapotrzebowanie',
 				)),
 			))
@@ -103,9 +104,9 @@ class Model_Product extends Jelly_Model
 		return FALSE;
 	}
 
-	public function decrease_quantity($value)
+	public function modify_quantity($value)
 	{
-		$this->quantity = $this->quantity - (float) $value;
+		$this->quantity = $this->quantity + (float) $value;
 		$this->save();
 		return $this;
 	}
@@ -122,5 +123,18 @@ class Model_Product extends Jelly_Model
 					->limit(1)
 					->execute()
 					->current();
+	}
+	
+	public function count_active_supplies()
+	{
+		$i = 0;
+		foreach($this->supplies as $v)
+		{
+			if(in_array($v->status, array('added', 'in-progress')))
+			{
+				$i++;
+			}
+		}
+		return $i;
 	}
 }

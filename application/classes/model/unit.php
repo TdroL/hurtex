@@ -19,7 +19,8 @@ class Model_Unit extends Jelly_Model
 					'null' => FALSE,
 					'choices' => array('integer'=>'Liczba całkowita','float'=> 'Liczba rzeczywista'),
 				)),
-			));
+			))
+			->sorting(array(':name_key' => 'asc'));
 	}
 
 }

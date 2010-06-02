@@ -118,15 +118,21 @@ Kohana::$config->attach(new Kohana_Config_Database);
  * defaults for the URI.
  */
  
- 	Route::set('admin', 'admin(/<controller>(/<action>(.<id>)))', 
+ 	Route::set('admin', 'admin(/<controller>(/<action>(.<id>)(/sort-by-<sort>(-<order>))(/page-<page>)))', 
 		array(
 			'id'			=> '\d++',
+			'sort'			=> '[_a-z]++',
+			'page'			=> '\d++',
+			'order'			=> 'asc|desc',
 		))
 		->defaults(array(
 			'directory'		=> 'protected',
 			'controller'	=> 'main',
 			'action' 		=> 'index',
 			'id'			=> NULL,
+			'sort'			=> NULL,
+			'order'			=> 'asc',
+			'page'			=> 1,
 		));
 
 	Route::set('default', '(<controller>(/<action>(.<id>)))(/from:<from>)(/page-<page>)', 

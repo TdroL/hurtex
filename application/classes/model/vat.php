@@ -22,7 +22,8 @@ class Model_Vat extends Jelly_Model
 						'range' => array(0, 1),
 					),
 				)),
-			));
+			))
+			->sorting(array('value' => 'asc'));
 	}
 
 }

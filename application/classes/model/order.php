@@ -54,7 +54,8 @@ class Model_Order extends Jelly_Model
 				'orderproducts' => new Field_HasMany(array(
 					'label' => 'Produkty',
 				)),
-			));
+			))
+			->sorting(array('date' => 'desc'));
 	}
 
 	public function generate_paragon_number()
@@ -101,7 +102,7 @@ class Model_Order extends Jelly_Model
 		{
 			foreach($this->orderproducts as $v)
 			{
-				$v->product->decrease_quantity($v->quantity);
+				$v->product->modify_quantity(- $v->quantity);
 			}
 		}
 	}

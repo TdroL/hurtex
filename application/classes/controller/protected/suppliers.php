@@ -6,7 +6,14 @@ class Controller_Protected_Suppliers extends Controller_Admin
 
 	public function action_index()
 	{
-		$this->content->suppliers = Jelly::select('supplier')->execute();
+		$this->content->suppliers = Jelly::select('supplier')
+											->page()
+											->sort()
+											->execute();
+		
+		$this->content->paginate = new Pagination(array(
+			'total_items' => Jelly::select('supplier')->count(),
+		));
 	}
 
 	public function action_create()

@@ -9,12 +9,20 @@ class Controller_Protected_orders extends Controller_Admin
 
 	public function action_index()
 	{
-		$this->content->orders = Jelly::select('order')->with('client')->execute();
+		$this->content->orders = Jelly::select('order')
+									->with('client')
+									->page()
+									->sort()
+									->execute();
+								
+		$this->content->paginate = new Pagination(array(
+			'total_items' => Jelly::select('order')->with('client')->count()
+		));
 	}
 	
 	public function action_added()
 	{
-		$this->content->orders = Jelly::select('order')->with('client')->get_added()->execute();
+		$this->content->orders = Jelly::select('order')->with('client')->get_by_status(array('added', 'accepted'))->execute();
 	}
 		
 	public function action_update()

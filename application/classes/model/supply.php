@@ -8,13 +8,59 @@ class Model_Supply extends Jelly_Model
 		$meta->fields(array(
 				'id' => new Field_Primary,
 				'date' => new Field_Timestamp(array(
+					'label' => 'Data',
+					'default' => time(),
 				)),
 				'status' => new Field_Enum(array(
-					'choices' => array('added', 'in-progress', 'done', 'canceled'),
+					'label' => 'Status',
+					'default' => 'added',
+					'choices' => array(
+								'added' => 'Dodany',
+								'in-progress' => 'W trakcie',
+								'done' => 'Zakończony',
+								'canceled' => 'Anulowany',
+					),
 				)),
-				'products' => new Field_ManyToMany(array(
+				'product' => new Field_BelongsTo(array(
+					'label' => 'Produkt',
 				)),
-			));
+				'supplier' => new Field_Supplier(array(
+					'label' => 'Dostawca',
+				)),
+				'quantity' => new Field_Float(array(
+					'label' => 'Ilość',
+					'default' => 0,
+					'rules' => array(
+						'not_empty' => NULL,
+					),
+				)),
+			))
+			->load_with(array('product', 'supplier'))
+			->sorting(array('date' => 'desc'));
 	}
 
+	public function set($values, $value = NULL)
+	{
+		if($values == 'product')
+		{
+			$this->_meta->fields('supplier')->product = $value;
+		}
+		return parent::set($values, $value);
+	}
+	
+	public function save($key = NULL)
+	{
+		if($this->product->unit->type == 'integer')
+		{
+			$this->quantity = (int) $this->quantity;
+		}
+		
+		$status = $this->_original['status'];
+		parent::save();
+		
+		if($status != $this->status and $this->status == 'done')
+		{
+			$this->product->modify_quantity($this->quantity);
+		}
+	}
 }

@@ -8,7 +8,14 @@ class Controller_Protected_Products extends Controller_Admin
 
 	public function action_index()
 	{
-		$this->content->products = Jelly::select('product')->execute();
+		$this->content->products = Jelly::select('product')
+										->page()
+										->sort()
+										->execute();
+		
+		$this->content->paginate = new Pagination(array(
+			'total_items' => Jelly::select('product')->count()
+		));
 	}
 	
 	public function action_create()

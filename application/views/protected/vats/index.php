@@ -5,8 +5,14 @@
 <caption><?php echo html::anchor('admin/vats/create', 'Dodaj nową stawkę') ?></caption>
 <thead>
 	<tr>
-		<td>Nazwa</td>
-		<td>Wartość</td>
+		<td>Nazwa
+			<?php echo html::anchor('admin/vats/index/sort-by-name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/vats/index/sort-by-name-desc', '&or;') ?>
+		</td>
+		<td>Wartość
+			<?php echo html::anchor('admin/vats/index/sort-by-value-asc', '&and;') ?>
+			<?php echo html::anchor('admin/vats/index/sort-by-value-desc', '&or;') ?>
+		</td>
 		<td>Operacje</td>
 	</tr>
 </thead>
@@ -23,3 +29,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

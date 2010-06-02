@@ -5,7 +5,10 @@
 <caption><?php echo html::anchor('admin/suppliers/create', 'Dodaj nowego dostawcę') ?></caption>
 <thead>
 	<tr>
-		<td>Nazwa</td>
+		<td>Nazwa
+			<?php echo html::anchor('admin/suppliers/index/sort-by-name-asc', '&and;') ?>
+			<?php echo html::anchor('admin/suppliers/index/sort-by-name-desc', '&or;') ?>
+		</td>
 		<td>Adres</td>
 		<td>Operacje</td>
 	</tr>
@@ -23,3 +26,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

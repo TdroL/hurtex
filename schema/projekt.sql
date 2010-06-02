@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 31 Maj 2010, 22:07
+-- Czas wygenerowania: 02 Cze 2010, 12:35
 -- Wersja serwera: 5.1.37
 -- Wersja PHP: 5.3.0
 
@@ -376,30 +376,6 @@ CREATE TABLE IF NOT EXISTS `products_suppliers` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla  `products_supplies`
---
-
-DROP TABLE IF EXISTS `products_supplies`;
-CREATE TABLE IF NOT EXISTS `products_supplies` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `quantity` float NOT NULL,
-  `product_id` int(11) unsigned NOT NULL,
-  `supply_id` int(11) unsigned NOT NULL,
-  `supplier_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`,`supply_id`,`supplier_id`),
-  KEY `supply_id` (`supply_id`),
-  KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
---
--- Zrzut danych tabeli `products_supplies`
---
-
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla  `product_search`
 --
 
@@ -480,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 --
 -- Zrzut danych tabeli `roles`
@@ -539,7 +515,11 @@ INSERT INTO `roles` (`id`, `name`, `description`) VALUES
 (72, 'users.index', ''),
 (73, 'users.create', ''),
 (74, 'users.update', ''),
-(75, 'users.delete', '');
+(75, 'users.delete', ''),
+(76, 'supplies', ''),
+(77, 'supplies.index', ''),
+(78, 'supplies.create', ''),
+(79, 'supplies.update', '');
 
 -- --------------------------------------------------------
 
@@ -690,7 +670,12 @@ CREATE TABLE IF NOT EXISTS `supplies` (
   `id` int(11) unsigned NOT NULL,
   `date` int(11) unsigned NOT NULL,
   `status` enum('added','in-progress','done','canceled') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'added',
-  PRIMARY KEY (`id`)
+  `quantity` float NOT NULL,
+  `product_id` int(11) unsigned NOT NULL,
+  `supplier_id` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `supplier_id` (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -744,7 +729,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `logins`, `last_login`, `rolesgroup_id`) VALUES
-(1, 'admin', 'f014ed627136059525f6cd2e6c0519b4bd3b796ead9f58711a', 8, 1275325404, 1),
+(1, 'admin', 'f014ed627136059525f6cd2e6c0519b4bd3b796ead9f58711a', 10, 1275473613, 1),
 (3, 'test', 'f7630f1d01fbeb85cdeca3c5f18bf0755d3a12b0cb17a22a64', 5, 1275336393, 2);
 
 -- --------------------------------------------------------
@@ -844,19 +829,11 @@ ALTER TABLE `products_suppliers`
   ADD CONSTRAINT `products_suppliers_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ograniczenia dla tabeli `products_supplies`
---
-ALTER TABLE `products_supplies`
-  ADD CONSTRAINT `products_supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `products_supplies_ibfk_2` FOREIGN KEY (`supply_id`) REFERENCES `supplies` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `products_supplies_ibfk_3` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
-
---
 -- Ograniczenia dla tabeli `roles_rolesgroups`
 --
 ALTER TABLE `roles_rolesgroups`
-  ADD CONSTRAINT `roles_rolesgroups_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `roles_rolesgroups_ibfk_1` FOREIGN KEY (`rolesgroup_id`) REFERENCES `rolesgroups` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `roles_rolesgroups_ibfk_1` FOREIGN KEY (`rolesgroup_id`) REFERENCES `rolesgroups` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_rolesgroups_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `roles_users`
@@ -864,6 +841,13 @@ ALTER TABLE `roles_rolesgroups`
 ALTER TABLE `roles_users`
   ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `supplies`
+--
+ALTER TABLE `supplies`
+  ADD CONSTRAINT `supplies_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `users`

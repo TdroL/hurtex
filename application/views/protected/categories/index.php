@@ -5,8 +5,14 @@
 <caption><?php echo html::anchor('admin/categories/create', 'Dodaj nową kategorię') ?></caption>
 <thead>
 	<tr>
-		<td>Tytuł</td>
-		<td>Kategoria nadrzędna</td>
+		<td>Tytuł<br />
+			<?php echo html::anchor('admin/categories/index/sort-by-title-asc', '&and;') ?>
+			<?php echo html::anchor('admin/categories/index/sort-by-title-desc', '&or;') ?>
+		</td>
+		<td>Kategoria nadrzędna<br />
+			<?php echo html::anchor('admin/categories/index/sort-by-category-asc', '&and;') ?>
+			<?php echo html::anchor('admin/categories/index/sort-by-category-desc', '&or;') ?>
+		</td>
 		<td>Operacje</td>
 	</tr>
 </thead>
@@ -24,3 +30,9 @@
 <?php endforeach ?>
 </tbody>
 </table>
+
+<?php if(!empty($paginate)): ?>
+	<div class="paginate">
+		<?php echo $paginate ?>
+	</div>
+<?php endif ?>

@@ -70,7 +70,8 @@ class Model_Client extends Jelly_Model
 						'nip' => NULL,
 					),
 				)),
-			));
+			))
+			->sorting(array('second_name' => 'asc'));
 	}
 	
 	public function login()

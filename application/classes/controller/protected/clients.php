@@ -6,7 +6,14 @@ class Controller_Protected_Clients extends Controller_Admin
 
 	public function action_index()
 	{
-		$this->content->clients = Jelly::select('client')->execute();
+		$this->content->clients = Jelly::select('client')
+										->page()
+										->sort()
+										->execute();
+		
+		$this->content->paginate = new Pagination(array(
+			'total_items' => Jelly::select('client')->count()
+		));
 	}
 
 	public function action_create()
