@@ -5,7 +5,7 @@ class Controller_Protected_Products extends Controller_Admin
 	protected $_base = 'admin/products';
 	
 	public $access = array('details' => ':controller.index');
-
+	public $no_template = array('address');
 	public function action_index()
 	{
 		$this->content->products = Jelly::select('product')
@@ -127,5 +127,9 @@ class Controller_Protected_Products extends Controller_Admin
 		
 		$this->view->title = $product->name;
 		$this->content->product = $product;
+	}
+	public function action_address() 
+	{
+		$this->action_details;
 	}
 }
