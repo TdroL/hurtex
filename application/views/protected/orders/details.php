@@ -57,7 +57,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="align-right" title='Wydrukuj adres dostawy'><?php echo html::anchor('admin/products/address', 'Adres dostawy') ?></td>
+		<td class="align-right"><?php echo html::anchor('admin/orders/address.' .$order->id,'Adres dostawy', array('title' => 'Wydrukuj adres dostawy')) ?></td>
 		<td colspan="4">
 			<?php echo nl2br(html::chars($order->address)) ?>
 		</td>
