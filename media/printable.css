@@ -67,6 +67,11 @@ td.align-right, .align-right {
 	text-align: right;
 	font-weight: bold;
 }
+table.no_border ,  td.no_border, th.no_border {border: 0 none;}
+.sign_border{
+	width: 390pt;
+	border: 0 none;
+}
 .price_vat
 {
 	width: 35px;
