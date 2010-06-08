@@ -16,6 +16,20 @@ class Controller_Protected_Supplies extends Controller_Admin
 		));
 	}
 	
+	public function action_details()
+	{
+		$id = $this->request->param('id');
+		$supply = Jelly::select('supply', $id);
+		$supply->set('product', $supply->product); // bez tego nie dziala, lol
+
+		if(!$supply->loaded()) // jesli ine istnieje to przekieruj do listy produktow
+		{
+			$this->request->redirect($this->_base);
+		}
+		
+		$this->content->supply = $supply;
+	}
+	
 	public function action_create()
 	{
 		$this->content->bind('form', $supply); // uzywajac bind() widok zapamieta referencje a nie wartosc

@@ -22,7 +22,7 @@
 <tbody>
 <?php foreach($supplies as $supply): ?>
 	<tr>
-		<td><?php echo html::anchor('admin/supplys/details.'.$supply->product->id, $supply->product->name) ?></td>
+		<td><?php echo html::anchor('admin/supplies/details.'.$supply->product->id, $supply->product->name) ?></td>
 		<td><?php echo $supply->quantity ?></td>
 		<td><?php echo $supply->product->unit->name ?></td>
 		<td><?php echo $supply->meta()->fields('status')->choices[$supply->status] ?></td>
