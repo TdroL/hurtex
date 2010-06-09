@@ -1287,6 +1287,7 @@ ul.discreet li {
 	text-align: center;
 	font-weight: bold;
 	background: rgba(0, 0, 0, 0.7);
+	cursor: pointer;
 	color: #fff;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
