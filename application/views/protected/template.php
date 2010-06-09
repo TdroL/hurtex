@@ -1,13 +1,13 @@
+<?php defined('SYSPATH') OR die('No direct access allowed.') ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<title>Formatki - szkielet</title>
 	<meta charset="utf-8" />
-	<style type="text/css">
-		@import url("<?php echo url::site('media/admin/style.css') ?>");
-	</style>
-	<?php echo html::script('media/js/jquery-1.4.2.min.js') ?>
-	<?php echo html::script('media/js/jquery.autohide.js') ?>
+	<title>Hurtex - Panel zarządzania</title>
+
+	<link href="<?php echo url::site('media/admin/style.css') ?>" rel="stylesheet" />
+	<script src="<?php echo url::site('media/js/jquery-1.4.2.min.js') ?>"></script>
+	<script src="<?php echo url::site('media/js/jquery.autohide.js') ?>"></script>
 </head>
 <body>
 	<div id="root">
@@ -52,6 +52,7 @@
 			<small>Jakieś &copy;copywrite...</small>
 		</footer>
 	</div>
+
 </body>
 </html>
 
