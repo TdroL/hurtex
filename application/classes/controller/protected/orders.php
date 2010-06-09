@@ -4,8 +4,9 @@ class Controller_Protected_orders extends Controller_Admin
 {
 	protected $_base = 'admin/orders';
 	public $no_template = array('invoice', 'added', 'address','printable', 'printable2');
+	public $no_view = array('unlock'); 
 	
-	public $access = array('invoice' => ':controller.index');
+	public $access = array('invoice' => ':controller.index', 'unlock' => 'admin');
 
 	public function action_index()
 	{
@@ -132,6 +133,9 @@ class Controller_Protected_orders extends Controller_Admin
 						->with('client')
 						->load($id);
 		
+		$mod = clone $order;
+		$mod->printed();
+		
 		$this->content->order = $order;
 		
 		$this->content->products = $order->orderproducts;
@@ -147,5 +151,15 @@ class Controller_Protected_orders extends Controller_Admin
 	}
 	public function action_printable2(){
 		$this->action_printable();
+	}
+
+	public function action_unlock()
+	{
+		$id = $this->request->param('id');
+		
+		$order = Jelly::select('order')->load($id);
+		$order->unlock();
+		
+		$this->request->redirect('admin/orders');
 	}
 }

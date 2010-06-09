@@ -76,6 +76,23 @@ class Model_Order extends Jelly_Model
 	{
 		return in_array($this->status, array('added'));
 	}
+	
+	public function printable()
+	{
+		return !$this->printed;
+	}
+	
+	public function printed()
+	{
+		$this->printed = 1;
+		$this->save();
+	}
+
+	public function unlock()
+	{
+		$this->printed = 0;
+		$this->save();
+	}
 
 	public function cancel()
 	{

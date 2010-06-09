@@ -8,6 +8,12 @@
 	
 </head>
 <body>
+<?php if(!$order->printable()): ?>
+	<h1>Już wydrukowano!</h1>
+	<?php if($controller->auth->has_role('admin')): ?>
+	<p><?php echo html::anchor('admin/orders/unlock.'.$order->id, 'Odblokuj') ?></p>
+	<?php endif ?>
+<?php else: ?>
 	<table class="art-article">
 	<caption>Potwierdzenie odbioru towarów z magazynu <br /> Zamówienie ID.<?php echo $order->paragon_number ?></caption>
 	<thead>
@@ -89,5 +95,6 @@
 	<table class="sign_border"><tr>
 	<td class="no_border"><small>Podpis odbierającego</small></td><td class="no_border" align="right"><small> Podpis wydającego</small></td>
 	</tr></table></div>
+<?php endif ?>
 </body>
 </html>

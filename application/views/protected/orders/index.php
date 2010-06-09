@@ -36,7 +36,7 @@
 		<td><?php echo html::anchor('admin/clients/details.'.$order->client->id, $order->client->second_name.' '.$order->client->first_name) ?></td>
 		<td><?php echo $order->meta()->fields('status')->choices[$order->status] ?>
 			<br />
-			<?php if ($order->status == 'accepted'): ?><p title="Wydrukuj pokwitowanie odbioru z magazynu"><?php echo html::anchor('admin/orders/printable.'.$order->id, 'Pokwitowanie')?></p> <?php endif ?>
+			<?php if ($order->status == 'accepted' and ($order->printable() or $controller->auth->has_role('admin'))): ?><p title="Wydrukuj pokwitowanie odbioru z magazynu"><?php echo html::anchor('admin/orders/printable.'.$order->id, 'Pokwitowanie')?></p> <?php endif ?>
 		</td>
 		<td>
 			<?php echo html::anchor('admin/orders/details.'.$order->id, 'Szczegóły')?>

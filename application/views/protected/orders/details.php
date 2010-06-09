@@ -48,7 +48,7 @@
 		<td colspan="4">
 			<?php echo $order->sendform->name ?>
 			 - <?php echo number_format($order->sendform->value, 2) ?> zł
-			 <?php if($order->sendform->name == 'Odbiór osobisty' && $order->status == 'accepted'): ?> <?php echo html::anchor('admin/orders/printable2.' .$order->id, 'Pokwitowanie', array('title' => 'Wydrukuj potwierdzenie wydania towarów')) ?><?php endif ?>
+			 <?php if($order->sendform->id == 1 and $order->status == 'accepted' and ($order->printable() or $controller->auth->has_role('admin'))): ?> <?php echo html::anchor('admin/orders/printable2.' .$order->id, 'Pokwitowanie', array('title' => 'Wydrukuj potwierdzenie wydania towarów')) ?><?php endif ?>
 		</td>
 	</tr>
 	<tr>
