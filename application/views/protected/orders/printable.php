@@ -12,6 +12,9 @@
 	<caption>Potwierdzenie odbioru towarów z magazynu <br /> Zamówienie ID.<?php echo $order->paragon_number ?></caption>
 	<thead>
 		<tr>
+			<td colspan ="2"><b>Data zamówienia:</b><br /><?php echo date('Y-m-d', $order->date) ?></td>
+		</tr>
+		<tr>
 			<th>Nazwa produktu</th>
 			<th>Ilość</th>
 			<th>Cena netto</th>
@@ -59,12 +62,14 @@
 				<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 			</td>
 		</tr>
+		<?php if($order->sendform->name != "Odbiór osobisty"): ?>
 		<tr>
 			<td class="align-right">Adres dostawy</td>
 			<td colspan="4">
 				<?php echo nl2br(html::chars($order->address)) ?>
 			</td>
 		</tr>
+		<?php endif ?>
 		<tr>
 			<td class="align-right">Do zapłaty</td>
 			<td colspan="4">
