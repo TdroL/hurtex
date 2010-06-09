@@ -5,7 +5,9 @@
 	<meta charset="UTF-8" />
 	<title><?php echo empty($title) ? 'Projekt zespołowy' : $title ?></title>
 
-	<script type="text/javascript" src="<?php echo url::site('media/js/script.js')?>"></script>
+	<script src="<?php echo url::site('media/js/script.js')?>"></script>
+	<script src="<?php echo url::site('media/js/jquery-1.4.2.min.js')?>"></script>
+	<script src="<?php echo url::site('media/js/autoajax.js')?>"></script>
 	<link rel="stylesheet" href="<?php echo url::site('media/style.css') ?>" type="text/css" media="screen" />
 	<!--[if IE 6]><link rel="stylesheet" href="<?php echo url::site('media/style.ie6.css')?>" type="text/css" media="screen" /><![endif]-->
 	<!--[if IE 7]><link rel="stylesheet" href="<?php echo url::site('media/style.ie7.css')?>" type="text/css" media="screen" /><![endif]-->

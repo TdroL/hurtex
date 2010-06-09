@@ -191,7 +191,14 @@ class Controller_Public_Cart extends Controller_Frontend
 			}
 		}
 		
-		$this->request->redirect($this->_base);
+		if(Request::$is_ajax)
+		{
+			$this->view = 'success';
+		}
+		else
+		{
+			$this->request->redirect($this->_base);
+		}
 	}
 	
 	public function action_remove()
