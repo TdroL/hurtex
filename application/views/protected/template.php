@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<title>Formatki - szkielet</title>
+	<title>Panel zarządzania</title>
 	<meta charset="utf-8" />
 	<style type="text/css">
 		@import url("<?php echo url::site('media/admin/style.css') ?>");
