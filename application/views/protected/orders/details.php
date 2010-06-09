@@ -48,6 +48,7 @@
 		<td colspan="4">
 			<?php echo $order->sendform->name ?>
 			 - <?php echo number_format($order->sendform->value, 2) ?> zł
+			 <?php if($order->sendform->name == 'Odbiór osobisty' && $order->status == 'accepted'): ?> <?php echo html::anchor('admin/orders/printable2.' .$order->id, 'Pokwitowanie', array('title' => 'Wydrukuj potwierdzenie wydania towarów')) ?><?php endif ?>
 		</td>
 	</tr>
 	<tr>
@@ -56,12 +57,14 @@
 			<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 		</td>
 	</tr>
+	<?php if ($order->sendform->name != "Odbiór osobisty"): ?>
 	<tr>
 		<td class="align-right"><?php echo html::anchor('admin/orders/address.' .$order->id,'Adres dostawy', array('title' => 'Wydrukuj adres dostawy')) ?></td>
 		<td colspan="4">
 			<?php echo nl2br(html::chars($order->address)) ?>
 		</td>
 	</tr>
+	<?php endif ?>
 	<tr>
 		<td class="align-right"><b>Do zapłaty</b></td>
 		<td colspan="4">

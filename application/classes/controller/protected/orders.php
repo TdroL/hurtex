@@ -3,7 +3,7 @@
 class Controller_Protected_orders extends Controller_Admin
 {
 	protected $_base = 'admin/orders';
-	public $no_template = array('invoice', 'added', 'address','printable');
+	public $no_template = array('invoice', 'added', 'address','printable', 'printable2');
 	
 	public $access = array('invoice' => ':controller.index');
 
@@ -117,7 +117,9 @@ class Controller_Protected_orders extends Controller_Admin
 		$this->content->order = Jelly::select('order')
       ->with('client')
       ->load($id);
-	}public function action_printable()
+	}
+	
+	public function action_printable()
 	{
 		$this->content->bind('sum_netto', $sum_netto);
 		$this->content->bind('sum_brutto', $sum_brutto);
@@ -143,5 +145,7 @@ class Controller_Protected_orders extends Controller_Admin
 		$sum_netto_plus = $sum_netto + $order->sendform->value;
 		$sum_brutto_plus = $sum_brutto + $order->sendform->value;
 	}
-	
+	public function action_printable2(){
+		$this->action_printable();
+	}
 }
