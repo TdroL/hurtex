@@ -28,6 +28,9 @@
 		<td><?php echo $supply->meta()->fields('status')->choices[$supply->status] ?></td>
 		<td>
 			<?php echo html::anchor('admin/supplies/update.'.$supply->id, 'Edytuj') ?>
+			<?php if($supply->status=='in-progress'): ?>
+			<?php echo html::anchor('admin/supplies/printable.'.$supply->id, 'Pokwitowanie', array('title' => 'Wydrukuj potwierdzenie przyjęcia towaru')) ?>
+			<?php endif ?>
 		</td>
 	</tr>
 <?php endforeach ?>

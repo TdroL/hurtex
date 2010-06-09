@@ -18,7 +18,8 @@ date_default_timezone_set('Europe/Warsaw');
  * @see  http://docs.kohanaphp.com/about.configuration
  * @see  http://php.net/setlocale
  */
-setlocale(LC_ALL, 'pl_PL.utf-8');
+setlocale(LC_ALL, 'pl_PL.utf-8', 'pl', 'Polish_Poland.28592');
+
 
 /**
  * Enable the Kohana auto-loader.

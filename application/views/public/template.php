@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" />
 	<title><?php echo empty($title) ? 'Projekt zespołowy' : $title ?></title>
 
 	<script type="text/javascript" src="<?php echo url::site('media/js/script.js')?>"></script>

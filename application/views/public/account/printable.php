@@ -11,6 +11,9 @@
 	<caption>Zamówienie ID.<?php echo $order->paragon_number ?> - szczegóły</caption>
 	<thead>
 		<tr>
+			<td colspan ="2"><b>Data zamówienia:</b><br /><?php echo date('Y-m-d', $order->date) ?></td>
+		</tr>
+		<tr>
 			<th>Nazwa produktu</th>
 			<th>Ilość</th>
 			<th>Cena netto</th>
@@ -46,24 +49,33 @@
 			<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 		</tr>
 		<tr>
+			<td class="align-right">Klient</td>
+			<td colspan="4">
+			<?php echo $order->client->second_name ?> <?php echo $order->client->first_name ?>
+			</td>
+		</tr>
+		<tr>
 			<td class="align-right">Forma dostawy</td>
 			<td colspan="4">
 				<?php echo $order->sendform->name ?>
 				 - <?php echo number_format($order->sendform->value, 2) ?> zł
 			</td>
 		</tr>
+		
 		<tr>
 			<td class="align-right">Forma płatności</td>
 			<td colspan="4">
 				<?php echo $order->meta()->fields('payment')->choices[$order->payment] ?>
 			</td>
 		</tr>
+		<?php if($order->sendform->name != "Odbiór osobisty"): ?>
 		<tr>
 			<td class="align-right">Adres dostawy</td>
 			<td colspan="4">
 				<?php echo nl2br(html::chars($order->address)) ?>
 			</td>
 		</tr>
+		<?php endif ?>
 		<tr>
 			<td class="align-right">Do zapłaty</td>
 			<td colspan="4">

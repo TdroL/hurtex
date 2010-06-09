@@ -3,6 +3,7 @@
 class Controller_Protected_Supplies extends Controller_Admin
 {
 	protected $_base = 'admin/supplies';
+	public $no_template = array('printable');
 	
 	public function action_index()
 	{
@@ -103,5 +104,9 @@ class Controller_Protected_Supplies extends Controller_Admin
 				$errors = $e->errors();
 			}
 		}
+	}
+	public function action_printable(){
+		$this->action_details();
+		
 	}
 }

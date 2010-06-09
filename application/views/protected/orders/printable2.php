@@ -9,7 +9,7 @@
 </head>
 <body>
 	<table class="art-article">
-	<caption>Potwierdzenie odbioru towarów z magazynu <br /> Zamówienie ID.<?php echo $order->paragon_number ?></caption>
+	<caption>Potwierdzenie wydania towarów <br /> Zamówienie ID.<?php echo $order->paragon_number ?></caption>
 	<thead>
 		<tr>
 			<td colspan ="2"><b>Data zamówienia:</b><br /><?php echo date('Y-m-d', $order->date) ?></td>
@@ -50,6 +50,12 @@
 			<td><b><?php echo number_format($sum_brutto, 2) ?> zł</b></td>
 		</tr>
 		<tr>
+			<td class="align-right">Klient</td>
+			<td colspan="4">
+			<?php echo $order->client->second_name ?> <?php echo $order->client->first_name ?>
+		</td>
+		</tr>
+		<tr>
 			<td class="align-right">Forma dostawy</td>
 			<td colspan="4">
 				<?php echo $order->sendform->name ?>
@@ -77,10 +83,7 @@
 				Brutto: <b><?php echo number_format($sum_brutto_plus, 2) ?> zł</b>
 			</td>
 		</tr>
-		<tr>
-			<td class="align-right"><b>Status</b></td>
-			<td colspan="4"><?php echo $order->meta()->fields('status')->choices[$order->status] ?></td>
-		</tr>
+		
 	</tbody>
 
 <?php endif ?>
