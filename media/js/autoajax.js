@@ -12,7 +12,7 @@ $(function(){
 		
 		$annotation.css({
 			top: $el.offset().top + 10,
-			left: $el.offset().left - 125,
+			left: 750,
 		})
 		.click(function() {
 			$annotation.stop().remove();

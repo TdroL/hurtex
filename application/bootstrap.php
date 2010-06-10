@@ -163,8 +163,8 @@ if(IN_PRODUCTION === TRUE)
 	try
 	{
 		// Attempt to execute the response
-		$request->execute()
-				->send_headers();
+		$request->send_headers()
+				->execute();
 	}
 	catch(Kohana_View_Exception $e)
 	{
@@ -189,8 +189,8 @@ else
 	// Attempt to execute the response
 	try
 	{
-		$request->execute()
-				->send_headers();
+		$request->send_headers()
+				->execute();
 	}
 	catch(Exception $e)
 	{
